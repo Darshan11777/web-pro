@@ -1,0 +1,41 @@
+.review-slider {
+    position: relative;
+    width: 100%;
+    /* overflow: hidden;  */
+  }
+  
+  .slide-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out; 
+  }
+  
+  .slide {
+    width: 100%; 
+    flex-shrink: 0; 
+  }
+  
+  .prev-button, .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 100%;
+    background: #453b57;
+    color: white;
+    /* padding: 15px; */
+    height: 45px;
+    width: 45px;
+    /* Add styling for the buttons */
+  }
+  
+  .prev-button {
+    left: 40px;
+    top: 200px;
+    z-index: 2;
+  }
+  
+  .next-button {
+    right:40px;
+    top: 200px;
+
+  }
+  

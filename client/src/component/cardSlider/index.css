@@ -1,0 +1,11 @@
+.brand_card {
+    width: 33%;
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+}
