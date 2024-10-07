@@ -15,7 +15,7 @@ export default function CardBrandSection({img,description,tags}) {
           if(item.length===0){
             return
           }
-          return <div className="desinger__name">
+          return <div key={item} className="desinger__name">
             <span>{item}</span>
           </div>})
         }

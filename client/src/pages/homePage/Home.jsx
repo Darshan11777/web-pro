@@ -15,6 +15,7 @@ import FooterSection from '../../component/FooterSection';
 import OurClients from '../../component/OurClients.jsx';
 import AccordionSection from '../../component/Accordion/AccordionSection.jsx';
 import StickyComponent from '../../component/StickyComponent.jsx';
+import News from '../../component/NewsSection.jsx';
 
 
 
@@ -65,7 +66,7 @@ export default function Home() {
     <OurProgessSection/>
     <OurResultSection/>
     <OurClients/>
-    <OurWorkSection/>
+    <News/>
     <ContactUs/>
     <AccordionSection/>
     {/* <BlogSection/> */}

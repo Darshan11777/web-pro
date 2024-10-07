@@ -63,7 +63,20 @@ app.use('/image',imageUploadRouter)
 // })
 
 app.get('/users', (req, res) => {
-  const sql = `SELECT * FROM reviews`
+// const sql= `INSERT INTO news (id, description, tags , imgUrl )
+// SELECT id, description, tags , imgUrl 
+// FROM our_work
+// `;
+
+// for getting talbe create 
+  `SHOW CREATE TABLE news;`
+// 
+// const sql=`SELECT 
+//     CONCAT('INSERT INTO news (id, title, imgUrl) VALUES (', 
+//     id, ', ''', REPLACE(title, '''', ''''''), ''', ''', REPLACE(imgUrl, '''', ''''''), ''');')
+// FROM news;
+// `
+const sql=`select * from news`
 
 
   db.query(sql, (err, result) => {
@@ -84,6 +97,10 @@ app.post('/users', (req, res) => {
     res.json({ message: 'User added successfully!', userId: result.insertId });
   });
 });
+
+
+
+
 app.use(errorMiddleware)
 // Start server
 const PORT = 5000;

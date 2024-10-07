@@ -33,6 +33,10 @@ import OurWork from "./admin-panel src/components/DataManager/our-work section/O
 import OurWorkForm from "./admin-panel src/components/DataManager/our-work section/OurWorkForm";
 import OurReview from "./admin-panel src/components/DataManager/our-review section/OurReview";
 import OurReviewForm from "./admin-panel src/components/DataManager/our-review section/OurReviewForm";
+import FAQs from "./admin-panel src/components/DataManager/FAQs section/FAQs";
+import FAQsForm from "./admin-panel src/components/DataManager/FAQs section/FAQsForm";
+import News from "./admin-panel src/components/DataManager/our-news section/News";
+import NewsForm from "./admin-panel src/components/DataManager/our-news section/NewsForm";
 
 const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -56,7 +60,7 @@ const AdminPanel = () => {
     // console.log( "running");
     try {
       const baseUrl = import.meta.env.VITE_API_BASE_URL; // Assuming you have this defined
-      const response =await axios.get(baseUrl + "admin/user-data", {
+      const response = await axios.get(baseUrl + "admin/user-data", {
         withCredentials: true,
       });
 
@@ -147,6 +151,26 @@ const AdminPanel = () => {
                   />{" "}
                   {/* Route for editing slides */}
                 </Route>
+                <Route path="news">
+                  <Route index element={<News />} />
+                  <Route path="new" element={<NewsForm />} />{" "}
+                  {/* Route for adding new slides */}
+                  <Route
+                    path=":slideId/edit"
+                    element={<NewsForm />}
+                  />{" "}
+                  {/* Route for editing slides */}
+                </Route>
+                <Route path="FAQs">
+                  <Route index element={<FAQs />} />
+                  <Route path="new" element={<FAQsForm />} />{" "}
+                  {/* Route for adding new slides */}
+                  <Route
+                    path=":slideId/edit"
+                    element={<FAQsForm />}
+                  />{" "}
+                  {/* Route for editing slides */}
+                </Route>
                 <Route path="our-process">
                   <Route index element={<OurProcess />} />
                   <Route path="new" element={<OurProcessForm />} />{" "}
@@ -161,10 +185,7 @@ const AdminPanel = () => {
                   <Route index element={<OurWork />} />
                   <Route path="new" element={<OurWorkForm />} />{" "}
                   {/* Route for adding new slides */}
-                  <Route
-                    path=":slideId/edit"
-                    element={<OurWorkForm />}
-                  />{" "}
+                  <Route path=":slideId/edit" element={<OurWorkForm />} />{" "}
                   {/* Route for editing slides */}
                 </Route>
               </Route>

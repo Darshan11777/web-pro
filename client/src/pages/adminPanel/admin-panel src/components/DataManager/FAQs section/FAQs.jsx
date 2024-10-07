@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import SlidesForm from "./OurServiceForm";
+import SlidesForm from "./FAQsForm";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../../Breadcrumbs/Breadcrumb";
+import StarRating from "../../../../../../component/Rating/Rating";
 
-const OurService = () => {
+const FAQs = () => {
   const data = [
     {
       title: "Welcome to Our Platform",
@@ -39,7 +40,6 @@ const OurService = () => {
   const [slides, setSlides] = useState([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [editingSlide, setEditingSlide] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
 
@@ -49,57 +49,21 @@ const OurService = () => {
   }, []);
 
   const fetchSlides = async () => {
-    setIsLoading(true); // Set loading to true before fetching
-    try {
-      const res = await axios.get(baseUrl + "slides/our-service");
-      setSlides(res.data);
-    } catch (error) {
-      console.error("Error fetching slides:", error);
-      // Handle error, maybe display an error message
-    } finally {
-      setIsLoading(false); // Set loading to false after fetching, even if there's an error
-    }
+    const res = await axios.get(baseUrl + "slides/faqs");
+    setSlides(res.data);
   };
 
   const deleteSlide = async (id) => {
-    await axios.delete(baseUrl + `slides/our-service/${id}`);
+    await axios.delete(baseUrl + `slides/faq/${id}`);
     fetchSlides(); // Refresh the list
   };
 
   const startEditing = (slide) => {
-    navigate(`/admin/slides/our-service/${slide.id}/edit`); // Navigate to edit page
+    navigate(`/admin/slides/faqs/${slide.id}/edit`); // Navigate to edit page
   };
   const addNewSlide = () => {
-    navigate("/admin/slides/our-service/new"); // Navigate to add new slide page
+    navigate("/admin/slides/faqs/new"); // Navigate to add new slide page
   };
-
-  if (isLoading) {
-    return;
-    <div className="col-span-full text-center  py-8">
-      {/* Loading indicator */}
-      <svg
-        className="animate-spin h-8 w-8 text-blue-500 mx-auto"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          className="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-        ></circle>
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        ></path>
-      </svg>
-      <p className="mt-2 text-gray-600">Loading slides...</p>
-    </div>;
-  }
 
   return (
     <div className=" bg-gray-100 min-h-screen">
@@ -107,35 +71,22 @@ const OurService = () => {
         {/* <h2 className="text-2xl font-semibold text-gray-800 mb-6">
           Manage Our Services Slides
         </h2> */}
-        <Breadcrumb pageName=" Manage Our Services Slides" />
+        <Breadcrumb pageName=" Manage FAQs Slides" />
         <div className="grid h-fit grid-cols-1 grid-auto-rows: min-content md:grid-cols-2 lg:grid-cols-3 gap-6">
           {slides.map((slide, i) => (
             <div
               key={i}
               className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 ease-in-out"
             >
-              <img
-                src={slide.imgUrl}
-                alt={slide.title}
-                className="w-full h-48 object-cover"
-              />
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800">
                   {slide.title}
                 </h3>
-                <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+
+                <p className="text-lg text-gray-600 mt-2 mb-2 ">
                   {slide.description}
                 </p>
-                <div className="mt-3">
-                  {slide.tags.split(",").map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="inline-block bg-indigo-100 text-indigo-600 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2"
-                    >
-                      {tag.trim()}
-                    </span>
-                  ))}
-                </div>
+
                 <div className="mt-4 flex justify-end">
                   <button
                     onClick={() => startEditing(slide)}
@@ -183,4 +134,4 @@ const OurService = () => {
   );
 };
 
-export default OurService;
+export default FAQs;

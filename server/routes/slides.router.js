@@ -1,5 +1,5 @@
 import express from 'express';
-import {getSlides,addSlide,updateSlide,deleteSlide, getProcesses, addProcess, updateProcess, deleteProcess, getWorks, addWork, updateWork, deleteWork, getReviews, addReview, updateReview, deleteReview} from '../controller/data.controller.js'
+import {getSlides,addSlide,updateSlide,deleteSlide, getProcesses, addProcess, updateProcess, deleteProcess, getWorks, addWork, updateWork, deleteWork, getReviews, addReview, updateReview, deleteReview, getFAQs, addFAQ, updateFAQ, deleteFAQ, getNews, addNews, updateNews, deleteNews} from '../controller/data.controller.js'
 const router = express.Router();
 
 // Get all slides
@@ -50,4 +50,27 @@ router.put('/reviews/:id', updateReview);
 
 
 router.delete('/reviews/:id', deleteReview);
+
+// faqs slides
+
+router.get('/faqs', getFAQs);
+
+
+router.post('/faqs', addFAQ);
+
+router.put('/faqs/:id', updateFAQ);
+
+
+router.delete('/faqs/:id', deleteFAQ);
+// news slides
+
+router.get('/news', getNews);
+
+
+router.post('/news', addNews);
+
+router.put('/news/:id', updateNews);
+
+
+router.delete('/news/:id', deleteNews);
 export default router;

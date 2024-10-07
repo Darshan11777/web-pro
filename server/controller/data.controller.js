@@ -163,3 +163,81 @@ export const deleteReview = (req, res) => {
   });
 };
 
+
+// Get all FAQs
+export const getFAQs = (req, res) => {
+  const query = "SELECT * FROM faqs";
+  db.query(query, (err, results) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(results);
+  });
+};
+
+// Add a new FAQ
+export const addFAQ = (req, res) => {
+  const { title, description } = req.body;
+  const query = "INSERT INTO faqs (title, description) VALUES (?, ?)";
+  db.query(query, [title, description], (err, results) => {
+    if (err) return res.status(500).json({ "addFAQ error": err });
+    return res.status(201).json({ message: "FAQ added successfully!" });
+  });
+};
+
+// Update an FAQ
+export const updateFAQ = (req, res) => {
+  const { title, description } = req.body;
+  const query = "UPDATE faqs SET title = ?, description = ? WHERE id = ?";
+  db.query(query, [title, description, req.params.id], (err, results) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json({ message: "FAQ updated successfully!" });
+  });
+};
+
+// Delete an FAQ
+export const deleteFAQ = (req, res) => {
+  const query = "DELETE FROM faqs WHERE id = ?";
+  db.query(query, [req.params.id], (err, results) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json({ message: "FAQ deleted successfully!" });
+  });
+};
+
+// News table functions
+// Get all news
+export const getNews = (req, res) => {
+  const query = "SELECT * FROM news"; 
+  db.query(query, (err, results) => {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json(results);
+  });
+};
+
+// Add a new news item
+export const addNews = (req, res) => {
+  const { description, tags, imgUrl } = req.body; 
+  const query = "INSERT INTO news (description, tags, imgUrl) VALUES (?, ?, ?)";
+  db.query(query, [description, tags, imgUrl], (err, results) => {
+      if (err) return res.status(500).json({"addNews error":err});
+      return res.status(201).json({ message: "News added successfully!" });
+  });
+};
+
+// Update a news item
+export const updateNews = (req, res) => {
+  const  { description, tags, imgUrl } = req.body;
+  const query = "UPDATE news SET description = ?, tags = ?, imgUrl = ? WHERE id = ?";
+  db.query(query, [description, tags, imgUrl, req.params.id], (err, results) => {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json({ message: "News updated successfully!" });
+  });
+};
+
+// Delete a news item
+export const deleteNews = (req, res) => {
+  const query = "DELETE FROM news WHERE id = ?";
+  db.query(query, [req.params.id], (err, results) => {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json({ message: "News deleted successfully!" });
+  });
+};
+

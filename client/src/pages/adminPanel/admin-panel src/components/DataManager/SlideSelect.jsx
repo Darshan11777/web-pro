@@ -7,7 +7,11 @@ const PageSelector = () => {
     { id: 1, title: 'Our Services Section', path: 'our-service' },
     { id: 2, title: 'Our Process Section', path: 'our-process' },
     { id: 3, title: 'Our Work', path: 'our-work' },
-    { id: 4, title: 'Our Review', path: 'our-review' },
+
+    { id: 4, title: 'Our Review', path: 'review' },
+    { id: 5, title: 'Our News', path: 'news' }, 
+    { id: 6, title: 'FAQs', path: 'FAQs' },
+    
     // Add more pages as needed
   ];
 
@@ -17,7 +21,7 @@ const PageSelector = () => {
         {/* <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
           Select a Section to Edit
         </h1> */}
-        <Breadcrumb pageName="Section" />
+        <Breadcrumb pageName="Edit Slides" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"> 
           {pages.map((page) => (

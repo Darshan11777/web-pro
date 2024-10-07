@@ -3,7 +3,8 @@ import CardBrandSection from "../CardBrandSection";
 import './index.css'
 import axios from "axios";
 
-export default function CardSlider() {
+export default function CardSlider({dataUrl="slides/our-work"}) {
+  
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState(null);
   const sliderRef = useRef(null);
@@ -11,7 +12,7 @@ export default function CardSlider() {
   const baseUrl=import.meta.env.VITE_API_BASE_URL
 
   const getSlides=async()=>{
-    const res=await axios.get(baseUrl+'slides/our-work')
+    const res=await axios.get(baseUrl+dataUrl)
     console.log( "res.data",res.data);
     setSlides(res.data)
   }
@@ -22,7 +23,7 @@ export default function CardSlider() {
     
   }, [])
   
-  
+ 
   useEffect(() => {
 
     if (slides){
@@ -34,7 +35,7 @@ export default function CardSlider() {
       if (entries[0].isIntersecting) {
         intervalId = setInterval(() => {
           setCurrentSlide((prevSlide) => (prevSlide + 1) % (slides.length - 2));
-        }, 300000); 
+        }, 3000); 
       } else {
         clearInterval(intervalId);
       }
@@ -60,6 +61,7 @@ export default function CardSlider() {
           className="card-slider card-container"
           ref={sliderRef} 
         >
+          
           {slides?.map((slide, index) => (
 
             <div
@@ -70,7 +72,7 @@ export default function CardSlider() {
                 transition: "transform 0.5s ease-in-out",
               }}
             >
-              <CardBrandSection key={index} img={slide.imgUrl} description={slide.description} tags={slide.tags} />,
+              <CardBrandSection key={index} img={slide.imgUrl} description={ slide.description} tags={slide.tags} />,
               
             </div>
           ))}
