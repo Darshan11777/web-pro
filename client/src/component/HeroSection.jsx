@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -10,15 +10,29 @@ import image4 from "../assets/images/image 4.png";
 import header_bottom from "../assets/images/header_bottom.png";
 import header_two from "../assets/images/header_two.png";
 import header_img from "../assets/images/Group 762.png";
+import axios from 'axios';
 
 export default function HeroSection() {
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
+const [data, setData] = React.useState({});
 
+const baseUrl=import.meta.env.VITE_API_BASE_URL
+  const fetchData=async()=>{
+    const res = await axios.get(`${baseUrl}section/header/hero-section`);
+    const resData = res.data[0];
+    setData(resData)
+  }
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  console.log( "data hero section",data);
   return (
     <section  ref={ref} className=" header__section bottom__bg__section relative header__bg__section">
       <div className='header_img_container'>
         <video 
-          src="https://videos.pexels.com/video-files/5057522/5057522-uhd_2560_1440_25fps.mp4" 
+          src={data.bg_video_url} 
           autoPlay 
           muted 
           loop 
@@ -43,9 +57,10 @@ export default function HeroSection() {
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}  // End state with 3D effect
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}  // Smooth and natural easing
             >
-              <h1>Webpro</h1>
+              <h1>{data.header}</h1>
               <p>
-                We are a creative web design & branding agency based in London that crafts beautiful work for brands who <span>refuse to blend in.</span>
+                {/* We are a creative web design & branding agency based in London that crafts beautiful work for brands who <span>refuse to blend in.</span> */}
+                {data.description}
               </p>
             </motion.div>
             <motion.div className="main__title w-[45%]"
@@ -54,18 +69,19 @@ export default function HeroSection() {
              transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}  // Smooth and fluid transition
             >
               <h2>
-                Advanced web pro
+               {data.subheader}
               </h2>
             </motion.div>
           </div>
           <motion.img 
-  src={header_bottom} 
+  src={data.below_img_url} 
   className="mt-0" 
   alt="header_bottom"
   initial={{ opacity: 0, y: 50 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 1.5, ease: 'easeOut' }}
 />
+
 <motion.div className="hero-section-bottom__img">
   {/* Slide Up and Fade-In for each image one by one with decreased delay */}
   <motion.img 

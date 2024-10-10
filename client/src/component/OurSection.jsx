@@ -1,67 +1,83 @@
-import { useScroll, useTransform ,motion} from 'framer-motion';
-import React, { useRef, useState } from 'react'
-import afterImg from "../assets/images/Ellipse 57.png"
+import { useScroll, useTransform, motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export default function OurSection () {
- 
-  
+export default function OurSection() {
+  const [data, setData] = useState(null);
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${baseUrl}section/header/our-service`);
+      const slide = res.data[0];
+      setData(slide);
+    } catch (error) {
+      console.error('Error fetching slide:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // Split the header based on the highlighted_word if data is available
+  const newHeader = data?.header?.split(new RegExp(`(${data?.highlighted_word})`, 'gi'));
+
   return (
-    
-        
-<motion.section 
-  className="our_services" 
-  initial={{ opacity: 0, y: 50, scale: 0.9 }} // Initial state with slide and scale
-  whileInView={{ opacity: 1, y: 0, scale: 1 }} // Animation when in view
-  transition={{ duration: 1.2, ease: 'easeOut' }} // Transition options
->
-  <div className="services__before">
-    <div className="container">
-      <div className="title">
-        <h1>Our Services</h1>
-      </div>
-      <div className="row">
-        <div className="lg:w-[50%] md:w-[50%] sm:w-full w-full ourservice__relative">
-          <div className="heading__title">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
-            >
-              We provide best <span>”Service”</span>
-            </motion.h1>
+    <motion.section
+      className="our_services"
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1.2, ease: 'easeOut' }}
+    >
+      <div className="services__before">
+        <div className="container">
+          <div className="title">
+            <h1>{data?.section_name}</h1>
           </div>
-          <motion.div
-            className='ourservice__border'
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
-          />
-        </div>
+          <div className="row">
+            <div className="lg:w-[50%] md:w-[50%] sm:w-full w-full ourservice__relative">
+              <div className="heading__title">
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
+                >
+                  {/* Render the header with highlighted word */}
+                  {newHeader &&
+                    newHeader?.map((part, index) =>
+                      part.toLowerCase() === data.highlighted_word.toLowerCase() ? (
+                        <span key={part}>
+                          {part}
+                        </span>
+                        
+                      ) : (
+                        `${part}`
+                      )
+                    )}
+                </motion.h1>
+              </div>
+              <motion.div
+                className="ourservice__border"
+                initial={{ opacity: 0, scaleX: 0 }}
+                whileInView={{ opacity: 1, scaleX: 1 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
+              />
+            </div>
 
-        <div className="lg:w-[50%] md:w-[50%] sm:w-full w-full">
-          <motion.div
-            className="sub__heading__title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: 'easeOut' }}
-          >
-            <span>Provide a summary of your services, focusing on how you solve common IT problems.</span>
-          </motion.div>
+            <div className="lg:w-[50%] md:w-[50%] sm:w-full w-full">
+              <motion.div
+                className="sub__heading__title"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8, ease: 'easeOut' }}
+              >
+                <span>{data?.description}</span>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  {/* Optional background image animation */}
-  {/* <motion.div
-    className="absolute top-0 right-[-300px] h-[100%] w-[80%]"
-    initial={{ opacity: 0, x: 100 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ delay: 0.8, duration: 1, ease: 'easeOut' }}
-  >
-    <img src={afterImg} alt="" className="h-full w-full object-cover" />
-  </motion.div> */}
-</motion.section>
-
- 
-  )
+    </motion.section>
+  );
 }

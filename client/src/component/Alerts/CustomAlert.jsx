@@ -5,7 +5,7 @@ const CustomAlert = ({ message, type ,open ,setOpen }) => {
 
   const closeAlert = () => {
     // setShowAlert(false);s
-    setOpen(false)
+    setOpen(null)
   };
 
   if (!open) {

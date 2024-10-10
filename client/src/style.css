@@ -2,6 +2,8 @@
 @tailwind components;
  @tailwind utilities;
 
+ /* Ensure you have the line-clamp CSS included */
+/* @import '@tailwindcss/line-clamp'; */
 /* @font-face {font-family: 'Lato';src: url('../fonts/Lato-Regular.woff2') format('woff2'),url('../fonts/Lato-Regular.woff') format('woff');font-weight: normal;font-style: normal;font-display: swap;} */
 
 /* @font-face {font-family: 'Lato';src: url('../fonts/Lato-Regular.woff2') format('woff2'),url('../fonts/Lato-Regular.woff') format('woff');font-weight: normal;font-style: normal;font-display: swap;} */

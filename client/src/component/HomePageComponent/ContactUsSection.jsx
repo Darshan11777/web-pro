@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import axios from 'axios';
 
-export default function ContactUs() {
+export default function ContactUsSection() {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -24,25 +25,68 @@ export default function ContactUs() {
        
     };
 
+    
+  const [headerData, setHeaderData] = useState(null);
+  const [contactDetailes, setContactDetailes] = useState(null);
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
+  const fetchHeaderData = async () => {
+      try {
+          const res = await axios.get(`${baseUrl}section/header/contact-us`);
+
+          const headerData = res.data[0];
+          setHeaderData(headerData);
+      } catch (error) {
+          console.error('Error fetching header data:', error);
+      }
+  };
+  const fetchFormData = async () => {
+      try {
+          const res = await axios.get(`${baseUrl}slides/contact-us-form`);
+
+          const headerData = res.data[0];
+          setContactDetailes(headerData);
+      } catch (error) {
+          console.error('Error fetching form data:', error);
+      }
+  };
+
+console.log( "contactD",contactDetailes);
+  useEffect(() => {
+      fetchHeaderData();
+      fetchFormData()
+  }, []);
+
+  const newHeader = headerData?.header?.split(new RegExp(`(${headerData?.highlighted_word})`, 'gi'));
+
    
 
     return (
         <div className="contact_us_section">
         <div className="container">
           <motion.div
-            className="row"
+            className=""
             initial={{ opacity: 0, y: 20, scale: 0.9, rotateX: 15 }} // Initial state with 3D rotation
             whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }} // Animation when in view
             transition={{ duration: 1.2, ease: 'easeOut' }} // Transition options
             style={{ perspective: '1000px' }} // Apply perspective to the parent container
           >
             <div className="title">
-              <h1>Contact Us</h1>
+              
+              <h1>{headerData?.section_name}</h1>
             </div>
             <div className="heading__title">
-              <h1>
-                Join us with
-                <span>“Advanced Web Pro”</span>
+              <h1 className=''>
+                
+                {newHeader && newHeader.map((part, index) =>
+                        part.toLowerCase() === headerData.highlighted_word.toLowerCase() ? (
+                            <span key={index}   className='block'>
+                                {part}
+                            </span>
+                        ) : (
+                            part
+                        )
+                    )}
               </h1>
             </div>
           </motion.div>
@@ -100,19 +144,26 @@ export default function ContactUs() {
                 <div className="reviews__section">
                   <div className="sub__reviwes">
                     <h3>Email</h3>
-                    <span>abc123@gmail.com</span>
+                    <span>
+                      {/* abc123@gmail.com */}
+
+                      {contactDetailes?.email}
+                    </span>
                   </div>
                   <div className="sub__reviwes">
                     <h3>Phone number</h3>
-                    <span>+91 00000 00000</span>
+                    {/* <span>+91 00000 00000</span> */}
+                    <span>{contactDetailes?.phone_number}</span>
                   </div>
                   <div className="sub__reviwes">
                     <h3>Address</h3>
-                    <span>Petlad, 2nd floor, Bank House, College Chokdi Road, Petlad 388450.</span>
+                    {/* <span>Petlad, 2nd floor, Bank House, College Chokdi Road, Petlad 388450.</span> */}
+                    <span>{contactDetailes?.address}</span>
                   </div>
                   <div className="sub__reviwes">
                     <h3>Open Time</h3>
-                    <span>10:00am To 07:00pm</span>
+                    {/* <span>10:00am To 07:00pm</span> */}
+                    <span>{contactDetailes?.open_time}</span>
                   </div>
                 </div>
               </motion.div>

@@ -1,13 +1,14 @@
-import React, { useRef ,useEffect} from 'react'
+import React, { useRef ,useEffect, useState} from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion';
 import centerImg from "../assets/images/Ellipse 57 (1).png"
 import useAnimate from '../hooks/useAnimate';
 import OurProgessSectionCard from './OurProgessSectionCard';
 import axios from 'axios';
 
-export default function OurProgessSection() {
+export default function OurProcessSection() {
 
-  const [slides, setSlides] = React.useState(null);
+  const [slides, setSlides] = useState(null);
+  const [data, setData] = useState(null);
   
 
   const baseUrl=import.meta.env.VITE_API_BASE_URL
@@ -22,9 +23,27 @@ export default function OurProgessSection() {
   }
   useEffect(() => {
     getSlides()
-  
+    fetchData()
    
   }, [])
+
+  // 
+
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${baseUrl}section/header/our-process`);
+      const slide = res.data[0];
+      setData(slide);
+    } catch (error) {
+      console.error('Error fetching slide:', error);
+    }
+  };
+
+console.log( "data.sdfewf",data);
+  // Split the header based on the highlighted_word if data is available
+  const newHeader = data?.header?.split(new RegExp(`(${data?.highlighted_word})`, 'gi'));
+
   
   let opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   let scale = useTransform(scrollYProgress, [0, 1], [1, 0.5])
@@ -38,7 +57,7 @@ export default function OurProgessSection() {
     <motion.section className="Our__Process__section relative" 
     ref={targetRef}
     >
-    {/* Background image with animation */}
+    {/* Background  with animation */}
     <motion.div
       className="absolute top-[0%] left-[10px] h-[500px] w-[130px] animate-scaleUpDown"
       initial={{ opacity: 0, scale: 0.8 }}
@@ -64,8 +83,20 @@ export default function OurProgessSection() {
         transition={{ duration: 1, ease: 'easeOut' }}
         style={{opacity,scale}}
       >
-        <h5>Our Process</h5>
-        <h1>We develop website this <span>“process”</span></h1>
+        {/* <h5>Our Process</h5> */}
+        <h5>{data?.section_name}</h5>
+        {/* <h1>We develop website this <span>“process”</span></h1> */}
+        <h1> {newHeader &&
+                    newHeader?.map((part, index) =>
+                      part.toLowerCase() === data.highlighted_word.toLowerCase() ? (
+                        <span key={part}>
+                          {part}
+                        </span>
+                        
+                      ) : (
+                        `${part}`
+                      )
+                    )}</h1> 
       </motion.div>
 
       {/* Details */}

@@ -1,8 +1,10 @@
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Alerts from '../../../pages/UiElements/Alerts';
 import CustomAlert from '../../../../../../component/Alerts/CustomAlert';
+import { toast } from 'react-toastify';
 
 const NewsForm = ({ onSubmit, existingData }) => {
 
@@ -49,13 +51,6 @@ const NewsForm = ({ onSubmit, existingData }) => {
 console.log( "showAlert",showAlert);
     const handleSubmit = async (e) => {
         e.preventDefault();
-// Check if there are any tags
-if (formData.tags.trim() === '') {
-  setShowAlert(true); // Show the custom alert
-
-  // Alerts('sdfkj')
-  return; // Stop form submission
-}
 
         // Upload the image if there is one
         let uploadedImageUrl=formData.imgUrl;
@@ -84,6 +79,7 @@ if (formData.tags.trim() === '') {
           navigate('/admin/slides/news'); 
         } catch (error) {
           console.error('Error submitting form:', error);
+          toast.error(error.response.data.extraDetails[0]);
         }
     };
     
@@ -161,121 +157,122 @@ console.log( "formData.tags",formData.tags);
     }, [formData.imgUrl, initialFormData.imgUrl]);
     
     return (
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md space-y-6">
-              {showAlert && <CustomAlert message="Please add at least one tag." type="error" open={showAlert} setOpen={setShowAlert} />} 
-
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          {existingData ? 'Update Slide' : 'Add New Slide'}
-        </h2>
-  
-        
-  
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+      <form action="#" className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg" onSubmit={handleSubmit}>
+      {showAlert && <CustomAlert message="Please add at least one tag." type="error" open={showAlert} setOpen={setShowAlert} />}
+      
+      <h2 className="text-xl pl-4 font-semibold text-gray-800 mb-4">
+        {existingData ? 'Update Slide' : 'Add New Slide'}
+      </h2>
+      
+      <div className="space-y-6">
+        {/* Tags Input */}
+        <div className="mb-6">
+          <label htmlFor="tags" className="mb-2 block text-black dark:text-white">
+            Tags
+          </label>
+          <div className="flex items-center">
+            <input
+              type="text"
+              id="newTag"
+              name="newTag"
+              value={newTag}
+              onChange={(e) => setNewTag(e.target.value)}
+              className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+              placeholder="Add a tag..."
+            />
+            <button
+              type="button"
+              onClick={addTag}
+              className="flex w-[80px] ml-2 justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+            >
+              Add
+            </button>
+          </div>
+    
+          {/* Display existing tags */}
+          <div className="mt-4 flex flex-wrap">
+            {formData.tags.split(',').map((tag, index) => (
+              tag.length > 0 && (
+                <span key={index} className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700 mr-2 mb-2">
+                  {tag}
+                  <button
+                    type="button"
+                    onClick={() => removeTag(index)}
+                    className="ml-2 text-indigo-700 hover:text-indigo-900 focus:outline-none"
+                  >
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              )
+            ))}
+          </div>
+        </div>
+    
+        {/* Description Input */}
+        <div className="mb-6">
+          <label className="mb-2 block text-black dark:text-white">
             Description
           </label>
           <textarea
-            id="description"
-            name="description"
             value={formData.description}
             onChange={handleChange}
-            rows={4}
-            className="mt-1 px-4 py-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            required
-          />
+            rows={6}
+            name="description"
+            placeholder="Type your Description"
+            className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+          ></textarea>
         </div>
-
-  
-        
-              {/* Tags Input */}
-      <div>
-        <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
-          Tags
-        </label>
-        <div className="mt-1 flex items-center">
-          <input
-            type="text"
-            id="newTag"
-            name="newTag"
-            value={newTag}
-            onChange={(e) => setNewTag(e.target.value)}
-            className="px-4 py-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            placeholder="Add a tag..."
-          />
-          <button
-            type="button"
-            onClick={addTag}
-            className="ml-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Add
-          </button>
-        </div>
-
-        {/* Display existing tags */}
-        <div className="mt-2 flex flex-wrap">
-          {formData.tags.split(',').map((tag, index) => (
-          tag.length >0 &&   <span
-              key={index}
-              className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-700 mr-2 mb-2"
-            >
-              {tag}
-              <button
-                type="button"
-                onClick={() => removeTag(index)}
-                className="ml-2 text-indigo-700 hover:text-indigo-900 focus:outline-none"
-              >
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div>
-          <label htmlFor="image" className="block text-sm font-medium text-gray-700">
-            Image
+    
+        {/* Image Upload */}
+        <div className="mb-6">
+          <label className="mb-3 block text-black dark:text-white">
+            Attach Image
           </label>
           <input
             type="file"
-            id="image"
+            className="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:py-3 file:px-5 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-form-strokedark dark:file:bg-white/30 dark:file:text-white dark:focus:border-primary"
             accept="image/*"
             onChange={handleImageChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
-          {imagePreview && (
-            <div className="mt-4">
-              <img
-                src={imagePreview}
-                alt="Preview"
-                className="w-full h-48 object-cover rounded-md"
-              />
-            </div>
-          )}
         </div>
-  
-        <div className="flex justify-end">
-          <button
-            type="submit"
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            {existingData ? 'Update Slide' : 'Add Slide'}
-          </button>
-        </div>
-      </form>
+    
+        {/* Image Preview */}
+        {imagePreview && (
+          <div className="mb-6">
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="w-full h-48 object-cover rounded-md"
+            />
+          </div>
+        )}
+    
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+        >
+          {existingData ? 'Update Slide' : 'Add Slide'}
+        </button>
+      </div>
+    </form>
+    
     );
 };
 
 export default NewsForm;
+
+

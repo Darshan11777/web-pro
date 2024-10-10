@@ -241,3 +241,63 @@ export const deleteNews = (req, res) => {
   });
 };
 
+// Get hero_section
+export const getHeroSection = (req, res) => {
+  const query = "SELECT * FROM hero_section where id=1"; 
+  db.query(query, (err, results) => {
+      if (err) return res.status(500).json(err);
+      return res.status(200).json(results);
+  });
+};
+
+// Update a hero section
+export const updateHeroSection = (req, res) => {
+  const { header, subheader, description, bg_video_url, below_img_url } = req.body;
+  const query = "UPDATE hero_section SET header = ?, subheader = ?, description = ?, bg_video_url = ?, below_img_url = ? WHERE id = ?";
+const id=1
+  db.query(query, [header, subheader, description, bg_video_url, below_img_url,id], (err, results) => {
+    if (err) return res.status(500).json(err);
+    
+    // Check if any rows were affected
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "Hero section not found." });
+    }
+    
+    return res.status(200).json({ message: "Hero section updated successfully!" });
+  });
+};
+
+
+// get contact us Form
+export const getContactUsForm = (req, res) => {
+  const query = "SELECT * FROM contact_us_form WHERE id = 1";
+  db.query(query, (err, results) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(results);
+  });
+};
+
+// Update contact us Form
+export const updateContactUsForm = (req, res) => {
+  const { email, phone_number, open_time, address} = req.body;
+  const query =
+    "UPDATE contact_us_form SET email = ?, phone_number = ? ,open_time = ?,address = ? WHERE id = ?";
+  const id = 1; // Assuming you're updating the header with id 1
+
+  db.query(
+    query,
+    [email, phone_number, open_time, address,id],
+    (err, results) => {
+      if (err) return res.status(500).json(err);
+
+      // Check if any rows were affected
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "contact us header not found." });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "contact us header updated successfully!" });
+    }
+  );
+};

@@ -14,6 +14,8 @@ import dotenv from 'dotenv';
 import  errorMiddleware  from './middleware/error-middleware.js';
 import slidesRouter from './routes/slides.router.js'
 import imageUploadRouter from './routes/image.router.js'
+import sectionRouter from './routes/section.router.js'
+import sectionHeaderRouter from './routes/section-header.router.js'
 dotenv.config();
 
 const app = express();
@@ -55,6 +57,8 @@ app.use ('/user',userDatarouter)
 app.use('/admin',adminRouter)
 app.use('/slides',slidesRouter)
 app.use('/image',imageUploadRouter)
+app.use('/section',sectionRouter)
+app.use('/section/header',sectionHeaderRouter)
 // db.query('select * from item',(err,res)=>{
 //   console.log(err)
 //   console.log(res);
@@ -63,30 +67,60 @@ app.use('/image',imageUploadRouter)
 // })
 
 app.get('/users', (req, res) => {
-// const sql= `INSERT INTO news (id, description, tags , imgUrl )
-// SELECT id, description, tags , imgUrl 
-// FROM our_work
-// `;
 
-// for getting talbe create 
-  `SHOW CREATE TABLE news;`
-// 
-// const sql=`SELECT 
-//     CONCAT('INSERT INTO news (id, title, imgUrl) VALUES (', 
-//     id, ', ''', REPLACE(title, '''', ''''''), ''', ''', REPLACE(imgUrl, '''', ''''''), ''');')
-// FROM news;
+// const sql=`INSERT INTO sections (section_name, details, navigation_link) VALUES ('Hero Section', 'This section provides an overview of the services we offer, highlighting key features and benefits for our clients.', 'hero-section')`
+// const sql=`select * from hero_section`
+// const sql=`INSERT INTO hero_section (header, subheader, description, bg_video_url, below_img_url) 
+// VALUES (
+//     'Welcome to Our Amazing Product!', 
+//     'Experience the Future of Technology', 
+//     'Welcome to Our Amazing Product! Experience the future of technology with our state-of-the-art solution designed to enhance your productivity and creativity.
+//      Whether you are a small business owner or a creative professional, our product offers intuitive features that cater to all your needs. Discover powerful tools, seamless integration, and exceptional support that empower you to achieve your goals.
+//      Join our community of innovators and take the first step towards transforming your workflow today!',
+//     'https://example.com/background-video.mp4',
+//     'https://example.com/image.jpg'
+// );
 // `
-const sql=`select * from news`
+
+
+
+// how to create table
+
+// const sql= `SHOW CREATE TABLE hero_section;`
+
+
+// all tabel name
+
+const sql=`
+ALTER TABLE about_us_section
+  CHANGE COLUMN  years_Of_experience years_of_experience INT NOT NULL
+       
+
+`
+
+// size of database
+
+// const sql= `SELECT table_schema AS "Database",
+//        SUM(data_length + index_length) / 1024 / 1024 AS "Size (MB)"
+// FROM information_schema.tables
+// WHERE table_schema = 'railway'
+// GROUP BY table_schema;
+// `
+
+
+
 
 
   db.query(sql, (err, result) => {
     if (err) return res.status(500).send(err);
+    
     res.json(result);
   });
 });
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 })
+
 
 // Add new user
 app.post('/users', (req, res) => {
@@ -98,8 +132,39 @@ app.post('/users', (req, res) => {
   });
 });
 
+// get all data from table
+app.get('/aa', (req, res) => {
+  const sql=`SHOW TABLES;`
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).send(err);
 
-
+    const tables = result.map(row => row.Tables_in_railway);
+    console.log(tables);
+    
+    const queries = tables.map(tb => {
+      return new Promise((resolve, reject) => {
+        db.query(`SELECT * FROM \`${tb}\``, (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve({ table: tb, data: result });
+          }
+        });
+      });
+    });
+  
+    // Wait for all queries to finish
+    Promise.all(queries)
+      .then(data => {
+        console.log(data); // Log the results from all tables
+        res.json(data); // Send the results as JSON
+      })
+      .catch(err => {
+        res.status(500).send(err); // Handle errors
+      });
+  });
+  
+})
 
 app.use(errorMiddleware)
 // Start server

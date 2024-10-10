@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useAnimate from '../hooks/useAnimate'
 import { motion } from 'framer-motion'
 import exclude from "../assets/images/Exclude.png"
@@ -7,8 +7,31 @@ import Maskgroup from "../assets/images/Mask group (6).png"
 import bottomRightImage from "../assets/images/Mask group (1).png" // Import the new image
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-export default function OurServices() {
- 
+import axios from 'axios'
+export default function AboutUsSection() {
+  const [initialFormData, setInitialFormData] = useState({})
+  const baseUrl=import.meta.env.VITE_API_BASE_URL
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${baseUrl}section/header/about-us`);
+      const data = res.data;
+      console.log("Data", data);
+     
+      setInitialFormData(data)
+      
+    } catch (error) {
+      console.error("Error fetching header:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  console.log("asdfasdf",initialFormData?.tags);
+  
+  console.log( "inissssssstialFormData",initialFormData);
+  const newHeader = initialFormData?.header?.split(new RegExp(`(${initialFormData?.highlighted_word})`, 'gi'));
+
   return (
        <section className="about__section relative">
       {/* Container for content */}
@@ -22,9 +45,9 @@ export default function OurServices() {
             transition={{ duration: 1, ease: 'easeOut' }}
           >
             <div className="about__img">
-              <img src={exclude} className="Exclude" alt="Exclude" />
+            <img src={initialFormData?.img_url} className="Exclude" alt="Exclude" />
               <div className="img_text">
-                <h2>10</h2>
+                <h2>{initialFormData?.years_of_experience}</h2>
                 <span>year of experience</span>
               </div>
             </div>
@@ -44,7 +67,7 @@ export default function OurServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
               >
-                <h1>Our Services</h1>
+                <h1>{initialFormData?.section_name}</h1>
               </motion.div>
 
               <motion.div
@@ -53,7 +76,16 @@ export default function OurServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
               >
-                <h2>Our Journey in IT <span>“Excellence”</span></h2>
+               <h2>  {newHeader && newHeader.map((part, index) =>
+                        part.toLowerCase() === initialFormData?.highlighted_word?.toLowerCase() ? (
+                            <span key={index} className="text-red-500 font-bold">
+                                {part}
+                            </span>
+                        ) : (
+                            part
+                        )
+                    )}</h2>
+                {/* <h2>Our Journey in IT <span>“Excellence”</span></h2> */}
               </motion.div>
 
               <motion.div
@@ -62,45 +94,35 @@ export default function OurServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8, ease: 'easeOut' }}
               >
-                <p>A brief overview of your company, highlighting your mission and the key.</p>
+                {/* <p>A brief overview of your company, highlighting your mission and the key.</p> */}
+                <p>{initialFormData?.description}</p>
               </motion.div>
 
               {/* Service Details */}
-              <motion.div
-                className="part__section"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.8, ease: 'easeOut' }}
-              >
-                <img src={icon} className="icon_part" alt="Icon"/>
-                <div className="right__part">
-                  <p>Learn about the history, usage d </p>
-                </div>
-              </motion.div>
+             
+              {
+                initialFormData?.tags?.split(',')?.map((tag)=>{
+                  
+                  if(!tag){
+                    return
+                  }
+                  return <motion.div
+                  className="part__section"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.8, ease: 'easeOut' }}
+                >
+                  <img src={icon} className="icon_part" alt="Icon"/>
+                  <div className="right__part">
+                    <p>{tag?.replace(/\|/g, ',')} </p>
+  
+                  </div>
+                </motion.div>
+                })
+              }
+             
 
-              <motion.div
-                className="part__section"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0, duration: 0.8, ease: 'easeOut' }}
-              >
-                <img src={icon} className="icon_part" alt="Icon"/>
-                <div className="right__part">
-                  <p>Learn about the history, usage d </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="part__section"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2, duration: 0.8, ease: 'easeOut' }}
-              >
-                <img src={icon} className="icon_part" alt="Icon"/>
-                <div className="right__part">
-                  <p>Learn about the history, usage d </p>
-                </div>
-              </motion.div>
+             
             </div>
 
             {/* Button Section */}

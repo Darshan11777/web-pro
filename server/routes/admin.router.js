@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'; // Import bcrypt
 import userData from '../controller/user-data.controller.js'
 import authenticateAdmin from '../middleware/authenticateAdmin.js'
 import {validate} from '../middleware/validate-middleware.js';
-import { adminPasswordChange } from '../validators/auth-validtor.js';
+import { adminPasswordChange } from '../validators/auth.validator.js';
 import image_middleware from '../middleware/image.middleware.js';
 // import { adminLogin } from '../controller/data-user.controller.js';
 // import authenticateAdmin from '../middleware/authenticateAdmin';

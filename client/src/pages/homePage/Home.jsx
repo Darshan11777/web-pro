@@ -4,18 +4,20 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import OurSection from '../../component/OurSection'
 import HeroSection from '../../component/HeroSection'
 import SilderSection from '../../component/SilderSection'
-import OurServices from '../../component/OurServices'
-import OurProgessSection from '../../component/OurProgessSection'
+import OurServices from '../../component/AboutUsSection.jsx'
+
 import OurWorkSection from '../../component/OurWorkSection'
 import OurResultSection from '../../component/OurResultSection'
 
 
-import ContactUs from '../../component/HomePageComponent/ContactUs.jsx';
+import ContactUs from '../../component/HomePageComponent/ContactUsSection.jsx';
 import FooterSection from '../../component/FooterSection';
-import OurClients from '../../component/OurClients.jsx';
+import OurClients from '../../component/OurClientsSection.jsx';
 import AccordionSection from '../../component/Accordion/AccordionSection.jsx';
 import StickyComponent from '../../component/StickyComponent.jsx';
 import News from '../../component/NewsSection.jsx';
+import OurProcessSection from './../../component/OurProcessSection';
+import ContactUsSection from '../../component/HomePageComponent/ContactUsSection.jsx';
 
 
 
@@ -63,11 +65,12 @@ export default function Home() {
       ComponentTwo={SilderSection }
     />
        <OurServices/>
-    <OurProgessSection/>
+    <OurProcessSection/>
+    <OurWorkSection/>
     <OurResultSection/>
     <OurClients/>
     <News/>
-    <ContactUs/>
+    <ContactUsSection/>
     <AccordionSection/>
     {/* <BlogSection/> */}
    
