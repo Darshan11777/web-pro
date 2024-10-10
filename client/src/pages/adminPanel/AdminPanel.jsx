@@ -22,31 +22,35 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { checkAuth } from "../../redux/slices/AuthSlice";
 import ChangePassword from "./admin-panel src/pages/Form/ChangePassword";
-import SlideManager from "./admin-panel src/components/DataManager/our-work section/OurWorkForm";
-import SlidesList from "./admin-panel src/components/DataManager/our-work section/OurWork";
-import SlideSelect from "./admin-panel src/components/DataManager/SlideSelect";
-import OurService from "./admin-panel src/components/DataManager/our-service section/OurService";
-import OurServiceForm from "./admin-panel src/components/DataManager/our-service section/OurServiceForm";
-import OurProcess from "./admin-panel src/components/DataManager/our-process section/OurProcess";
-import OurProcessForm from "./admin-panel src/components/DataManager/our-process section/OurProcessForm";
-import OurWork from "./admin-panel src/components/DataManager/our-work section/OurWork";
-import OurWorkForm from "./admin-panel src/components/DataManager/our-work section/OurWorkForm";
-import OurReview from "./admin-panel src/components/DataManager/our-review section/OurReview";
-import OurReviewForm from "./admin-panel src/components/DataManager/our-review section/OurReviewForm";
-import FAQs from "./admin-panel src/components/DataManager/FAQs section/FAQs";
-import FAQsForm from "./admin-panel src/components/DataManager/FAQs section/FAQsForm";
-import News from "./admin-panel src/components/DataManager/our-news section/News";
-import NewsForm from "./admin-panel src/components/DataManager/our-news section/NewsForm";
-import HeroSectionForm from "./admin-panel src/components/DataManager/HeroSection/HeroSectionForm";
-import OurServiceHeaderDataForm from "./admin-panel src/components/DataManager/OurServiceHeaderData/OurServiceHeaderDataForm";
-import OurProcessHeaderDataForm from "./admin-panel src/components/DataManager/OurProcessHeaderData/OurProcessHeaderDataForm";
-import OurWorkHeaderDataForm from "./admin-panel src/components/DataManager/OurWorkHeaderDataForm/OurWorkHeaderDataForm";
-import OurClientHeaderDataForm from "./admin-panel src/components/DataManager/OurClientHeader/OurClientHeaderForm";
-import NewsHeaderForm from "./admin-panel src/components/DataManager/NewsHeader/NewsHeaderForm";
-import ContactUsHeaderForm from "./admin-panel src/components/DataManager/ContactUsHeader/ContactUsHeaderForm";
-import ContactUsFormData from "./admin-panel src/components/DataManager/ContactUsFormData/ContactUsForm";
-import OurResultSectionForm from "./admin-panel src/components/DataManager/OurResult section/OurResultSectionForm";
-import AboutUsForm from "./admin-panel src/components/DataManager/AboutUsForm/AboutUsForm";
+import SlideManager from "./admin-panel src/components/DataManager/HomePageDataManager/our-work slides/OurWorkForm";
+import SlidesList from "./admin-panel src/components/DataManager/HomePageDataManager/our-work slides/OurWork";
+import SlideSelect from "./admin-panel src/components/DataManager/HomePageDataManager/HomePage";
+import OurService from "./admin-panel src/components/DataManager/HomePageDataManager/our-service slides/OurService";
+import OurServiceForm from "./admin-panel src/components/DataManager/HomePageDataManager/our-service slides/OurServiceForm";
+import OurProcess from "./admin-panel src/components/DataManager/HomePageDataManager/our-process slides/OurProcess";
+import OurProcessForm from "./admin-panel src/components/DataManager/HomePageDataManager/our-process slides/OurProcessForm";
+import OurWork from "./admin-panel src/components/DataManager/HomePageDataManager/our-work slides/OurWork";
+import OurWorkForm from "./admin-panel src/components/DataManager/HomePageDataManager/our-work slides/OurWorkForm";
+import OurReview from "./admin-panel src/components/DataManager/HomePageDataManager/our-review slides/OurReview";
+import OurReviewForm from "./admin-panel src/components/DataManager/HomePageDataManager/our-review slides/OurReviewForm";
+import FAQs from "./admin-panel src/components/DataManager/HomePageDataManager/FAQs section/FAQs";
+import FAQsForm from "./admin-panel src/components/DataManager/HomePageDataManager/FAQs section/FAQsForm";
+import News from "./admin-panel src/components/DataManager/HomePageDataManager/our-news slides/News";
+import NewsForm from "./admin-panel src/components/DataManager/HomePageDataManager/our-news slides/NewsForm";
+import HeroSectionForm from "./admin-panel src/components/DataManager/HomePageDataManager/HeroSection/HeroSectionForm";
+import OurServiceHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurServiceHeaderData/OurServiceHeaderDataForm";
+import OurProcessHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurProcessHeaderData/OurProcessHeaderDataForm";
+import OurWorkHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurWorkHeaderDataForm/OurWorkHeaderDataForm";
+import OurClientHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurClientHeader/OurClientHeaderForm";
+import NewsHeaderForm from "./admin-panel src/components/DataManager/HomePageDataManager/NewsHeader/NewsHeaderForm";
+import ContactUsHeaderForm from "./admin-panel src/components/DataManager/HomePageDataManager/ContactUsHeader/ContactUsHeaderForm";
+import ContactUsFormData from "./admin-panel src/components/DataManager/HomePageDataManager/ContactUsFormData/ContactUsForm";
+import OurResultSectionForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurResult section/OurResultSectionForm";
+import AboutUsForm from "./admin-panel src/components/DataManager/HomePageDataManager/AboutUsForm/AboutUsForm";
+import Pages from "./admin-panel src/components/DataManager/Pages";
+
+import HomePage from "./admin-panel src/components/DataManager/HomePageDataManager/HomePage";
+import FAQsHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/FAQsHeaderData/FAQsHeaderDataForm";
 
 const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -130,129 +134,140 @@ const AdminPanel = () => {
                   </>
                 }
               />
-              <Route path="slides">
+
               <Route path="pages">
-              <Route path="home-page">
                 <Route
                   // path="slide"
                   index
                   element={
                     <>
-                      <SlideSelect />
+                      <Pages />
                     </>
                   }
                 />
+                <Route path="home-page">
+                  <Route
+                    // path="slide"
+                    index
+                    element={
+                      <>
+                        <HomePage />
+                      </>
+                    }
+                  />
 
-                <Route path="our-service">
-                  <Route index element={<OurService />} />
-                  <Route path="new" element={<OurServiceForm />} />{" "}
-                  {/* Route for adding new slides */}
-                  <Route
-                    path=":slideId/edit"
-                    element={<OurServiceForm />}
-                  />{" "}
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="review">
-                  <Route index element={<OurReview />} />
-                  <Route path="new" element={<OurReviewForm />} />{" "}
-                  {/* Route for adding new slides */}
-                  <Route
-                    path=":slideId/edit"
-                    element={<OurReviewForm />}
-                  />{" "}
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="hero-section">
-                  <Route index element={<HeroSectionForm />} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="our-service-header">
-                  <Route index element={<OurServiceHeaderDataForm />} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="our-process-header">
-                  <Route index element={<OurProcessHeaderDataForm />} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="our-work-header">
-                  <Route index element={<OurWorkHeaderDataForm />} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="our-client-header">
-                  <Route index element={<OurClientHeaderDataForm />} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="news-header">
-                  <Route index element={< NewsHeaderForm />} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="contact-us-header">
-                  <Route index element={< ContactUsHeaderForm />} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="contact-us-form">
-                  <Route index element={<  ContactUsFormData/>} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="our-result">
-                  <Route index element={<  OurResultSectionForm/>} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="about-us">
-                  <Route index element={<  AboutUsForm/>} />
-                
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="news">
-                  <Route index element={<News />} />
-                  <Route path="new" element={<NewsForm />} />{" "}
-                  {/* Route for adding new slides */}
-                  <Route
-                    path=":slideId/edit"
-                    element={<NewsForm />}
-                  />{" "}
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="FAQs">
-                  <Route index element={<FAQs />} />
-                  <Route path="new" element={<FAQsForm />} />{" "}
-                  {/* Route for adding new slides */}
-                  <Route
-                    path=":slideId/edit"
-                    element={<FAQsForm />}
-                  />{" "}
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="our-process">
-                  <Route index element={<OurProcess />} />
-                  <Route path="new" element={<OurProcessForm />} />{" "}
-                  {/* Route for adding new slides */}
-                  <Route
-                    path=":slideId/edit"
-                    element={<OurProcessForm />}
-                  />{" "}
-                  {/* Route for editing slides */}
-                </Route>
-                <Route path="our-work">
-                  <Route index element={<OurWork />} />
-                  <Route path="new" element={<OurWorkForm />} />{" "}
-                  {/* Route for adding new slides */}
-                  <Route path=":slideId/edit" element={<OurWorkForm />} />{" "}
-                  {/* Route for editing slides */}
+                  <Route path="our-service">
+                    <Route index element={<OurService />} />
+                    <Route path="new" element={<OurServiceForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route
+                      path=":slideId/edit"
+                      element={<OurServiceForm />}
+                    />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="review">
+                    <Route index element={<OurReview />} />
+                    <Route path="new" element={<OurReviewForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route
+                      path=":slideId/edit"
+                      element={<OurReviewForm />}
+                    />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="hero-section">
+                    <Route index element={<HeroSectionForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="our-service-header">
+                    <Route index element={<OurServiceHeaderDataForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="FAQs-header">
+                    <Route index element={< FAQsHeaderDataForm/>} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="our-process-header">
+                    <Route index element={<OurProcessHeaderDataForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="our-work-header">
+                    <Route index element={<OurWorkHeaderDataForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="our-client-header">
+                    <Route index element={<OurClientHeaderDataForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="news-header">
+                    <Route index element={<NewsHeaderForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="contact-us-header">
+                    <Route index element={<ContactUsHeaderForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="contact-us-form">
+                    <Route index element={<ContactUsFormData />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="our-result">
+                    <Route index element={<OurResultSectionForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="about-us">
+                    <Route index element={<AboutUsForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="news">
+                    <Route index element={<News />} />
+                    <Route path="new" element={<NewsForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route path=":slideId/edit" element={<NewsForm />} />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="FAQs">
+                    <Route index element={<FAQs />} />
+                    <Route path="new" element={<FAQsForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route path=":slideId/edit" element={<FAQsForm />} />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="our-process">
+                    <Route index element={<OurProcess />} />
+                    <Route path="new" element={<OurProcessForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route
+                      path=":slideId/edit"
+                      element={<OurProcessForm />}
+                    />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="our-work">
+                    <Route index element={<OurWork />} />
+                    <Route path="new" element={<OurWorkForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route
+                      path=":slideId/edit"
+                      element={<OurWorkForm />}
+                    />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
                 </Route>
               </Route>
-              </Route>
-              </Route>
+
               <Route
                 path="register"
                 element={

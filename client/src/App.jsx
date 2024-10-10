@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/homePage/Home'
 import Navbar from './component/Navbar';
 import AboutUs from './pages/aboutUs/AboutUs';
-import Loader from './pages/adminPanel/admin-panel src/common/Loader';
+import Loader from './component/Loader';
 import PageTitle from './pages/adminPanel/admin-panel src/components/PageTitle';
 import ECommerce from './pages/adminPanel/admin-panel src/pages/Dashboard/ECommerce';
 import LoginPage from './pages/adminPanel/admin-panel src/pages/Login/Login';
@@ -21,6 +21,8 @@ import SignIn from './pages/adminPanel/admin-panel src/pages/Authentication/Sign
 import SignUp from './pages/adminPanel/admin-panel src/pages/Authentication/SignUp';
 import DefaultLayout from './pages/adminPanel/admin-panel src/layout/DefaultLayout';
 
+import { useSelector } from 'react-redux';
+
 const AdminPanel = lazy(() => import('./pages/adminPanel/AdminPanel'));
 
 export default function App() {
@@ -28,8 +30,13 @@ export default function App() {
 
   // Check if the current path starts with "/admin"
   const isAdminPath = location.pathname.startsWith('/admin');
- 
- 
+  const isLoading = useSelector((state) => state.loading.isLoading);
+
+
+  console.log( "isLoading",isLoading);
+  // if(isLoading){
+  //   return <Loader/>
+  // }
   return (
     <div>
       {/* <BrowserRouter></BrowserRouter> */}
@@ -40,11 +47,16 @@ export default function App() {
 
 ):(
   <>
-  <Navbar/>
+  {/* loader will only show when loading is true */}
+ <Loader/> 
+
+ <Navbar/>
   <Routes>
   <Route path="/" element={<Home />} />
   <Route path="about-us" element={<AboutUs />} />
   </Routes>
+
+  
   </>
 )
 

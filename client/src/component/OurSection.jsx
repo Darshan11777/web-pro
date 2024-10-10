@@ -1,11 +1,13 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { stopLoading } from '../redux/slices/LoadingSlice';
+import { useDispatch } from 'react-redux';
 
 export default function OurSection() {
   const [data, setData] = useState(null);
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
+  const dispatch = useDispatch();
   const fetchData = async () => {
     try {
       const res = await axios.get(`${baseUrl}section/header/our-service`);
@@ -13,6 +15,8 @@ export default function OurSection() {
       setData(slide);
     } catch (error) {
       console.error('Error fetching slide:', error);
+    }finally{
+      dispatch(stopLoading())
     }
   };
 

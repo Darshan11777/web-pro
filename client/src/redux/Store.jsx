@@ -8,11 +8,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import UserDataSlice from './slices/UserDataSlice';
 import cookieReducer from './slices/CookieSlice'
+import  loadingReducer from './slices/LoadingSlice'
 import AuthSlice from './slices/AuthSlice'
 // import counterReducer from "./slices/Slice";
 export const store=configureStore({
     // reducer:{count:counterReducer},
-    reducer:{"user-data":UserDataSlice,"cookie": cookieReducer,"auth":AuthSlice},
+    reducer:{"user-data":UserDataSlice,"cookie": cookieReducer,"auth":AuthSlice, loading: loadingReducer},
     devTools:true,
 })
  

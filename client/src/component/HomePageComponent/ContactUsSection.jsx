@@ -1,177 +1,174 @@
-import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import axios from "axios";
 
 export default function ContactUsSection() {
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        phoneNumber: '',
-        message: ''
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    phoneNumber: "",
+    message: "",
+  });
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
     });
+  };
 
-    const handleChange = (event) => {
-        
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value
-        });
-    };
-  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Here you would typically handle form submission
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Here you would typically handle form submission
-       
-    };
-
-    
   const [headerData, setHeaderData] = useState(null);
   const [contactDetailes, setContactDetailes] = useState(null);
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   const fetchHeaderData = async () => {
-      try {
-          const res = await axios.get(`${baseUrl}section/header/contact-us`);
+    try {
+      const res = await axios.get(`${baseUrl}section/header/contact-us`);
 
-          const headerData = res.data[0];
-          setHeaderData(headerData);
-      } catch (error) {
-          console.error('Error fetching header data:', error);
-      }
+      const headerData = res.data[0];
+      setHeaderData(headerData);
+    } catch (error) {
+      console.error("Error fetching header data:", error);
+    }
   };
   const fetchFormData = async () => {
-      try {
-          const res = await axios.get(`${baseUrl}slides/contact-us-form`);
+    try {
+      const res = await axios.get(`${baseUrl}slides/contact-us-form`);
 
-          const headerData = res.data[0];
-          setContactDetailes(headerData);
-      } catch (error) {
-          console.error('Error fetching form data:', error);
-      }
+      const headerData = res.data[0];
+      setContactDetailes(headerData);
+    } catch (error) {
+      console.error("Error fetching form data:", error);
+    }
   };
 
-console.log( "contactD",contactDetailes);
   useEffect(() => {
-      fetchHeaderData();
-      fetchFormData()
+    fetchHeaderData();
+    fetchFormData();
   }, []);
 
-  const newHeader = headerData?.header?.split(new RegExp(`(${headerData?.highlighted_word})`, 'gi'));
+  const newHeader = headerData?.header?.split(
+    new RegExp(`(${headerData?.highlighted_word})`, "gi")
+  );
 
-   
-
-    return (
-        <div className="contact_us_section">
-        <div className="container">
-          <motion.div
-            className=""
-            initial={{ opacity: 0, y: 20, scale: 0.9, rotateX: 15 }} // Initial state with 3D rotation
-            whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }} // Animation when in view
-            transition={{ duration: 1.2, ease: 'easeOut' }} // Transition options
-            style={{ perspective: '1000px' }} // Apply perspective to the parent container
-          >
-            <div className="title">
-              
-              <h1>{headerData?.section_name}</h1>
-            </div>
-            <div className="heading__title">
-              <h1 className=''>
-                
-                {newHeader && newHeader.map((part, index) =>
-                        part.toLowerCase() === headerData.highlighted_word.toLowerCase() ? (
-                            <span key={index}   className='block'>
-                                {part}
-                            </span>
-                        ) : (
-                            part
-                        )
-                    )}
-              </h1>
-            </div>
-          </motion.div>
-          <div className="form__section">
-            <div className="row">
-              <motion.div
-                className="lg:w-[50%] md:w-[50%] sm:w-full w-full"
-                initial={{ opacity: 0, x: -150, scale: 0.9, rotateY: -15 }} // Initial state with 3D rotation
-                whileInView={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }} // Animation when in view
-                transition={{ duration: 1.2, ease: 'easeOut' }} // Transition options
-              >
-                <div className="form__details">
-                  <form onSubmit={handleSubmit}>
-                    <input
-                      type="text"
-                      onChange={handleChange}
-                      id="firstName"
-                      name="username"
-                      placeholder="Username"
-                      className="white-input"
-                    /><br />
-                    <input
-                      onChange={handleChange}
-                      type="text"
-                      id="lname"
-                      name="email"
-                      placeholder="Email"
-                      className="white-input"
-                    /><br />
-                    <input
-                      onChange={handleChange}
-                      type="number"
-                      id="lname"
-                      name="phoneNumber"
-                      placeholder="Phone number"
-                      className="white-input"
-                    /><br />
-                    <textarea
-                      onChange={handleChange}
-                      id="lname"
-                      name="message"
-                      placeholder="How can we help you?"
-                      className="white-input bg_input"
-                    /><br />
-                    <button className="message__button">Send message</button>
-                  </form>
-                </div>
-              </motion.div>
-              <motion.div
-                className="lg:w-[50%] md:w-[50%] sm:w-full w-full"
-                initial={{ opacity: 0, x: 150, scale: 0.9, rotateY: 15 }} // Initial state with 3D rotation
-                whileInView={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }} // Animation when in view
-                transition={{ duration: 1.2, ease: 'easeOut' }} // Transition options
-              >
-                <div className="reviews__section">
-                  <div className="sub__reviwes">
-                    <h3>Email</h3>
-                    <span>
-                      {/* abc123@gmail.com */}
-
-                      {contactDetailes?.email}
+  return (
+    <div className="contact_us_section">
+      <div className="container">
+        <motion.div
+          className=""
+          initial={{ opacity: 0, y: 20, scale: 0.9, rotateX: 15 }} // Initial state with 3D rotation
+          whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }} // Animation when in view
+          transition={{ duration: 1.2, ease: "easeOut" }} // Transition options
+          style={{ perspective: "1000px" }} // Apply perspective to the parent container
+        >
+          <div className="title">
+            <h1>{headerData?.section_name}</h1>
+          </div>
+          <div className="heading__title">
+            <h1 className="">
+              {newHeader &&
+                newHeader.map((part, index) =>
+                  part.toLowerCase() ===
+                  headerData.highlighted_word.toLowerCase() ? (
+                    <span key={index} className="block">
+                      {part}
                     </span>
-                  </div>
-                  <div className="sub__reviwes">
-                    <h3>Phone number</h3>
-                    {/* <span>+91 00000 00000</span> */}
-                    <span>{contactDetailes?.phone_number}</span>
-                  </div>
-                  <div className="sub__reviwes">
-                    <h3>Address</h3>
-                    {/* <span>Petlad, 2nd floor, Bank House, College Chokdi Road, Petlad 388450.</span> */}
-                    <span>{contactDetailes?.address}</span>
-                  </div>
-                  <div className="sub__reviwes">
-                    <h3>Open Time</h3>
-                    {/* <span>10:00am To 07:00pm</span> */}
-                    <span>{contactDetailes?.open_time}</span>
-                  </div>
+                  ) : (
+                    part
+                  )
+                )}
+            </h1>
+          </div>
+        </motion.div>
+        <div className="form__section">
+          <div className="row">
+            <motion.div
+              className="lg:w-[50%] md:w-[50%] sm:w-full w-full"
+              initial={{ opacity: 0, x: -150, scale: 0.9, rotateY: -15 }} // Initial state with 3D rotation
+              whileInView={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }} // Animation when in view
+              transition={{ duration: 1.2, ease: "easeOut" }} // Transition options
+            >
+              <div className="form__details">
+                <form onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    onChange={handleChange}
+                    id="firstName"
+                    name="username"
+                    placeholder="Username"
+                    className="white-input"
+                  />
+                  <br />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    id="lname"
+                    name="email"
+                    placeholder="Email"
+                    className="white-input"
+                  />
+                  <br />
+                  <input
+                    onChange={handleChange}
+                    type="number"
+                    id="lname"
+                    name="phoneNumber"
+                    placeholder="Phone number"
+                    className="white-input"
+                  />
+                  <br />
+                  <textarea
+                    onChange={handleChange}
+                    id="lname"
+                    name="message"
+                    placeholder="How can we help you?"
+                    className="white-input bg_input"
+                  />
+                  <br />
+                  <button className="message__button">Send message</button>
+                </form>
+              </div>
+            </motion.div>
+            <motion.div
+              className="lg:w-[50%] md:w-[50%] sm:w-full w-full"
+              initial={{ opacity: 0, x: 150, scale: 0.9, rotateY: 15 }} // Initial state with 3D rotation
+              whileInView={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }} // Animation when in view
+              transition={{ duration: 1.2, ease: "easeOut" }} // Transition options
+            >
+              <div className="reviews__section">
+                <div className="sub__reviwes">
+                  <h3>Email</h3>
+                  <span>
+                    {/* abc123@gmail.com */}
+
+                    {contactDetailes?.email}
+                  </span>
                 </div>
-              </motion.div>
-            </div>
+                <div className="sub__reviwes">
+                  <h3>Phone number</h3>
+                  {/* <span>+91 00000 00000</span> */}
+                  <span>{contactDetailes?.phone_number}</span>
+                </div>
+                <div className="sub__reviwes">
+                  <h3>Address</h3>
+                  {/* <span>Petlad, 2nd floor, Bank House, College Chokdi Road, Petlad 388450.</span> */}
+                  <span>{contactDetailes?.address}</span>
+                </div>
+                <div className="sub__reviwes">
+                  <h3>Open Time</h3>
+                  {/* <span>10:00am To 07:00pm</span> */}
+                  <span>{contactDetailes?.open_time}</span>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
-    );
-  
-  
+    </div>
+  );
 }

@@ -127,4 +127,9 @@ export const heroSectionSchema = z.object({
   //   header: z.string().min(1, { message: "Header is required" }),
   //   highlighted_word: z.string().optional(), // Optional field for highlighted words
   // });
+  export const FAQs_headerSchema = z.object({
+    section_name: z.string().min(1, "Section name is required"),
+    header: z.string().min(1, "Header is required"),
+    highlighted_word: z.string().optional(), // Optional field for highlighted words
   
+  })

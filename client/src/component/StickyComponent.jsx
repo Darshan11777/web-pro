@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import centerImg from '../assets/images/Ellipse 57.png'
+import centerImg from "../assets/images/Ellipse 57.png";
 
 const ShrinkingHeader = ({ ComponentOne, ComponentTwo }) => {
   const ref = useRef(null);
@@ -23,22 +23,21 @@ const ShrinkingHeader = ({ ComponentOne, ComponentTwo }) => {
     scrollYProgress.onChange((latest) => {
       const newPosition = latest > 0.23 ? "relative" : "sticky";
       setPosition(newPosition);
-      // console.log("scrollYProgress value:", latest);
+      //
     });
   }, [scrollYProgress]);
 
   return (
-    <div className="relative" >
-       {/* <div className="absolute top-[0%] left-[10px] h-[500px] w-[130px] animate-scaleUpDown">
+    <div className="relative">
+      {/* <div className="absolute top-[0%] left-[10px] h-[500px] w-[130px] animate-scaleUpDown">
       <img src={centerImg} alt="" className="h-full w-full object-cover" />
     </div> */}
-    <div className="absolute top-0 right-[-300px] h-[600px] w-[60%] ">
-      <img src={centerImg} alt="" className="h-full w-full object-cover" />
-    </div>
-         
+      <div className="absolute top-0 right-[-300px] h-[600px] w-[60%] ">
+        <img src={centerImg} alt="" className="h-full w-full object-cover" />
+      </div>
+
       {/* Wrapping both components */}
       <div ref={ref} className="relative ">
-        
         {/* Component One - sticky behavior and animation */}
         <motion.div
           className="top-0 z-[-1]" // Sticky only after it hits the top

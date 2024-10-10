@@ -14,8 +14,9 @@ import dotenv from 'dotenv';
 import  errorMiddleware  from './middleware/error-middleware.js';
 import slidesRouter from './routes/slides.router.js'
 import imageUploadRouter from './routes/image.router.js'
-import sectionRouter from './routes/section.router.js'
+import PagesRouter from './routes/pages.router.js'
 import sectionHeaderRouter from './routes/section-header.router.js'
+
 dotenv.config();
 
 const app = express();
@@ -57,7 +58,7 @@ app.use ('/user',userDatarouter)
 app.use('/admin',adminRouter)
 app.use('/slides',slidesRouter)
 app.use('/image',imageUploadRouter)
-app.use('/section',sectionRouter)
+app.use('/pages',PagesRouter)
 app.use('/section/header',sectionHeaderRouter)
 // db.query('select * from item',(err,res)=>{
 //   console.log(err)
@@ -92,9 +93,8 @@ app.get('/users', (req, res) => {
 // all tabel name
 
 const sql=`
-ALTER TABLE about_us_section
-  CHANGE COLUMN  years_Of_experience years_of_experience INT NOT NULL
-       
+RENAME TABLE sections TO home_page;
+  
 
 `
 
