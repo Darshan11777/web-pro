@@ -107,5 +107,9 @@ router.delete("/news/:id", deleteNews);
 router.get("/contact-us-form", getContactUsForm);
 router.put("/contact-us-form", validate(contactUsFormSchema), updateContactUsForm);
 
+// footer Form
+router.get("/contact-us-form", getContactUsForm);
+router.put("/contact-us-form", validate(contactUsFormSchema), updateContactUsForm);
+
 
 export default router;

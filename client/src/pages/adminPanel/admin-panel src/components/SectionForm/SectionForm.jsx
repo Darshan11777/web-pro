@@ -235,7 +235,16 @@ console.log( "fomrData",initialFormData);
                                 </div>
                             ))
                             
-                            :(
+                            :type === 'text'?(
+                                <input
+                                    type={isNumber ? 'number' : type}
+                                    name={name}
+                                    value={formData[name] || ""}
+                                    onChange={handleChange}
+                                    placeholder={placeholder}
+                                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary"
+                                />
+                            ) : (
                                 <input
                                     type={isNumber ? 'number' : type}
                                     name={name}
@@ -244,7 +253,9 @@ console.log( "fomrData",initialFormData);
                                     placeholder={placeholder}
                                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary"
                                 />
-                            )}
+                            )
+                            
+                            }
                         </div>
                     );
                 })}

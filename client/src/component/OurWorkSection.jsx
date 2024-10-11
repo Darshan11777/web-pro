@@ -1,30 +1,38 @@
 import React, { useEffect, useState } from "react";
 import silderimg from "../assets/images/silder_img.png";
-import SilderSection from "./SilderSection";
-import CardSlider from "./cardSlider/CardSlider";
+import SilderSection from "./OurServiceSlides";
+
 import { motion } from "framer-motion";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { stopLoading } from "../redux/slices/LoadingSlice";
+import OurWorkSlides from "./cardSlider/CardSlider";
 
 export default function OurWorkSection() {
+  // const [data, setData] = useState(null);
+  // const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  // const dispatch = useDispatch();
+  // const fetchData = async () => {
+  //   try {
+  //     const res = await axios.get(`${baseUrl}section/header/our-work`);
+  //     const headerData = res.data[0];
+  //     setData(headerData);
+  //   } catch (error) {
+  //     console.error("Error fetching header data:", error);
+  //   } finally {
+  //     dispatch(stopLoading());
+  //   }
+  // };
 
-  const [data, setData] = useState(null);
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-      try {
-          const res = await axios.get(`${baseUrl}section/header/our-work`);
-          const headerData = res.data[0];
-          setData(headerData);
-      } catch (error) {
-          console.error('Error fetching header data:', error);
-      }
-  };
-
-  useEffect(() => {
-      fetchData();
-  }, []);
-
-  const newHeader = data?.header?.split(new RegExp(`(${data?.highlighted_word})`, 'gi'));
+  const data=useSelector(state=>state.data.data.ourWorkHeader)
+ 
+  const newHeader = data?.header?.split(
+    new RegExp(`(${data?.highlighted_word})`, "gi")
+  );
 
   return (
     <section className="our_work_section relative">
@@ -44,18 +52,18 @@ export default function OurWorkSection() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }} // Animation when in view
               transition={{ duration: 1, ease: "easeOut" }} // Transition options
             >
-             
-              {newHeader && newHeader.map((part, index) =>
-                        part.toLowerCase() === data.highlighted_word.toLowerCase() ? (
-                            <span key={index} className="text-red-500 font-bold">
-                                {part}
-                            </span>
-                        ) : (
-                            part
-                        )
-                    )}
+              {newHeader &&
+                newHeader.map((part, index) =>
+                  part.toLowerCase() === data.highlighted_word.toLowerCase() ? (
+                    <span key={index} className="text-red-500 font-bold">
+                      {part}
+                    </span>
+                  ) : (
+                    part
+                  )
+                )}
             </motion.h1>
-            <CardSlider  />
+            <OurWorkSlides />
           </div>
         </div>
       </div>

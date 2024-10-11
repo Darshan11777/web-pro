@@ -102,10 +102,11 @@ db.query("select * from admin where id= ?",[user.id],(err,result)=>{
 
  const adminLogout = (req, res) => {
     res.clearCookie('admin', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', 
+        httpOnly: false,
+        secure: true, 
         sameSite: 'None', 
     });
+   
     res.status(200).json({ message: 'Logout successful' });
 };
 

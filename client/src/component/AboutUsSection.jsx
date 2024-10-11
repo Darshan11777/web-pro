@@ -8,32 +8,15 @@ import bottomRightImage from "../assets/images/Mask group (1).png"; // Import th
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { stopLoading } from "../redux/slices/LoadingSlice";
 export default function AboutUsSection() {
-  const [initialFormData, setInitialFormData] = useState({});
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const dispatch = useDispatch();
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(`${baseUrl}section/header/about-us`);
-      const data = res.data;
+ 
 
-      setInitialFormData(data);
-    } catch (error) {
-      console.error("Error fetching header:", error);
-    }finally{
-      dispatch(stopLoading())
-    } 
-  };
-  
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const newHeader = initialFormData?.header?.split(
-    new RegExp(`(${initialFormData?.highlighted_word})`, "gi")
+  const data=useSelector(state=>state.data.data.aboutUsSection)
+  const newHeader = data?.header?.split(
+    new RegExp(`(${data?.highlighted_word})`, "gi")
   );
 
   return (
@@ -50,12 +33,12 @@ export default function AboutUsSection() {
           >
             <div className="about__img">
               <img
-                src={initialFormData?.img_url}
+                src={data?.img_url}
                 className="Exclude"
                 alt="Exclude"
               />
               <div className="img_text">
-                <h2>{initialFormData?.years_of_experience}</h2>
+                <h2>{data?.years_of_experience}</h2>
                 <span>year of experience</span>
               </div>
             </div>
@@ -75,7 +58,7 @@ export default function AboutUsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
               >
-                <h1>{initialFormData?.section_name}</h1>
+                <h1>{data?.section_name}</h1>
               </motion.div>
 
               <motion.div
@@ -89,7 +72,7 @@ export default function AboutUsSection() {
                   {newHeader &&
                     newHeader.map((part, index) =>
                       part.toLowerCase() ===
-                      initialFormData?.highlighted_word?.toLowerCase() ? (
+                      data?.highlighted_word?.toLowerCase() ? (
                         <span key={index} className="text-red-500 font-bold">
                           {part}
                         </span>
@@ -108,12 +91,12 @@ export default function AboutUsSection() {
                 transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
               >
                 {/* <p>A brief overview of your company, highlighting your mission and the key.</p> */}
-                <p>{initialFormData?.description}</p>
+                <p>{data?.description}</p>
               </motion.div>
 
               {/* Service Details */}
 
-              {initialFormData?.tags?.split(",")?.map((tag,i) => {
+              {data?.tags?.split(",")?.map((tag,i) => {
                 if (!tag) {
                   return;
                 }

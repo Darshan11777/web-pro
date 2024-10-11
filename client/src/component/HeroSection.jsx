@@ -11,31 +11,13 @@ import header_bottom from "../assets/images/header_bottom.png";
 import header_two from "../assets/images/header_two.png";
 import header_img from "../assets/images/Group 762.png";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { stopLoading } from "../redux/slices/LoadingSlice";
 
 export default function HeroSection() {
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
-  const [data, setData] = React.useState({});
 
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const dispatch = useDispatch();
-  const fetchData = async () => {
-    try{
-
-      const res = await axios.get(`${baseUrl}section/header/hero-section`);
-      const resData = res.data[0];
-      setData(resData);
-    }catch(error){
-      console.error('Error fetching header:', error);
-    }finally{
-      dispatch(stopLoading())
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const data = useSelector((state) => state.data.data.heroSection);
 
   return (
     <section
@@ -44,7 +26,7 @@ export default function HeroSection() {
     >
       <div className="header_img_container">
         <video
-          src={data.bg_video_url}
+          src={data?.bg_video_url}
           autoPlay
           muted
           loop

@@ -35,15 +35,24 @@
 const mysql = await import('mysql2');
 
 const dbConfig = {
-  host: 'junction.proxy.rlwy.net',
-  user: 'root',
-  password: 'rUhPwPVWszkRWXRMjGbhfhTkJHWIQfNj',
-  database: 'railway',
-  port: 25954,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password:process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  
+  port: process.env.DB_PORT,
 };
+// const dbConfig = {
+//   host: 'junction.proxy.rlwy.net',
+//   user: 'root',
+//   password: 'rUhPwPVWszkRWXRMjGbhfhTkJHWIQfNj',
+//   database: 'railway',
+  
+//   port: 25954,
+// };
 // postgresql://web_pro_mysql_user:GqfyG4gEMtMahehXcwKRrPtxdinUulKI@dpg-cs0mgue8ii6s73crjh3g-a/web_pro_mysql
 
-const maxRetries = 5; // Maximum number of retry attempts
+const maxRetries = 3; // Maximum number of retry attempts
 const retryDelay = 2000; // Delay between retries in milliseconds
 
 const createConnection = () => {

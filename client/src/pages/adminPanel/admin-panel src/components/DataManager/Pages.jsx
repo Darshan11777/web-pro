@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../Breadcrumbs/Breadcrumb';
 import ReactPaginate from 'react-paginate';
 
@@ -10,15 +10,19 @@ const Pages = () => {
   const itemsPerPage = 4;
   const [searchTerm, setSearchTerm] = useState('');
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const navigate = useNavigate();
-
+ 
   useEffect(() => {
     fetchSlides();
   }, []);
 
   const fetchSlides = async () => {
-    const res = await axios.get(`${baseUrl}pages/`);
-    setSlides(res.data);
+    try{
+
+      const res = await axios.get(`${baseUrl}pages/`,{},{ withCredentials: true,});
+      setSlides(res.data);
+    }catch(error){
+      console.error(error)
+    }
   };
   console.log( "slides",slides);
 
@@ -35,13 +39,18 @@ const Pages = () => {
 
   const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = currentPage * itemsPerPage;
-  const currentSlides = filteredSlides.slice(indexOfFirstItem, indexOfLastItem);
+  // let currentSlides = filteredSlides.slice(indexOfFirstItem, indexOfLastItem) || [];
+  let currentSlides = Array.isArray(filteredSlides) 
+  ? filteredSlides.slice(indexOfFirstItem, indexOfLastItem) 
+  : [];
+
   const highlightSearchTerm = (text) => {
     if (!searchTerm) return text;
 
     const regex = new RegExp(`(${searchTerm})`, "gi");
     return text.replace(regex, '<span class="font-bold text-red-600">$1</span>');
   };
+
 
   return (
     <div className="container mx-auto mt-10">
@@ -92,7 +101,7 @@ const Pages = () => {
           </tr>
         </thead>
         <tbody>
-          {currentSlides.map((item) => (
+          {currentSlides.length !==0 && currentSlides?.map((item) => (
             <tr key={item.id} className="hover:bg-gray-100">
               <td className="p-4">  <p
     className="text-base line-clamp-2"

@@ -3,45 +3,48 @@ import subtractimg from "../assets/images/Subtract.png";
 import image12 from "../assets/images/silder_img.png";
 import arrowimg from "../assets/images/arrow_img.png";
 import CardBrandSection from "./CardBrandSection";
-import SilderSection from "./SilderSection";
+import SilderSection from "./OurServiceSlides";
 import CardSlider from "./cardSlider/CardSlider";
 import centerImg from "../assets/images/Mask group (3).png";
 import centerImg2 from "../assets/images/Ellipse 60.png";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function OurResultSection() {
-  const [initialFormData, setInitialFormData] = useState({});
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(`${baseUrl}section/header/result`);
-      const data = res.data;
+  // const [initialFormData, setInitialFormData] = useState({});
+  // const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  // const fetchData = async () => {
+  //   try {
+  //     const res = await axios.get(`${baseUrl}section/header/result`);
+  //     const data = res.data;
 
-      // setInitialFormData({
-      //       header: data.header,
-      //       highlight: data.highlighted_word,
-      //       sectionName:data.section_name,
-      //       description:data.description,
-      //       rating: +data.rating,
-      //       completedProjects: +data.completed_projects,
-      //       yearsOfExperience: +data.years_of_experience,
+  //     // setInitialFormData({
+  //     //       header: data.header,
+  //     //       highlight: data.highlighted_word,
+  //     //       sectionName:data.section_name,
+  //     //       description:data.description,
+  //     //       rating: +data.rating,
+  //     //       completedProjects: +data.completed_projects,
+  //     //       yearsOfExperience: +data.years_of_experience,
 
-      //       happyClients: +data.happy_clients,
-      //       ImgUrl: data.bottom_img_url,
-      //       // video_url: "",
-      //       tags: data.tags,
-      //     })
-      setInitialFormData(data);
-    } catch (error) {
-      console.error("Error fetching header:", error);
-    }
-  };
+  //     //       happyClients: +data.happy_clients,
+  //     //       ImgUrl: data.bottom_img_url,
+  //     //       // video_url: "",
+  //     //       tags: data.tags,
+  //     //     })
+  //     setInitialFormData(data);
+  //   } catch (error) {
+  //     console.error("Error fetching header:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
+
+  const initialFormData=useSelector(state=>state.data.data.resultSection)
   const newHeader = initialFormData?.header?.split(
     new RegExp(`(${initialFormData?.highlighted_word})`, "gi")
   );

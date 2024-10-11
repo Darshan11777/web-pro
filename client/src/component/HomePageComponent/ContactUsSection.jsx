@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function ContactUsSection() {
   const [formData, setFormData] = useState({
@@ -22,35 +23,11 @@ export default function ContactUsSection() {
     // Here you would typically handle form submission
   };
 
-  const [headerData, setHeaderData] = useState(null);
-  const [contactDetailes, setContactDetailes] = useState(null);
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  
 
-  const fetchHeaderData = async () => {
-    try {
-      const res = await axios.get(`${baseUrl}section/header/contact-us`);
 
-      const headerData = res.data[0];
-      setHeaderData(headerData);
-    } catch (error) {
-      console.error("Error fetching header data:", error);
-    }
-  };
-  const fetchFormData = async () => {
-    try {
-      const res = await axios.get(`${baseUrl}slides/contact-us-form`);
-
-      const headerData = res.data[0];
-      setContactDetailes(headerData);
-    } catch (error) {
-      console.error("Error fetching form data:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchHeaderData();
-    fetchFormData();
-  }, []);
+  const headerData = useSelector(state => state.data.data.contactUsHeader)
+  const contactDetailes=useSelector(state => state.data.data.contactUsForm)
 
   const newHeader = headerData?.header?.split(
     new RegExp(`(${headerData?.highlighted_word})`, "gi")

@@ -3,6 +3,7 @@ import {
   getAboutUs,
   getContactUsHeader,
   getFAQsHeader,
+  getFooter,
   getHeroSection,
   getNewsHeader,
   getOurClientHeader,
@@ -13,6 +14,7 @@ import {
   updateAboutUs,
   updateContactUsHeader,
   updateFAQsHeader,
+  updateFooter,
   updateHeroSection,
   updateNewsHeader,
   updateOurClientHeader,
@@ -23,7 +25,7 @@ import {
 } from "../controller/section-header.controller.js";
 
 import { validate } from "../middleware/validate-middleware.js";
-import {  aboutUsSchema, contact_us_header_dataSchema, FAQs_headerSchema, heroSectionSchema, news_header_dataSchema, our_client_header_dataSchema, our_service_headerSchema, our_work_header_dataSchema, ourResultSchema } from "../validators/hero-section/section-header.validator.js";
+import {  aboutUsSchema, contact_us_header_dataSchema, FAQs_headerSchema, footerSchema, heroSectionSchema, news_header_dataSchema, our_client_header_dataSchema, our_service_headerSchema, our_work_header_dataSchema, ourResultSchema } from "../validators/hero-section/section-header.validator.js";
 import { our_process_header_dataSchema } from '../validators/hero-section/section-header.validator.js';
 
 const router = express.Router();
@@ -69,4 +71,8 @@ router.put("/about-us", validate(aboutUsSchema), updateAboutUs);
 router.get("/faqs",getFAQsHeader);
 
 router.put("/faqs", validate(FAQs_headerSchema), updateFAQsHeader);
+// FAQs sectionn
+router.get("/footer",getFooter);
+
+router.put("/footer", validate(footerSchema), updateFooter);
 export default router;

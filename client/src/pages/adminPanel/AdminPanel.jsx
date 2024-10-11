@@ -51,6 +51,8 @@ import Pages from "./admin-panel src/components/DataManager/Pages";
 
 import HomePage from "./admin-panel src/components/DataManager/HomePageDataManager/HomePage";
 import FAQsHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/FAQsHeaderData/FAQsHeaderDataForm";
+import FooterForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurResult section/OurResultSectionForm";
+import FooterSectionForm from "./admin-panel src/components/DataManager/HomePageDataManager/Footer section/FooterSectionForm";
 
 const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -223,6 +225,11 @@ const AdminPanel = () => {
                   </Route>
                   <Route path="our-result">
                     <Route index element={<OurResultSectionForm />} />
+
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="footer">
+                    <Route index element={<FooterSectionForm />} />
 
                     {/* Route for editing slides */}
                   </Route>

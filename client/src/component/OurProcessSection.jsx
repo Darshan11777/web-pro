@@ -5,43 +5,17 @@ import useAnimate from "../hooks/useAnimate";
 import OurProgessSectionCard from "./OurProgessSectionCard";
 import axios from "axios";
 import { stopLoading } from "../redux/slices/LoadingSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function OurProcessSection() {
-  const [slides, setSlides] = useState(null);
-  const [data, setData] = useState(null);
-
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const targetRef = useRef();
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "center start"],
   });
-  const dispatch = useDispatch();
-  const getSlides = async () => {
-   try{ const res = await axios.get(baseUrl + "slides/our-process");
-    setSlides(res.data);}catch(error){
-      console.error('Error fetching slides:', error);
-    }finally{
-      dispatch(stopLoading())
-    }
-  };
-  useEffect(() => {
-    getSlides();
-    fetchData();
-  }, []);
 
-  //
-
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(`${baseUrl}section/header/our-process`);
-      const slide = res.data[0];
-      setData(slide);
-    } catch (error) {
-      console.error("Error fetching slide:", error);
-    }
-  };
+  const data = useSelector((state) => state.data.data.ourProcessHeader);
+  const slides = useSelector((state) => state.data.data.ourProcessSlides);
 
   // Split the header based on the highlighted_word if data is available
   const newHeader = data?.header?.split(

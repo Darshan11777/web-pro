@@ -3,41 +3,17 @@ import React, { useEffect, useState } from "react";
 import Accordion from "./Accordion";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 export default function AccordionSection() {
   const [openIndex, setOpenIndex] = useState(null); // Track the index of the open accordion
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index); // Toggle the accordion
   };
 
-  const [data, setData] = useState(null);
-  const [headerData, setHeaderData] = useState(null);
-  const fetchHeaderData = async () => {
-    try {
-      const res = await axios.get(`${baseUrl}section/header/faqs`);
-
-      const headerData = res.data[0];
-      setHeaderData(headerData);
-    } catch (error) {
-      console.error("Error fetching header data:", error);
-    }
-  };
-
-  const fetchSlide = async () => {
-    try {
-      const res = await axios.get(`${baseUrl}slides/faqs`);
-
-      setData(res.data);
-    } catch (error) {
-      console.error("Error fetching slide:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchSlide();
-    fetchHeaderData();
-  }, []);
+  const data = useSelector((state) => state.data.data.faqs);
+  const headerData = useSelector((state) => state.data.data.faqsHeader);
   const newHeader = headerData?.header?.split(
     new RegExp(`(${headerData?.highlighted_word})`, "gi")
   );

@@ -342,7 +342,7 @@ export const updateAboutUs = async (req, res) => {
       [
         tags,
         description,
-        
+
         years_Of_experience,
         img_url,
         section_name,
@@ -361,11 +361,10 @@ export const updateAboutUs = async (req, res) => {
     );
   } catch (error) {
     console.log(error);
-    
+
     return res.status(400).json({ error: error.errors });
   }
 };
-
 
 // Contact us header data
 
@@ -400,6 +399,56 @@ export const updateFAQsHeader = (req, res) => {
       return res
         .status(200)
         .json({ message: "contact us header updated successfully!" });
+    }
+  );
+};
+
+// get contact us Form
+export const getFooter = (req, res) => {
+  const query = "SELECT * FROM footer WHERE id = 1";
+  db.query(query, (err, results) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(results[0]);
+  });
+};
+
+// Update Footer Form
+export const updateFooter = (req, res) => {
+  const {
+    header,
+    description,
+    facebook_url,
+    instagram_url,
+    twitter_url,
+    highlighted_word,
+  } = req.body;
+
+  const query =
+    "UPDATE footer SET header = ?, highlighted_word = ?, description = ?, facebook_url = ?, instagram_url = ?, twitter_url = ? WHERE id = ?";
+  const id = 1; // Assuming you're updating the footer with id 1
+
+  db.query(
+    query,
+    [
+      header,
+      highlighted_word,
+      description,
+      facebook_url,
+      instagram_url,
+      twitter_url,
+      id,
+    ],
+    (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: "Database query error", details: err });
+      }
+
+      // Check if any rows were affected
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "Footer section not found." });
+      }
+
+      return res.status(200).json({ message: "Footer section updated successfully!" });
     }
   );
 };

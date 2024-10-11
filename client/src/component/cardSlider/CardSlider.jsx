@@ -2,24 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import CardBrandSection from "../CardBrandSection";
 import "./index.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-export default function CardSlider({ dataUrl = "slides/our-work" }) {
+export default function OurWorkSlides({ data}) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [slides, setSlides] = useState(null);
   const sliderRef = useRef(null);
+let slides;
+if(data==="news"){
+  
+  slides=useSelector(state=>state.data.data.newsSlides)
+}else{
 
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
+  slides=useSelector(state=>state.data.data.ourWorkSlides)
+}
 
-  const getSlides = async () => {
-    const res = await axios.get(baseUrl + dataUrl);
-
-    setSlides(res.data);
-  };
-
-  useEffect(() => {
-    getSlides();
-  }, []);
-
+ 
   useEffect(() => {
     if (slides) {
       let intervalId;

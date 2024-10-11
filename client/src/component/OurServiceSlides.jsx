@@ -8,28 +8,13 @@ import centerImg from "../assets/images/Ellipse 57 (1).png";
 
 import axios from "axios";
 import { stopLoading } from "../redux/slices/LoadingSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function SilderSection() {
-  const [data, setData] = React.useState(null);
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const dispatch = useDispatch();
-  // const data = [1, 2, 3]
-  const getSlides = async () => {
-   try{ const res = await axios.get(`${baseUrl}slides/our-service`);
+export default function OurServiceSlides() {
 
-    setData(res.data);
-  }catch(error){
-    console.error('Error fetching slides:', error);
-  }finally{
-    dispatch(stopLoading())
-  }
-  };
-  useEffect(() => {
-    getSlides();
-  }, []);
-  //
 
+  const data=useSelector(state=>state.data.data.OurServiceSlides)
+ 
   return (
     <section className="silder_section relative ">
       <div className="absolute top-[50%] left-[0px] h-[500px] w-[130px] animate-scaleUpDown">

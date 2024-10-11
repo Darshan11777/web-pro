@@ -25,6 +25,7 @@ const authenticateAdmin = (req, res, next) => {
   } else {
     // res.redirect('/admin/auth/signin');
     console.log('error in jwt auth',token)
+    
     // res.redirect('http://localhost:5173/admin/auth');
     res.status(401).json({ message: 'jwt authentication error' });
     // res.sendStatus(401); // Unauthorized

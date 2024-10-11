@@ -133,3 +133,13 @@ export const heroSectionSchema = z.object({
     highlighted_word: z.string().optional(), // Optional field for highlighted words
   
   })
+  export const footerSchema = z.object({
+   
+    header: z.string().min(1, "Header is required"),
+    highlighted_word: z.string().optional(), 
+    description: z.string().min(1,{message: "Description is required"}),
+    facebook_url:z.string().url({ message: " URL must be valid" }).min(1, { message: "URL is required" }),
+    instagram_url:z.string().url({ message: " URL must be valid" }).min(1, { message: "URL is required" }),
+    twitter_url:z.string().url({ message: " URL must be valid" }).min(1, { message: "URL is required" }),
+  
+  })
