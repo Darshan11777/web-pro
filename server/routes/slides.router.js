@@ -33,13 +33,12 @@ import { validate } from "../middleware/validate-middleware.js";
 import {
   contactUsFormSchema,
   FAQsSchema,
- 
   newsSchema,
   our_processSchema,
   our_servicesSchema,
   our_WorkSchema,
   reviewSchema,
-} from "../validators/hero-section/slides.validator.js";
+} from "../validators/homePage/slides.validator.js";
 const router = express.Router();
 
 // Get all slides
@@ -105,11 +104,18 @@ router.delete("/news/:id", deleteNews);
 
 // contact us Form
 router.get("/contact-us-form", getContactUsForm);
-router.put("/contact-us-form", validate(contactUsFormSchema), updateContactUsForm);
+router.put(
+  "/contact-us-form",
+  validate(contactUsFormSchema),
+  updateContactUsForm
+);
 
 // footer Form
 router.get("/contact-us-form", getContactUsForm);
-router.put("/contact-us-form", validate(contactUsFormSchema), updateContactUsForm);
-
+router.put(
+  "/contact-us-form",
+  validate(contactUsFormSchema),
+  updateContactUsForm
+);
 
 export default router;

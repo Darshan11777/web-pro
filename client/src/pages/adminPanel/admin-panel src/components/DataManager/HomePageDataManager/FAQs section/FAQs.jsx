@@ -59,7 +59,7 @@ const FAQs = () => {
     if (!searchTerm) return text;
 
     const regex = new RegExp(`(${searchTerm})`, "gi");
-    return text.replace(regex, '<span class="font-bold text-red-600">$1</span>');
+    return text.replace(regex, '<span class="">$1</span>');
   };
   return (
     <div className="container mx-auto mt-10">

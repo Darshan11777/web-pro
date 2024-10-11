@@ -8,6 +8,7 @@ export const heroSectionSchema = z.object({
     description: z.string().min(1, "Description is required"),
     bg_video_url: z.string().url("Video is required").optional(),
     below_img_url: z.string().url("Image is required").optional(),
+    brandImages: z.string(),
   });
   
   // our service header

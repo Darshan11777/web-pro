@@ -10,14 +10,14 @@ export const getHeroSection = (req, res) => {
 
 // Update a hero section
 export const updateHeroSection = (req, res) => {
-  const { header, subheader, description, bg_video_url, below_img_url } =
+  const { header, subheader, description, bg_video_url, below_img_url,brandImages } =
     req.body;
   const query =
-    "UPDATE hero_section SET header = ?, subheader = ?, description = ?, bg_video_url = ?, below_img_url = ? WHERE id = ?";
+    "UPDATE hero_section SET header = ?, subheader = ?, description = ?, bg_video_url = ?, below_img_url = ?,brandImages= ? WHERE id = ?";
   const id = 1;
   db.query(
     query,
-    [header, subheader, description, bg_video_url, below_img_url, id],
+    [header, subheader, description, bg_video_url, below_img_url,brandImages, id],
     (err, results) => {
       if (err) return res.status(500).json(err);
 

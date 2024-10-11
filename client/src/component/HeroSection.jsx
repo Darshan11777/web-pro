@@ -72,70 +72,23 @@ export default function HeroSection() {
             transition={{ duration: 1.5, ease: "easeOut" }}
           />
 
-          <motion.div className="hero-section-bottom__img">
-            {/* Slide Up and Fade-In for each image one by one with decreased delay */}
-            <motion.img
-              src={upstockImg}
+          
+          <motion.div className="hero-section-bottom__img flex max-w-[1200px] justify-between">
+          {data.brandImages.split(',').map((item,index)=>{
+             return <>
+             
+             <motion.img
+              key={index}
+              src={item}
               className="first__img"
               alt="Upstock"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
             />
-
-            <motion.img
-              src={ellipse}
-              className="second__img"
-              alt="Ellipse"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-            />
-
-            <motion.img
-              src={fiverrImg}
-              className="first__img"
-              alt="Fiverr"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-            />
-
-            <motion.img
-              src={ellipse}
-              className="second__img"
-              alt="Ellipse"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-            />
-
-            <motion.img
-              src={cluthImg}
-              className="first__img"
-              alt="Cluth"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-            />
-
-            <motion.img
-              src={ellipse}
-              className="second__img"
-              alt="Ellipse"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-            />
-
-            <motion.img
-              src={image4}
-              className="first__img"
-              alt="Image 4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }}
-            />
+               
+            </>
+          })}
           </motion.div>
         </div>
       </div>
