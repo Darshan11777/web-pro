@@ -20,13 +20,19 @@ import { fetchData } from "../../redux/slices/WebProDataSlice.jsx";
 import OurServiceSection from "../../component/OurServiceSection.jsx";
 import OurServiceSlides from "../../component/OurServiceSlides.jsx";
 import AboutUsSection from "../../component/AboutUsSection.jsx";
+import axios from "axios";
+import GoogleTranslate from "../../component/GoogleTranslate/GoogleTranslate.jsx";
 
 export default function Home() {
-  const ourSectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ourSectionRef,
-    offset: ["start start", "center end"],
-  });
+  // const ourSectionRef = useRef(null);
+  // const { scrollYProgress } = useScroll({
+  //   target: ourSectionRef,
+  //   offset: ["start start", "center end"],
+  // });
+
+
+
+
 
   return (
     <>
@@ -52,6 +58,7 @@ export default function Home() {
       {/* accorodian */}
 
       <FooterSection />
+      
     </>
   );
 }

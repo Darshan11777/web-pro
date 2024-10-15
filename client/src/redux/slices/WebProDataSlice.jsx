@@ -3,13 +3,28 @@ import axios from "axios";
 
 // Async thunk to fetch five different data points
 export const fetchData = createAsyncThunk("data/fetchData", async () => {
-  const baseUrl=import.meta.env.VITE_API_BASE_URL;
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   try {
-
     // Replace these URLs with your actual API endpoints
-    const [heroSection, overServiceHeader, OurServiceSlides, aboutUsSection, ourProcessHeader,ourProcessSlides,ourWorkHeader,ourWorkSlides,resultSection,
-      ourClientHeader,reviewSlides,newsHeader,newsSlides,contactUsHeader,contactUsForm,faqsHeader,faqs,footerSection
-
+    const [
+      heroSection,
+      overServiceHeader,
+      OurServiceSlides,
+      aboutUsSection,
+      ourProcessHeader,
+      ourProcessSlides,
+      ourWorkHeader,
+      ourWorkSlides,
+      resultSection,
+      ourClientHeader,
+      reviewSlides,
+      newsHeader,
+      newsSlides,
+      contactUsHeader,
+      contactUsForm,
+      faqsHeader,
+      faqs,
+      footerSection,
     ] = await Promise.all([
       axios.get(`${baseUrl}section/header/hero-section`),
       axios.get(`${baseUrl}section/header/our-service`),
@@ -29,7 +44,6 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       axios.get(`${baseUrl}section/header/faqs`),
       axios.get(`${baseUrl}slides/faqs`),
       axios.get(`${baseUrl}section/header/footer`),
-
     ]);
 
     // Return the combined data as an object
@@ -48,12 +62,10 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       newsHeader: newsHeader.data[0],
       newsSlides: newsSlides.data,
       contactUsHeader: contactUsHeader.data[0],
-      contactUsForm:contactUsForm.data[0],
-      faqsHeader:faqsHeader.data[0],
-      faqs:faqs.data,
-      footerSection:footerSection.data,
-     
-      
+      contactUsForm: contactUsForm.data[0],
+      faqsHeader: faqsHeader.data[0],
+      faqs: faqs.data,
+      footerSection: footerSection.data,
     };
   } catch (error) {
     throw error.response?.data || "An error occurred";
@@ -64,7 +76,23 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
 const initialState = {
   data: {
     heroSection: null,
-   
+    overServiceHeader: null,
+    OurServiceSlides: [],
+    aboutUsSection: null,
+    ourProcessHeader: null,
+    ourProcessSlides: [],
+    ourWorkHeader: null,
+    ourWorkSlides: [],
+    resultSection: null,
+    ourClientHeader: null,
+    reviewSlides: [],
+    newsHeader: null,
+    newsSlides: [],
+    contactUsHeader: null,
+    contactUsForm: null,
+    faqsHeader: null,
+    faqs: [],
+    footerSection: null,
   },
   loading: true,
   error: null,

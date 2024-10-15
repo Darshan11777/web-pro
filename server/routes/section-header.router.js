@@ -36,8 +36,8 @@ import {
   our_service_headerSchema,
   our_work_header_dataSchema,
   ourResultSchema,
-} from "../validators/homePage/section-header.validator.js";
-import { our_process_header_dataSchema } from "../validators/homePage/section-header.validator.js";
+} from "../validators/hero-section/section-header.validator.js";
+import { our_process_header_dataSchema } from "../validators/hero-section/section-header.validator.js";
 
 const router = express.Router();
 

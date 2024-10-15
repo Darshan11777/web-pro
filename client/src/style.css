@@ -2170,3 +2170,26 @@ button.message__button {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+.family-titillium{
+  font-family: "Titillium Web";
+
+}
+
+.about__section__gradinent{
+  background: linear-gradient(102.52deg, rgba(237, 89, 89, 0.6) 0.75%, rgba(198, 255, 207, 0.6) 29.48%, rgba(191, 205, 255, 0.6) 58.8%, #FFE7D0 83.75%);
+
+}
+
+.font__control{
+  font-family: Titillium -webkit-body !important;
+  color: #ED5959;
+  text-align: center;
+  -webkit-text-stroke-width: 1;
+  -webkit-text-stroke-color: #ED5959;
+  font-family: "Titillium Web"!important;
+  font-size: 180px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 102%; /* 183.6px */
+  text-transform: uppercase;
+}

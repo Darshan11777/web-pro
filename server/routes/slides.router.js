@@ -38,7 +38,7 @@ import {
   our_servicesSchema,
   our_WorkSchema,
   reviewSchema,
-} from "../validators/homePage/slides.validator.js";
+} from "../validators/hero-section/slides.validator.js";
 const router = express.Router();
 
 // Get all slides

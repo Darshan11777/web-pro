@@ -179,7 +179,7 @@ const OurProcess = () => {
         </table>
 
         {/* Pagination */}
-        <ReactPaginate
+       {Math.ceil(filteredSlides.length / itemsPerPage) > 1 &&( <ReactPaginate
         pageCount={Math.ceil(filteredSlides.length / itemsPerPage)} // Ensure this matches your pagination logic
         pageRangeDisplayed={5}
         marginPagesDisplayed={2}
@@ -222,7 +222,7 @@ const OurProcess = () => {
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         }
-      />
+      />)}
       </div>
     </div>
   );

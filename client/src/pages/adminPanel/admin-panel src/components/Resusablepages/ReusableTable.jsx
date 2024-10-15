@@ -53,16 +53,16 @@ const ReusableTable = ({ baseUrl=import.meta.env.VITE_API_BASE_URL, fetchUrl, co
       <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg overflow-hidden">
         <thead>
           <tr className="bg-gray-200">
-            {columns.map((column) => (
+            {columns?.map((column) => (
               <th key={column.key} className="p-4 text-left">{column.title}</th>
             ))}
             <th className="p-4 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {currentData.map((item) => (
+          {currentData?.map((item) => (
             <tr key={item.id} className="hover:bg-gray-100">
-              {columns.map((column) => (
+              {columns?.map((column) => (
                 <td key={column.key} className="p-4">
                   <p
                     className="text-base line-clamp-2"
@@ -78,13 +78,57 @@ const ReusableTable = ({ baseUrl=import.meta.env.VITE_API_BASE_URL, fetchUrl, co
         </tbody>
       </table>
 
-      <ReactPaginate
+      {/* <ReactPaginate
         pageCount={Math.ceil(filteredData.length / itemsPerPage)}
         onPageChange={handlePageClick}
         containerClassName="flex justify-center space-x-2 mt-4"
         pageClassName="flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full hover:bg-indigo-500 hover:text-white transition duration-200"
         activeClassName="bg-indigo-500 text-white"
-      />
+      /> */}
+       {Math.ceil(filteredSlides.length / itemsPerPage) > 1 &&( <ReactPaginate
+        pageCount={Math.ceil(filteredData.length / itemsPerPage)} // Ensure this matches your pagination logic
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={2}
+        onPageChange={handlePageClick} // Ensure this is your function for handling page clicks
+        containerClassName="flex justify-center space-x-2 mt-4" // Tailwind styles for the pagination container
+        pageClassName="flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full hover:bg-indigo-500 hover:text-white transition duration-200" // Tailwind styles for individual page items
+        pageLinkClassName="flex items-center justify-center w-full h-full" // Center link styles
+        previousClassName="flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full hover:bg-indigo-500 hover:text-white transition duration-200" // Previous button styles
+        nextClassName="flex items-center justify-center w-8 h-8 border border-gray-300 rounded-full hover:bg-indigo-500 hover:text-white transition duration-200" // Next button styles
+        activeClassName="bg-indigo-500 text-white" // Active page styles
+        previousLabel={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        }
+        nextLabel={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        }
+      />)}
     </div>
   );
 };

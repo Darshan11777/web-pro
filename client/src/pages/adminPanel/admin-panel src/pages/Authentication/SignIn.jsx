@@ -71,10 +71,10 @@ const SignIn= () => {
                 <img className="dark:hidden" src={LogoDark} alt="Logo" />
               </Link>
 
-              <p className="">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                suspendisse.
-              </p>
+              <p>
+  Welcome back! Sign in to access your powerful business tools.
+</p>
+
 
               <span className="mt-15 inline-block">
                 <svg

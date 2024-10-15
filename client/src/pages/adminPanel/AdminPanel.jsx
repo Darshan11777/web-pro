@@ -37,7 +37,7 @@ import FAQs from "./admin-panel src/components/DataManager/HomePageDataManager/F
 import FAQsForm from "./admin-panel src/components/DataManager/HomePageDataManager/FAQs section/FAQsForm";
 import News from "./admin-panel src/components/DataManager/HomePageDataManager/our-news slides/News";
 import NewsForm from "./admin-panel src/components/DataManager/HomePageDataManager/our-news slides/NewsForm";
-import HeroSectionForm from "./admin-panel src/components/DataManager/HomePageDataManager/HeroSection/HeroSectionForm";
+import HeroSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutHeroSectionForm";
 import OurServiceHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurServiceHeaderData/OurServiceHeaderDataForm";
 import OurProcessHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurProcessHeaderData/OurProcessHeaderDataForm";
 import OurWorkHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurWorkHeaderDataForm/OurWorkHeaderDataForm";
@@ -53,6 +53,10 @@ import HomePage from "./admin-panel src/components/DataManager/HomePageDataManag
 import FAQsHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/FAQsHeaderData/FAQsHeaderDataForm";
 import FooterForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurResult section/OurResultSectionForm";
 import FooterSectionForm from "./admin-panel src/components/DataManager/HomePageDataManager/Footer section/FooterSectionForm";
+import StaticPages from "./admin-panel src/pages/Static Pages/StaticPages";
+import StaticPagesEditor from "./admin-panel src/pages/Static Pages/StaticPagesEditor";
+import AboutUsPageDataManager from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutUsPageDataManager";
+import AboutHeroSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutHeroSectionForm";
 
 const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -136,6 +140,24 @@ const AdminPanel = () => {
                   </>
                 }
               />
+              <Route
+                path="static-pages"
+                >
+               
+                    
+
+                    <Route index element={<StaticPages />} />
+                    <Route path="new" element={<StaticPagesEditor />} />
+                  
+                    <Route
+                      path=":pageId/edit"
+                      
+                      element={<StaticPagesEditor />}
+                    />
+              
+                  </Route>
+                
+                
 
               <Route path="pages">
                 <Route
@@ -272,6 +294,29 @@ const AdminPanel = () => {
                     />{" "}
                     {/* Route for editing slides */}
                   </Route>
+                </Route>
+                <Route path="about-us">
+                  <Route
+                    // path="slide"
+                    index
+                    element={
+                      <>
+                        <AboutUsPageDataManager />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="hero-section"
+                    
+                    element={
+                      <>
+                        <AboutHeroSectionForm />
+                      </>
+                    }
+                  />
+
+                 
+                
                 </Route>
               </Route>
 

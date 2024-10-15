@@ -9,6 +9,8 @@ const authenticateAdmin = (req, res, next) => {
   // Retrieve the token from cookies
   const token = req.cookies.admin;
  
+  console.log('token',token);
+  
   if (token) {
     jwt.verify(token,process.env.JWT_SECRET, (err, user) => {
       if (err) {

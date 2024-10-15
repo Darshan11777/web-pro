@@ -22,8 +22,6 @@ const login= async (req, res) => {
       return res.status(500).json({ message: 'Server error' });
     }
 
-    console.log('Database query results:', results);
-
     if (results.length === 0) {
       console.log('User not found');
       return res.status(400).json({ message: 'User not found' });

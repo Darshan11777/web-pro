@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 const login= async (req, res) => {
 
-  console.log('Cookies:', req.cookies);
+  
   console.log('POST /login - Request received with body:', req.body);
 
   const { identifier, password } = req.body;

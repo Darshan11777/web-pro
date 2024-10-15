@@ -25,6 +25,7 @@ const HeroSectionForm = ({ existingData }) => {
   const [imageFiles, setImageFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
 
+
   // Loading state
   const [loading, setLoading] = useState(false);
 
@@ -67,7 +68,7 @@ const HeroSectionForm = ({ existingData }) => {
       setBgVideoFile(null);
     }
   };
-
+console.log( "bgVideoPreview",bgVideoPreview);
   const handleBelowImgChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -219,9 +220,9 @@ const HeroSectionForm = ({ existingData }) => {
         {/* Background Video Preview */}
         {bgVideoPreview && (
           <div className="mb-6">
-            <video controls className="w-full h-48 object-cover rounded-md">
-              <source src={bgVideoPreview} type="video/mp4" />
-              Your browser does not support the video tag.
+            <video controls className="w-full h-48 object-cover rounded-md" src={bgVideoPreview}>
+              {/* <source src={bgVideoPreview} type="video/mp4" /> */}
+              {/* Your browser does not support the video tag. */}
             </video>
           </div>
         )}
@@ -242,7 +243,7 @@ const HeroSectionForm = ({ existingData }) => {
         {/* Below Image Preview */}
         {belowImgPreview && (
           <div className="mb-6">
-            <img src={belowImgPreview} alt="Below Preview" className="w-full h-48 object-cover rounded-md" />
+            <img src={belowImgPreview}  alt="Below Preview" className="w-full h-48 object-cover rounded-md" />
           </div>
         )}
 

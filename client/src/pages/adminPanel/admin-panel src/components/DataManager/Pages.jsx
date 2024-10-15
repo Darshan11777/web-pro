@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Breadcrumb from '../Breadcrumbs/Breadcrumb';
 import ReactPaginate from 'react-paginate';
 
@@ -11,6 +11,7 @@ const Pages = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
  
+  const navigate=useNavigate()
   useEffect(() => {
     fetchSlides();
   }, []);
@@ -18,12 +19,18 @@ const Pages = () => {
   const fetchSlides = async () => {
     try{
 
-      const res = await axios.get(`${baseUrl}pages/`,{},{ withCredentials: true,});
+      // const res = await axios.get(`${baseUrl}pages/`,{},{ withCredentials: true,});
+      const res = await axios.get(`${baseUrl}pages/`,{},{ withCredentials: true,headers: {
+        'Content-Type': 'application/json',
+      }});
+      
       setSlides(res.data);
     }catch(error){
-      console.error(error)
+      console.log(error.response.data)
+   if(error.response.data.message==="jwt authentication error"){
+    navigate('/admin/pages')
     }
-  };
+  };}
   console.log( "slides",slides);
 
   const handlePageClick = (event) => {
@@ -197,36 +204,20 @@ const Pages = () => {
     </div>
   );
 };
-
 export default Pages;
 
-// import React from 'react';
-// import ReusableTable from '../Resusablepages/ReusableTable';
+// import React from 'react'
+// import ReusableTable from '../Resusablepages/ReusableTable'
+// import CKEditorComponent from '../CkEditor/CkEditor'
 
-// const Pages = () => {
-//   const columns = [
-//     { key: 'section_name', title: 'Section Name' },
-//     { key: 'details', title: 'Details' },
-//     // Add more columns as needed
-//   ];
-
-//   const highlightFields = ['section_name', 'details']; // Fields to highlight during search
-
+// export default function Pages() {
 //   return (
-//     <>
-    
-//     <ReusableTable
-//       baseUrl={import.meta.env.VITE_API_BASE_URL}
-//       fetchUrl="section/"
-//       columns={columns}
-//       highlightFields={highlightFields}
-//       itemsPerPage={4} // Optional
-//       actionButton={
-
-//       }
-//     />
-//     </>
-//   );
-// };
-
-// export default Pages;
+//     <div>
+//       {/* <ReusableTable fetchUrl={'pages/'} columns={[ */}
+//     {/* //   { key: 'page_name', title: 'Page Name' },
+//     //   { key: 'description', title: 'Description' },
+//     // ]} highlightFields={['page_name', 'description']} /> */}
+//     <CKEditorComponent/>
+//     </div>
+//   )
+// }

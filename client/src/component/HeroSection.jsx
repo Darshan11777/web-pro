@@ -48,7 +48,9 @@ export default function HeroSection() {
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} // End state with 3D effect
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }} // Smooth and natural easing
             >
-              <h1>{data.header}</h1>
+              <h1>{data.header}
+
+              </h1>
               <p>
                 {/* We are a creative web design & branding agency based in London that crafts beautiful work for brands who <span>refuse to blend in.</span> */}
                 {data.description}
@@ -75,9 +77,7 @@ export default function HeroSection() {
           
           <motion.div className="hero-section-bottom__img flex max-w-[1200px] justify-between">
           {data.brandImages.split(',').map((item,index)=>{
-             return <>
-             
-             <motion.img
+             return  <motion.img
               key={index}
               src={item}
               className="first__img"
@@ -87,7 +87,7 @@ export default function HeroSection() {
               transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
             />
                
-            </>
+            
           })}
           </motion.div>
         </div>

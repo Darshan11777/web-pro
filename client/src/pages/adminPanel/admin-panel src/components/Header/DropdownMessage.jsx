@@ -14,7 +14,7 @@ const DropdownMessage = () => {
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <li className="relative">
-        <Link
+        <Link 
           onClick={() => {
             setNotifying(false);
             setDropdownOpen(!dropdownOpen);
@@ -88,7 +88,7 @@ const DropdownMessage = () => {
               <li>
                 <Link
                   className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
+                  to="/admin/messages"
                 >
                   <div className="h-12.5 w-12.5 rounded-full">
                     <img src={UserOne} alt="User" />
@@ -106,7 +106,7 @@ const DropdownMessage = () => {
               <li>
                 <Link
                   className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
+                  to="messages"
                 >
                   <div className="h-12.5 w-12.5 rounded-full">
                     <img src={UserThree} alt="User" />

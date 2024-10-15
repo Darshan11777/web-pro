@@ -1,5 +1,5 @@
 import express from "express";
-import { getHomePage, getPages } from "../controller/section.controller.js";
+import { getHomePage, getPages } from "../controller/pages.controller.js";
 import authenticateAdmin from "../middleware/authenticateAdmin.js";
 import authenticateJWT from "../middleware/authenticateJWT.js";
 
