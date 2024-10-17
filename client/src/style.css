@@ -2182,12 +2182,10 @@ button.message__button {
 
 .font__control{
   font-family: Titillium -webkit-body !important;
-  color: #ED5959;
-  text-align: center;
+  /* text-align: center; */
   -webkit-text-stroke-width: 1;
-  -webkit-text-stroke-color: #ED5959;
   font-family: "Titillium Web"!important;
-  font-size: 180px;
+  /* font-size: 180px; */
   font-style: normal;
   font-weight: 700;
   line-height: 102%; /* 183.6px */

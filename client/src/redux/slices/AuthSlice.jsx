@@ -48,6 +48,7 @@ const authSlice = createSlice({
         user: null,
         isAuthenticated: false,
         status: 'idle',
+        jwt:null,
         error: null,
     },
     reducers: {

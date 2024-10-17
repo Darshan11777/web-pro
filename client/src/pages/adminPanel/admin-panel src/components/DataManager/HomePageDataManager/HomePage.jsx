@@ -3,6 +3,8 @@
   import { Link, useNavigate } from "react-router-dom";
   import Breadcrumb from "../../Breadcrumbs/Breadcrumb";
   import ReactPaginate from "react-paginate";
+import { useDispatch } from "react-redux";
+import { checkAuth } from "../../../../../../redux/slices/AuthSlice";
 
   const HomePage = () => {
     const [slides, setSlides] = useState([]);
@@ -11,14 +13,20 @@
     const [searchTerm, setSearchTerm] = useState("");
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
-
+const dispatch=useDispatch()
     useEffect(() => {
       fetchSlides();
     }, []);
 
     const fetchSlides = async () => {
-      const res = await axios.get(`${baseUrl}pages/home`);
-      setSlides(res.data);
+    try{  const res = await axios.get(`${baseUrl}pages/home`,{ withCredentials: true});
+      setSlides(res.data);}
+      catch(error){
+        console.log(error.response.data.message)
+        if(error.response.data.message==="jwt authentication error"){
+          dispatch(checkAuth())
+          }
+      }
     };
 
     const handlePageClick = (event) => {

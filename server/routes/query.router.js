@@ -57,37 +57,11 @@ router.get("/users", (req, res) => {
     // all tabel name
   
     const sql = `
-INSERT INTO static_pages (header, short_text, long_text, status) VALUES
-('Header 1', 'Short text 1', 'Long text 1', true),
-('Header 2', 'Short text 2', 'Long text 2', false),
-('Header 3', 'Short text 3', 'Long text 3', true),
-('Header 4', 'Short text 4', 'Long text 4', false),
-('Header 5', 'Short text 5', 'Long text 5', true),
-('Header 6', 'Short text 6', 'Long text 6', false),
-('Header 7', 'Short text 7', 'Long text 7', true),
-('Header 8', 'Short text 8', 'Long text 8', false),
-('Header 9', 'Short text 9', 'Long text 9', true),
-('Header 10', 'Short text 10', 'Long text 10', false),
-('Header 11', 'Short text 11', 'Long text 11', true),
-('Header 12', 'Short text 12', 'Long text 12', false),
-('Header 13', 'Short text 13', 'Long text 13', true),
-('Header 14', 'Short text 14', 'Long text 14', false),
-('Header 15', 'Short text 15', 'Long text 15', true),
-('Header 16', 'Short text 16', 'Long text 16', false),
-('Header 17', 'Short text 17', 'Long text 17', true),
-('Header 18', 'Short text 18', 'Long text 18', false),
-('Header 19', 'Short text 19', 'Long text 19', true),
-('Header 20', 'Short text 20', 'Long text 20', false),
-('Header 21', 'Short text 21', 'Long text 21', true),
-('Header 22', 'Short text 22', 'Long text 22', false),
-('Header 23', 'Short text 23', 'Long text 23', true),
-('Header 24', 'Short text 24', 'Long text 24', false),
-('Header 25', 'Short text 25', 'Long text 25', true),
-('Header 26', 'Short text 26', 'Long text 26', false),
-('Header 27', 'Short text 27', 'Long text 27', true),
-('Header 28', 'Short text 28', 'Long text 28', false),
-('Header 29', 'Short text 29', 'Long text 29', true),
-('Header 30', 'Short text 30', 'Long text 30', false);
+
+
+ALTER TABLE about_team_details
+CHANGE imgUrl image VARCHAR(255) NOT NULL;
+
 
   `;
   

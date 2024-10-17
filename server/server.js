@@ -12,10 +12,11 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import errorMiddleware from "./middleware/error-middleware.js";
-import slidesRouter from "./routes/slides.router.js";
+import slidesRouter from "./routes/Pages/HomePage/slides.router.js";
 import imageUploadRouter from "./routes/image.router.js";
-import PagesRouter from "./routes/pages.router.js";
-import sectionHeaderRouter from "./routes/section-header.router.js";
+import PagesRouter from "./routes/Pages/pages.router.js";
+import aboutUsPageRouter from "./routes/Pages/AboutUsPage/section.router.js";
+import sectionHeaderRouter from "./routes/Pages/HomePage/section-header.router.js";
 import queryRouter from "./routes/query.router.js";
 import staticPagesRouter from "./routes/static-pages.router.js";
 import tableRouter from "./routes/table.router.js";
@@ -58,10 +59,11 @@ app.use("/admin", adminRouter);
 app.use("/slides", slidesRouter);
 app.use("/image", imageUploadRouter);
 app.use("/pages", PagesRouter);
+app.use('/about-us',aboutUsPageRouter)
 app.use("/section/header", sectionHeaderRouter);
 app.use("/query", queryRouter);
-app.use("/static-pages",staticPagesRouter);
-app.use('/table',tableRouter)
+app.use("/static-pages", staticPagesRouter);
+app.use("/table", tableRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");

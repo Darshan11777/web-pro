@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-import upstockImg from "../assets/images/image 5.png";
-import fiverrImg from "../assets/images/image 4.png";
-import cluthImg from "../assets/images/image 3.png";
-import ellipse from "../assets/images/Ellipse 50.png";
-import image4 from "../assets/images/image 4.png";
-import header_bottom from "../assets/images/header_bottom.png";
-import header_two from "../assets/images/header_two.png";
+
 import header_img from "../assets/images/Group 762.png";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { stopLoading } from "../redux/slices/LoadingSlice";
+
 
 export default function HeroSection() {
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });

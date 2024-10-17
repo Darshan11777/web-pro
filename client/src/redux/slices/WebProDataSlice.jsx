@@ -5,6 +5,7 @@ import axios from "axios";
 export const fetchData = createAsyncThunk("data/fetchData", async () => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   try {
+
     // Replace these URLs with your actual API endpoints
     const [
       heroSection,
@@ -25,6 +26,15 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       faqsHeader,
       faqs,
       footerSection,
+      aboutHeroSection,
+      aboutProjectSection,
+      aboutImageProjectSection,
+      AboutHistorySection,
+       historyDetailesSection,
+       aboutQuoteSection,
+       aboutTeamHeader,
+       teamDetails,
+
     ] = await Promise.all([
       axios.get(`${baseUrl}section/header/hero-section`),
       axios.get(`${baseUrl}section/header/our-service`),
@@ -44,6 +54,15 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       axios.get(`${baseUrl}section/header/faqs`),
       axios.get(`${baseUrl}slides/faqs`),
       axios.get(`${baseUrl}section/header/footer`),
+     axios.get(`${baseUrl}about-us/hero-section`),
+      axios.get(`${baseUrl}about-us/project`),
+      axios.get(`${baseUrl}about-us/image-project`),
+      axios.get(`${baseUrl}about-us/history`),
+      axios.get(`${baseUrl}about-us/history-detailes`),
+      axios.get(`${baseUrl}about-us/quote`),
+      axios.get(`${baseUrl}about-us/team-header`),
+      axios.get(`${baseUrl}about-us/team-details`),
+      
     ]);
 
     // Return the combined data as an object
@@ -66,6 +85,16 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       faqsHeader: faqsHeader.data[0],
       faqs: faqs.data,
       footerSection: footerSection.data,
+      aboutHeroSection:aboutHeroSection.data,
+      aboutProjectSection:aboutProjectSection.data,
+      aboutImageProjectSection:aboutImageProjectSection.data,
+      AboutHistorySection:AboutHistorySection.data,
+      historyDetailesSection:historyDetailesSection.data,
+      aboutQuoteSection:aboutQuoteSection.data,
+      aboutTeamHeader:aboutTeamHeader.data,
+      teamDetails:teamDetails.data,
+      
+
     };
   } catch (error) {
     throw error.response?.data || "An error occurred";

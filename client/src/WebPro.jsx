@@ -7,6 +7,7 @@ import AboutUs from "./pages/aboutUs/AboutUs";
 import WebProLoader from "./component/WebProLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "./redux/slices/WebProDataSlice";
+import ServicesPage from "./pages/Services/Services";
 
 export default function WebPro() {
   const dispatch = useDispatch();
@@ -16,24 +17,21 @@ export default function WebPro() {
 
   const isLoading = useSelector((state) => state.data.loading);
   const hero = useSelector((state) => state.data.data.heroSection);
+
+  if(isLoading){
+    return <WebProLoader/>
+  }
   
   return (
-    <>
-      {/* <Loader/>  */}
-
-      {isLoading ? (
-        <Routes>
-          <Route path="/" element={<WebProLoader />} />
-        </Routes>
-      ) : (
+    
         <>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="about-us" element={<AboutUs />} />
+            <Route path="our-service" element={<ServicesPage />} />
           </Routes>
         </>
-      )}
-    </>
+ 
   );
 }

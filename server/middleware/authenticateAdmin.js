@@ -7,7 +7,8 @@ import cookieParser from 'cookie-parser';
 const authenticateAdmin = (req, res, next) => {
   
   // Retrieve the token from cookies
-  const token = req.cookies.admin;
+  let token = req.cookies.admin;
+  
  
   console.log('token',token);
   

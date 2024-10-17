@@ -37,7 +37,7 @@ import FAQs from "./admin-panel src/components/DataManager/HomePageDataManager/F
 import FAQsForm from "./admin-panel src/components/DataManager/HomePageDataManager/FAQs section/FAQsForm";
 import News from "./admin-panel src/components/DataManager/HomePageDataManager/our-news slides/News";
 import NewsForm from "./admin-panel src/components/DataManager/HomePageDataManager/our-news slides/NewsForm";
-import HeroSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutHeroSectionForm";
+import HeroSectionForm from "./admin-panel src/components/DataManager/HomePageDataManager/HeroSection/HeroSectionForm";
 import OurServiceHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurServiceHeaderData/OurServiceHeaderDataForm";
 import OurProcessHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurProcessHeaderData/OurProcessHeaderDataForm";
 import OurWorkHeaderDataForm from "./admin-panel src/components/DataManager/HomePageDataManager/OurWorkHeaderDataForm/OurWorkHeaderDataForm";
@@ -57,6 +57,14 @@ import StaticPages from "./admin-panel src/pages/Static Pages/StaticPages";
 import StaticPagesEditor from "./admin-panel src/pages/Static Pages/StaticPagesEditor";
 import AboutUsPageDataManager from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutUsPageDataManager";
 import AboutHeroSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutHeroSectionForm";
+import AboutProjectSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutProjectSectionForm";
+import AboutImageProjectSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutProjectImageSectionForm";
+import AboutHistorySectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutHistorySectionForm";
+import AboutHistoryDetailesSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutHistoryDetailesSectionForm";
+import AboutQuoteSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/QuoteSectionForm";
+import AboutTeamSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutTeamSectionForm";
+import TeamDetails from "./admin-panel src/components/DataManager/AboutUsPageDataManager/teamDetailes slides/TeamDetails";
+import TeamDetailsForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/teamDetailes slides/TeamDetailsForm";
 
 const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -73,8 +81,7 @@ const AdminPanel = () => {
   }, [dispatch]);
   const { isAuthenticated, status } = useSelector((state) => state.auth);
 
-  console.log("login", isAuthenticated);
-  console.log(useSelector((state) => state.auth));
+
   const navigate = useNavigate();
   const userData = async () => {
     // console.log( "running");
@@ -311,6 +318,70 @@ const AdminPanel = () => {
                     element={
                       <>
                         <AboutHeroSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="project"
+                    
+                    element={
+                      <>
+                        <AboutProjectSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="image-project"
+                    
+                    element={
+                      <>
+                        <AboutImageProjectSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="history"
+                    
+                    element={
+                      <>
+                        <AboutHistorySectionForm />
+                      </>
+                    }
+                  />
+                  <Route path="team-details">
+                    <Route index element={<TeamDetails />} />
+                    <Route path="new" element={<TeamDetailsForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route
+                      path=":teamMemberId/edit"
+                      element={<TeamDetailsForm />}
+                    />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route
+                    path="quote"
+                    
+                    element={
+                      <>
+                        <AboutQuoteSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="team-header"
+                    
+                    element={
+                      <>
+                        <AboutTeamSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="team-detailes"
+                    
+                    element={
+                      <>
+                        <AboutTeamSectionForm />
                       </>
                     }
                   />

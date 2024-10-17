@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Breadcrumb from '../Breadcrumbs/Breadcrumb';
 import ReactPaginate from 'react-paginate';
+import { useDispatch } from 'react-redux';
+import { checkAuth } from '../../../../../redux/slices/AuthSlice';
 
 const Pages = () => {
   const [slides, setSlides] = useState([]);
@@ -15,20 +17,21 @@ const Pages = () => {
   useEffect(() => {
     fetchSlides();
   }, []);
+  const dispatch=useDispatch()
 
   const fetchSlides = async () => {
     try{
 
       // const res = await axios.get(`${baseUrl}pages/`,{},{ withCredentials: true,});
-      const res = await axios.get(`${baseUrl}pages/`,{},{ withCredentials: true,headers: {
+      const res = await axios.get(`${baseUrl}pages/`,{ withCredentials: true,headers: {
         'Content-Type': 'application/json',
       }});
       
       setSlides(res.data);
     }catch(error){
-      console.log(error.response.data)
+      console.log(error.response.data.message)
    if(error.response.data.message==="jwt authentication error"){
-    navigate('/admin/pages')
+    dispatch(checkAuth())
     }
   };}
   console.log( "slides",slides);

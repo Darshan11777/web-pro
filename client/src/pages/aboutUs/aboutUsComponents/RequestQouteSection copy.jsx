@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
 
 export default function RequestQuoteSection() {
   const textVariants = {
@@ -13,49 +12,23 @@ export default function RequestQuoteSection() {
     visible: { opacity: 1, scale: 1 },
   };
 
-  const data=useSelector(state=>state.data.data.aboutQuoteSection)
-
- 
-  const newHeader = data?.headerLine2?.split(
-    new RegExp(`(${data?.highLight})`, "gi")
-  );
-  
-
   return (
-    <div className="mb-[100px] mt-[100px] pl-[70px] about__section__gradinent max-w-full rounded-[50px] w-[1459px] max-md:pl-5 max-md:mt-10">
+    <div className="mt-56 pl-[70px] about__section__gradinent max-w-full rounded-[50px] w-[1459px] max-md:pl-5 max-md:mt-10">
       <div className="flex gap-5 max-md:flex-col">
         <div className="flex flex-col w-[62%] max-md:ml-0 max-md:w-full">
           <motion.div
-            className="flex font-semibold z-10 flex-col items-start self-stretch my-auto mr-0 w-full text-3xl max-md:mt-10 max-md:max-w-full"
+            className="flex z-10 flex-col items-start self-stretch my-auto mr-0 w-full text-3xl max-md:mt-10 max-md:max-w-full"
             initial="hidden"
             animate="visible"
             variants={textVariants}
             transition={{ duration: 0.5 }}
           >
-            <div className="text-6xl text-[#453B57] max-md:max-w-full  max-md:text-4xl font-[Poppins]">
-              {/* <span className="font-semibold text-[#453B57] ">Empowering your</span>
+            <div className="text-6xl text-[#453B57] max-md:max-w-full max-md:text-4xl font-[Poppins]">
+              <span className="font-semibold text-[#453B57] ">Empowering your</span>
               <br />
               <span className="font-semibold text-[#453B57]">Vision :</span>
-              <span className="font-semibold text-rose-500"> Request Quote</span> */}
-
-             {data.headerLine1}
-              <br />
-              {newHeader &&
-                    newHeader.map((part, index) =>
-                      part.toLowerCase() ===
-                      data?.highLight?.toLowerCase() ? (
-                        <span key={index} className="font-semibold text-rose-500">
-                          {part}
-                          
-                        </span>
-                      ) : (
-                        part
-                      )
-                    )}
-                   
-                    
+              <span className="font-semibold text-rose-500"> Request Quote</span>
             </div>
-
             <div className="self-stretch mt-11 leading-10 text-[#453B57] tracking-[2.24px] max-md:mt-10 max-md:max-w-full font-[lato]">
               <span className="font-medium">
                 We are a creative web design & branding agency based in London.

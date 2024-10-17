@@ -32,7 +32,7 @@ const authenticateJWT = (req, res, next) => {
     // If no token is found, redirect to the sign-in page
     console.log('No JWT token found in cookies.');
     return res.redirect('http://localhost:5173/');
-    return res.redirect('/admin/auth/signin');
+    
   }
 };
 
