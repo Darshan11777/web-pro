@@ -14,12 +14,12 @@ function Navbar() {
 
   return (
     <header className="section-header bg-white fixed top-0 ">
-      <div className="container flex align-items-center">
+      <div className="container flex align-items-center justify-content-between max-w-full max-md:max-w-full">
         <div className="header-logo ">
-          <NavLink to="/"  className=" ">
+          <NavLink to="/"  className="inline-block   w-[200px]">
             {" "}
             {/* Changed to NavLink */}
-            <img src={logo} alt="Whitelabel" className="h-[50px]" />
+            <img src={logo} alt="Whitelabel" className="h-full w-full object-cover " />
           </NavLink>
         </div>
         <div className={`header-nav  ${isMenuOpen ? "open" : " none"}`}>
@@ -53,7 +53,7 @@ function Navbar() {
                     <li className="item-menu">
                       <NavLink
                       onClick={toggleMenu}
-                        to="/our-service"
+                        to="/our-services"
                         className={({ isActive }) =>
                           `text-black relative after:absolute after:left-0 after:bottom-[-2px] after:h-[3px] after:w-full after:bg-red-500 after:transition-all after:duration-300 after:origin-left hover:after:scale-x-100 ${
                             isActive

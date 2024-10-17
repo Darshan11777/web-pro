@@ -7,7 +7,7 @@ import AboutUs from "./pages/aboutUs/AboutUs";
 import WebProLoader from "./component/WebProLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "./redux/slices/WebProDataSlice";
-import ServicesPage from "./pages/Services/Services";
+import ServicesPage from "./pages/Services/ServicesPage";
 
 export default function WebPro() {
   const dispatch = useDispatch();

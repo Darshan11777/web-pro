@@ -26,11 +26,14 @@ export default function HeroSection() {
           loop
           className="header_img w-full h-full object-cover"
         />
-        <img
+ {/* Overlay */}
+ <div className="absolute inset-0 bg-[#453B57F2] opacity-50"></div> {/* Adjust opacity as needed */}
+
+        {/* <img
           src={header_img}
           alt=""
           className="mt-[90px] mb-[100px] header_img h-[100%] object-cover"
-        />
+        /> */}
       </div>
 
       <div className="container herosection__container">

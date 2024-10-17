@@ -389,6 +389,93 @@ const AdminPanel = () => {
                  
                 
                 </Route>
+                <Route path="our-services">
+                  <Route
+                    // path="slide"
+                    index
+                    element={
+                      <>
+                        <AboutUsPageDataManager />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="hero-section"
+                    
+                    element={
+                      <>
+                        <AboutHeroSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="project"
+                    
+                    element={
+                      <>
+                        <AboutProjectSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="image-project"
+                    
+                    element={
+                      <>
+                        <AboutImageProjectSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="history"
+                    
+                    element={
+                      <>
+                        <AboutHistorySectionForm />
+                      </>
+                    }
+                  />
+                  <Route path="team-details">
+                    <Route index element={<TeamDetails />} />
+                    <Route path="new" element={<TeamDetailsForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route
+                      path=":teamMemberId/edit"
+                      element={<TeamDetailsForm />}
+                    />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route
+                    path="quote"
+                    
+                    element={
+                      <>
+                        <AboutQuoteSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="team-header"
+                    
+                    element={
+                      <>
+                        <AboutTeamSectionForm />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="team-detailes"
+                    
+                    element={
+                      <>
+                        <AboutTeamSectionForm />
+                      </>
+                    }
+                  />
+
+                 
+                
+                </Route>
               </Route>
 
               <Route
