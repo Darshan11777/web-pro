@@ -7,7 +7,7 @@ import AboutUs from "./pages/aboutUs/AboutUs";
 import WebProLoader from "./component/WebProLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "./redux/slices/WebProDataSlice";
-import ServicesPage from "./pages/Services/ServicesPage";
+import OurServicesPage from "./pages/Services/ServicesPage";
 
 export default function WebPro() {
   const dispatch = useDispatch();
@@ -26,11 +26,14 @@ export default function WebPro() {
     
         <>
           <Navbar />
+          <div className="mt-[110px]">
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="about-us" element={<AboutUs />} />
-            <Route path="our-service" element={<ServicesPage />} />
+            <Route path="our-services" element={<OurServicesPage />} />
           </Routes>
+          </div>
         </>
  
   );

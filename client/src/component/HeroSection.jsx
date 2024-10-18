@@ -1,92 +1,192 @@
-import  { useEffect } from "react";
+// import  { useEffect } from "react";
+// import { motion } from "framer-motion";
+// import { useInView } from "react-intersection-observer";
+
+
+// import header_img from "../assets/images/Group 762.png";
+// import axios from "axios";
+// import { useDispatch, useSelector } from "react-redux";
+
+
+// export default function HeroSection() {
+//   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
+
+//   const data = useSelector((state) => state.data.data.heroSection);
+
+//   return (
+//     <section
+//       ref={ref}
+//       className="  bottom__bg__section relative pt-[20px]"
+//     >
+//       <div className="absolute inset-0 h-full w-full z-[-1]">
+//         <video
+//           src={data?.bg_video_url}
+//           autoPlay
+//           muted
+//           loop
+//           className=" w-full h-[90%] object-cover"
+//         />
+//  {/* Overlay */}
+//  <div className="absolute inset-0 h-[90px] bg-[#453B57] opacity-5"></div> Adjust opacity as needed
+
+//         <img
+//           src={header_img}
+//           alt=""
+//           className="     inset-0  absolute h-[103%]   object-cover"
+//         />
+//       </div>
+
+//       <div className="container  mt-[100px]">
+//         <div className="">
+//           <div className=" w-full flex justify-between items-center  mb-[50px]">
+//             <motion.div
+//               className=" w-[40%]"
+//               initial={{ opacity: 0, x: -100, rotateY: 45, scale: 0.8 }} // Initial state with 3D rotation and scaling
+//               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} // End state with 3D effect
+//               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }} // Smooth and natural easing
+//             >
+//               <h1 className="bg-transparent text-[123px] font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white"
+//               >{data.header}
+
+//               </h1>
+//               <p className="text-[32px] leading-[48px] font-[Poppins] font-normal text-white">
+//                 {/* We are a creative web design & branding agency based in London that crafts beautiful work for brands who <span>refuse to blend in.</span> */}
+//                 {data.description}
+//               </p>
+//             </motion.div>
+//             <motion.div
+//               className=" w-[40%]"
+//               initial={{ opacity: 0, x: 100, rotateY: -45, scale: 0.8 }} // Coming from the right with 3D rotation
+//               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} // End state
+//               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }} // Smooth and fluid transition
+//             >
+//               <h2 className="font-[Timmana] text-[130px] font-normal leading-[110px] text-[#ed5959] italic uppercase">{data.subheader}</h2>
+//             </motion.div>
+//           </div>
+//           <div className="">
+
+        
+//           <motion.img
+//             src={data.below_img_url}
+//             className="mt-0"
+//             alt="header_bottom"
+//             initial={{ opacity: 0, y: 50 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 1.5, ease: "easeOut" }}
+//           />
+
+          
+//           <motion.div className="w-full mt-6 flex  max-w-[1200px] justify-between ">
+//           {data.brandImages.split(',').map((item,index)=>{
+//              return  <motion.img
+//               key={index}
+//               src={item}
+//               className="first__img"
+//               alt='brand img'
+//               initial={{ opacity: 0, y: 20 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
+//             />
+               
+            
+//           })}
+//           </motion.div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
-
 import header_img from "../assets/images/Group 762.png";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-
 
 export default function HeroSection() {
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
-
   const data = useSelector((state) => state.data.data.heroSection);
 
   return (
-    <section
-      ref={ref}
-      className=" header__section bottom__bg__section relative header__bg__section"
-    >
-      <div className="header_img_container">
+    <section ref={ref} className="bottom__bg__section relative pt-4">
+      <div className="absolute inset-0 h-full w-full z-[-1]">
         <video
           src={data?.bg_video_url}
           autoPlay
           muted
           loop
-          className="header_img w-full h-full object-cover"
+          className="w-full h-[90%] object-cover"
         />
- {/* Overlay */}
- <div className="absolute inset-0 bg-[#453B57F2] opacity-50"></div> {/* Adjust opacity as needed */}
+        <div className="absolute inset-0 h-full bg-[#453B57] w-full opacity-50 block md:hidden"></div>
 
-        {/* <img
+        <img
           src={header_img}
           alt=""
-          className="mt-[90px] mb-[100px] header_img h-[100%] object-cover"
-        /> */}
+          className="inset-0 absolute hidden md:block h-[103%] object-cover"
+        />
       </div>
 
-      <div className="container herosection__container">
-        <div className="row">
-          <div className="left__section">
-            <motion.div
-              className="heading__part w-[45%]"
-              initial={{ opacity: 0, x: -100, rotateY: 45, scale: 0.8 }} // Initial state with 3D rotation and scaling
-              whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} // End state with 3D effect
-              transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }} // Smooth and natural easing
-            >
-              <h1>{data.header}
-
-              </h1>
-              <p>
-                {/* We are a creative web design & branding agency based in London that crafts beautiful work for brands who <span>refuse to blend in.</span> */}
-                {data.description}
-              </p>
-            </motion.div>
-            <motion.div
-              className="main__title w-[45%]"
-              initial={{ opacity: 0, x: 100, rotateY: -45, scale: 0.8 }} // Coming from the right with 3D rotation
-              whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} // End state
-              transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }} // Smooth and fluid transition
-            >
-              <h2>{data.subheader}</h2>
-            </motion.div>
+      <div className="mt-24 md:mt-28 lg:mt-[100px]">
+        <div>
+          <div className="container">
+            <div className="w-full flex flex-col-reverse md:flex-row justify-between items-center mb-12 md:mb-20">
+              <motion.div
+                className="w-full md:w-[40%]"
+                initial={{ opacity: 0, x: -100, rotateY: 45, scale: 0.8 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+                transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <h1 className="bg-transparent text-[30px] md:text-[60px] lg:text-[123px] font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white">
+                  {data.header}
+                </h1>
+                <p className="text-[16px] md:text-[24px] lg:text-[32px] leading-[24px] md:leading-[36px] lg:leading-[48px] font-[Poppins] font-normal text-white">
+                  {data.description}
+                </p>
+              </motion.div>
+              <motion.div
+                className="w-full md:w-[40%] mt-8 md:mt-0"
+                initial={{ opacity: 0, x: 100, rotateY: -45, scale: 0.8 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+                transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <h2 className="font-[Timmana] text-[60px] md:text-[90px] lg:text-[130px] font-normal leading-[60px] md:leading-[90px] lg:leading-[110px] text-[#ed5959] italic uppercase">
+                  {data.subheader}
+                </h2>
+              </motion.div>
+            </div>
           </div>
-          <motion.img
-            src={data.below_img_url}
-            className="mt-0"
-            alt="header_bottom"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-          />
+          <div>
+            <div className="container">
+              <motion.img
+                src={data.below_img_url}
+                className="mt-0 w-full mx-auto"
+                alt="header_bottom"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+              />
+            </div>
 
-          
-          <motion.div className="hero-section-bottom__img flex max-w-[1200px] justify-between">
-          {data.brandImages.split(',').map((item,index)=>{
-             return  <motion.img
-              key={index}
-              src={item}
-              className="first__img"
-              alt="Upstock"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
-            />
-               
-            
-          })}
-          </motion.div>
+            <div className="bg-[#ED5959]">
+              <div className="container">
+                <motion.div className="w-full h-8 mt-6 flex flex-wrap max-w-[1200px] justify-between mx-auto">
+                  {data.brandImages.split(',').map((item, index) => {
+                    return (
+                      <motion.img
+                        key={index}
+                        src={item}
+                        className="first__img mb-4 w-[48%] md:w-[30%] lg:w-[20%] object-contain"
+                        alt="brand img"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
+                      />
+                    );
+                  })}
+                </motion.div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

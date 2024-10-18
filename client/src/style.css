@@ -21,9 +21,9 @@ body {
   overflow-x: hidden;
   font-style: normal;
 }
-html{
+/* html{
   overflow-x: hidden;
-}
+} */
 h1 {
   font-family: "Lato";
   font-style: normal;
@@ -66,7 +66,7 @@ p {
 header{z-index: 997; transition: all 0.5s; padding: 20px 0; position:absolute; left:0; top:0; width: 100%; border-bottom:0px solid #dfdfdf;}
 header .container{justify-content:space-between;}
 header .header-logo img{padding:0; margin: 0;}
-header .header-nav{display:flex; align-items:center; position:relative; padding-right:60px; min-width:85%;}
+header .header-nav{display:flex; align-items:center; position:relative;}
 header .header-nav .nav-main{width: calc(100% - 180px);}
 header .header-nav ul.navbar-nav{flex-direction: row; float:right; width:auto; display:block;}
 header .header-nav ul.navbar-nav li.nav-item{padding:0 10px; line-height:46px; display:initial;}
@@ -2122,35 +2122,36 @@ button.message__button {
   align-items: center;
 } */ 
 .container {
-  width: 100% !important;
-  padding-right: 15px !important; /* Or var(--bs-gutter-x, 1.5rem) in Bootstrap 5 */
-  padding-left: 15px !important;  /* Or var(--bs-gutter-x, 1.5rem) in Bootstrap 5 */
-  margin-right: auto !important;
-  margin-left: auto !important;
+  width: 100% ;
+  padding-right: 15px ; /* Or var(--bs-gutter-x, 1.5rem) in Bootstrap 5 */
+  padding-left: 15px ;  /* Or var(--bs-gutter-x, 1.5rem) in Bootstrap 5 */
+  margin-right: auto ;
+  margin-left: auto ;
+  max-width: 100vw;
 }
 
 /* Media queries for different screen sizes */
 @media (min-width: 576px) {
   .container {
-    max-width: 540px !important;
+    max-width: 540px ;
   }
 }
 
 @media (min-width: 768px) {
   .container {
-    max-width: 720px !important;
+    max-width: 720px ;
   }
 }
 
 @media (min-width: 992px) {
   .container {
-    max-width: 960px !important;
+    max-width: 960px ;
   }  
 }
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1320px !important;
+    max-width: 1320px ;
   }
 }
 .row {

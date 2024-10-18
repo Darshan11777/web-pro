@@ -65,6 +65,10 @@ import AboutQuoteSectionForm from "./admin-panel src/components/DataManager/Abou
 import AboutTeamSectionForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/AboutHeroSection/AboutTeamSectionForm";
 import TeamDetails from "./admin-panel src/components/DataManager/AboutUsPageDataManager/teamDetailes slides/TeamDetails";
 import TeamDetailsForm from "./admin-panel src/components/DataManager/AboutUsPageDataManager/teamDetailes slides/TeamDetailsForm";
+import OurServicesPageData from "./admin-panel src/components/DataManager/OurServicesPageDataManager/OurServicesPageData";
+import ItServicesHeaderForm from "./admin-panel src/components/DataManager/OurServicesPageDataManager/ItServicesHeader/ItServicesHeaderForm";
+import ItServicesDetailsSlides from "./admin-panel src/components/DataManager/OurServicesPageDataManager/ItServicesDetails slides/ItServicesDetailsSlides";
+import ItServicesDetailesSlidesForm from "./admin-panel src/components/DataManager/OurServicesPageDataManager/ItServicesDetails slides/ItServicesDetailsSlidesForm";
 
 const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -395,19 +399,39 @@ const AdminPanel = () => {
                     index
                     element={
                       <>
-                        <AboutUsPageDataManager />
+                        <OurServicesPageData />
                       </>
                     }
                   />
                   <Route
-                    path="hero-section"
+                    path="it-services-header"
                     
                     element={
                       <>
-                        <AboutHeroSectionForm />
+                        <ItServicesHeaderForm />
                       </>
                     }
                   />
+                  <Route path="services-slides">
+                    <Route index element={<ItServicesDetailsSlides />} />
+                    <Route path="new" element={<ItServicesDetailesSlidesForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route
+                      path=":slideId/edit"
+                      element={<ItServicesDetailesSlidesForm />}
+                    />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                  <Route path="our-work">
+                    <Route index element={<OurWork />} />
+                    <Route path="new" element={<OurWorkForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route
+                      path=":slideId/edit"
+                      element={<OurWorkForm />}
+                    />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
                   <Route
                     path="project"
                     

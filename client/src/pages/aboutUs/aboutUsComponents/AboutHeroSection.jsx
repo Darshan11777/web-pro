@@ -99,7 +99,7 @@ const newHeader = splitWords.map((word, index) => {
 
   return (
     <motion.div
-      className="container relative font__control text-center text-[180px] mb-[100px] mt-[100px] "
+      className="container relative font__control text-center text-[180px] mb-[100px]  "
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.3 }}

@@ -15,6 +15,12 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      textStrokeWidth: {
+        1: '1px',
+      },
+      textStrokeColor: {
+        white: '#ffffff',
+      },
       keyframes : {
         scaleUpDown: {
           '0%, 100%': { transform: 'scale(1)' },
@@ -259,5 +265,14 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [function ({ addUtilities }) {
+    addUtilities({
+      '.text-stroke-1': {
+        '-webkit-text-stroke-width': '1px',
+      },
+      '.text-stroke-white': {
+        '-webkit-text-stroke-color': '#ffffff',
+      },
+    });
+  },],
 }

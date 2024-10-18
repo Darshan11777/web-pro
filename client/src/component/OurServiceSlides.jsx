@@ -10,10 +10,10 @@ import axios from "axios";
 import { stopLoading } from "../redux/slices/LoadingSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function OurServiceSlides() {
+export default function OurServiceSlides({slideData}) {
 
-
-  const data=useSelector(state=>state.data.data.OurServiceSlides)
+const homePageSlide= useSelector(state=>state.data.data.OurServiceSlides)
+  const data=slideData ? slideData : homePageSlide
  
   return (
     <section className="silder_section relative ">

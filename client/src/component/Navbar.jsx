@@ -16,7 +16,7 @@ function Navbar() {
     <header className="section-header bg-white fixed top-0 ">
       <div className="container flex align-items-center justify-content-between max-w-full max-md:max-w-full">
         <div className="header-logo ">
-          <NavLink to="/"  className="inline-block   w-[200px]">
+          <NavLink to="/"  className="inline-block  w-[100px] lg:w-[200px]">
             {" "}
             {/* Changed to NavLink */}
             <img src={logo} alt="Whitelabel" className="h-full w-full object-cover " />

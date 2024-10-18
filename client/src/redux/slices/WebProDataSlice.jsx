@@ -34,7 +34,8 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
        aboutQuoteSection,
        aboutTeamHeader,
        teamDetails,
-
+       ourServicesItServicesHeader,
+      itServicesDetailsSlides,
     ] = await Promise.all([
       axios.get(`${baseUrl}section/header/hero-section`),
       axios.get(`${baseUrl}section/header/our-service`),
@@ -62,6 +63,8 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       axios.get(`${baseUrl}about-us/quote`),
       axios.get(`${baseUrl}about-us/team-header`),
       axios.get(`${baseUrl}about-us/team-details`),
+      axios.get(`${baseUrl}our-services/it-services-header`),
+      axios.get(`${baseUrl}our-services/our-services`),
       
     ]);
 
@@ -93,7 +96,8 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       aboutQuoteSection:aboutQuoteSection.data,
       aboutTeamHeader:aboutTeamHeader.data,
       teamDetails:teamDetails.data,
-      
+      ourServicesItServicesHeader:ourServicesItServicesHeader.data,
+      itServicesDetailsSlides:itServicesDetailsSlides.data,
 
     };
   } catch (error) {

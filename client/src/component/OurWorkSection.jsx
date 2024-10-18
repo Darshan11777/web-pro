@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { stopLoading } from "../redux/slices/LoadingSlice";
 import OurWorkSlides from "./cardSlider/CardSlider";
 
-export default function OurWorkSection() {
+export default function OurWorkSection({ slideData }) {
   // const [data, setData] = useState(null);
   // const baseUrl = import.meta.env.VITE_API_BASE_URL;
   // const dispatch = useDispatch();
@@ -27,8 +27,8 @@ export default function OurWorkSection() {
   // useEffect(() => {
   //   fetchData();
   // }, []);
-
-  const data=useSelector(state=>state.data.data.ourWorkHeader)
+const homePageData=useSelector(state=>state.data.data.ourWorkHeader)
+  const data= slideData ? slideData : homePageData
  
   const newHeader = data?.header?.split(
     new RegExp(`(${data?.highlighted_word})`, "gi")

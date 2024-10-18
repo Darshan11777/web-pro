@@ -20,7 +20,7 @@ import sectionHeaderRouter from "./routes/Pages/HomePage/section-header.router.j
 import queryRouter from "./routes/query.router.js";
 import staticPagesRouter from "./routes/static-pages.router.js";
 import tableRouter from "./routes/table.router.js";
-
+import ourServicesPageRouter from "./routes/Pages/OurServicesPage/section.router.js";
 dotenv.config();
 
 const app = express();
@@ -60,6 +60,7 @@ app.use("/slides", slidesRouter);
 app.use("/image", imageUploadRouter);
 app.use("/pages", PagesRouter);
 app.use('/about-us',aboutUsPageRouter)
+app.use('/our-services',ourServicesPageRouter)
 app.use("/section/header", sectionHeaderRouter);
 app.use("/query", queryRouter);
 app.use("/static-pages", staticPagesRouter);
