@@ -4,10 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 
-const OurWorkForm = ({ onSubmit, existingData }) => {
+const OurWorkForm = ({ onSubmit, existingData ,dataUrl}) => {
   const { slideId } = useParams(); // Get slideId from URL parameters
   const navigate = useNavigate(); // Initialize useNavigate
 
+  const url=dataUrl?dataUrl:"slides/our-work"
   const initialFormData = {
     description: '',
     tags: '',
@@ -70,10 +71,10 @@ const OurWorkForm = ({ onSubmit, existingData }) => {
     try {
       if (slideId) {
         // Update existing slide
-        await axios.put(`${baseUrl}slides/our-work/${slideId}`, finalData);
+        await axios.put(`${baseUrl}${url}/${slideId}`, finalData);
       } else {
         // Add new slide
-        await axios.post(`${baseUrl}slides/our-work`, finalData);
+        await axios.post(`${baseUrl}${url}`, finalData);
       }
 
       // Navigate back to the slide list after submission
@@ -83,6 +84,7 @@ const OurWorkForm = ({ onSubmit, existingData }) => {
       toast.error(error.response.data.extraDetails[0]);
       console.log( "error.response.data",error.response.data);
       console.error('Error submitting form:', error);
+      
     } finally {
       setLoading(false); // Stop loading
     }
@@ -132,7 +134,7 @@ const OurWorkForm = ({ onSubmit, existingData }) => {
     if (slideId) {
       const fetchSlide = async () => {
         try {
-          const res = await axios.get(`${baseUrl}slides/our-work`);
+          const res = await axios.get(`${baseUrl}${url}`);
           const slide = res.data.find((slide) => slide.id === parseInt(slideId));
 
           setFormData({

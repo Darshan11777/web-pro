@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../../../Breadcrumbs/Breadcrumb";
 import ReactPaginate from "react-paginate"; // Import ReactPaginate
 
-const OurWork = () => {
+const OurWork = ({dataUrl}) => {
+
+  const url =dataUrl?dataUrl:'slides/our-work'
   const [slides, setSlides] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4; // Number of items per page
@@ -17,13 +19,13 @@ const OurWork = () => {
   }, []);
 
   const fetchSlides = async () => {
-    const res = await axios.get(baseUrl + "slides/our-work");
+    const res = await axios.get(baseUrl + url);
     setSlides(res.data);
   };
 
   const deleteSlide = async (id) => {
     if (window.confirm("Are you sure you want to delete this slide?")) {
-      await axios.delete(baseUrl + `slides/our-work/${id}`);
+      await axios.delete(baseUrl + `${url}${id}`);
       fetchSlides();
     }
   };

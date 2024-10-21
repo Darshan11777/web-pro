@@ -423,79 +423,21 @@ const AdminPanel = () => {
                     {/* Route for editing slides */}
                   </Route>
                   <Route path="our-work">
-                    <Route index element={<OurWork />} />
-                    <Route path="new" element={<OurWorkForm />} />{" "}
+                    <Route index element={<OurWork dataUrl="our-services/our-work"  />} />
+                    <Route path="new" element={<OurWorkForm  dataUrl="our-services/our-work"/>} />{" "}
                     {/* Route for adding new slides */}
                     <Route
                       path=":slideId/edit"
-                      element={<OurWorkForm />}
+                      element={<OurWorkForm dataUrl="our-services/our-work"/>}
                     />{" "}
                     {/* Route for editing slides */}
                   </Route>
-                  <Route
-                    path="project"
-                    
-                    element={
-                      <>
-                        <AboutProjectSectionForm />
-                      </>
-                    }
-                  />
-                  <Route
-                    path="image-project"
-                    
-                    element={
-                      <>
-                        <AboutImageProjectSectionForm />
-                      </>
-                    }
-                  />
-                  <Route
-                    path="history"
-                    
-                    element={
-                      <>
-                        <AboutHistorySectionForm />
-                      </>
-                    }
-                  />
-                  <Route path="team-details">
-                    <Route index element={<TeamDetails />} />
-                    <Route path="new" element={<TeamDetailsForm />} />{" "}
-                    {/* Route for adding new slides */}
-                    <Route
-                      path=":teamMemberId/edit"
-                      element={<TeamDetailsForm />}
-                    />{" "}
+                  <Route path="our-work-header">
+                    <Route index element={<OurWorkHeaderDataForm dataUrl="our-services/our-work/header" />} />
+
                     {/* Route for editing slides */}
                   </Route>
-                  <Route
-                    path="quote"
-                    
-                    element={
-                      <>
-                        <AboutQuoteSectionForm />
-                      </>
-                    }
-                  />
-                  <Route
-                    path="team-header"
-                    
-                    element={
-                      <>
-                        <AboutTeamSectionForm />
-                      </>
-                    }
-                  />
-                  <Route
-                    path="team-detailes"
-                    
-                    element={
-                      <>
-                        <AboutTeamSectionForm />
-                      </>
-                    }
-                  />
+                
 
                  
                 

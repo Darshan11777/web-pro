@@ -4,7 +4,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const OurWorkHeaderDataForm = ({ existingData }) => {
+const OurWorkHeaderDataForm = ({ existingData,dataUrl }) => {
+
+    const url=dataUrl?dataUrl:"section/header/our-work"
     const navigate = useNavigate(); 
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -26,7 +28,7 @@ const OurWorkHeaderDataForm = ({ existingData }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`${baseUrl}section/header/our-work`, formData);
+            await axios.put(`${baseUrl}${url}`, formData);
             navigate('../');
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -37,7 +39,7 @@ const OurWorkHeaderDataForm = ({ existingData }) => {
     useEffect(() => {
         const fetchHeader = async () => {
             try {
-                const res = await axios.get(`${baseUrl}section/header/our-work`);
+                const res = await axios.get(`${baseUrl}${url}`);
                 const headerData = res.data[0];
 
                 setFormData({
@@ -55,7 +57,7 @@ const OurWorkHeaderDataForm = ({ existingData }) => {
     return (
         <form className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg" onSubmit={handleSubmit}>
             <h2 className="text-xl pl-4 font-semibold text-gray-800 mb-4">
-                {existingData ? 'Update Header' : 'Add New Header'}
+                 Our Work Header
             </h2>
             <div className="space-y-6">
                 <div className="mb-6">
