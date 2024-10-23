@@ -29,3 +29,23 @@ export const getPages = (req, res) => {
         res.json(results);
     });
 }
+export const getContactUsPage = (req, res) => {
+    db.query('SELECT * FROM contact_us_page', (err, results) => {
+        if (err) {
+            console.error('Error fetching sections:', err); // Log the error
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        
+        res.json(results);
+    });
+}
+export const getInquiryPage = (req, res) => {
+    db.query('SELECT * FROM inquiry_page', (err, results) => {
+        if (err) {
+            console.error('Error fetching sections:', err); // Log the error
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        
+        res.json(results);
+    });
+}

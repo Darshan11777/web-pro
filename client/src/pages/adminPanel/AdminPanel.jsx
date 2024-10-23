@@ -69,6 +69,11 @@ import OurServicesPageData from "./admin-panel src/components/DataManager/OurSer
 import ItServicesHeaderForm from "./admin-panel src/components/DataManager/OurServicesPageDataManager/ItServicesHeader/ItServicesHeaderForm";
 import ItServicesDetailsSlides from "./admin-panel src/components/DataManager/OurServicesPageDataManager/ItServicesDetails slides/ItServicesDetailsSlides";
 import ItServicesDetailesSlidesForm from "./admin-panel src/components/DataManager/OurServicesPageDataManager/ItServicesDetails slides/ItServicesDetailsSlidesForm";
+import ContactPageContactUsHeaderForm from "./admin-panel src/components/DataManager/ContactUsPageDataManager/ContactPageHeader";
+import ContactUsFormHeaderForm from "./admin-panel src/components/DataManager/ContactUsPageDataManager/ContactUsFormHeader";
+import ContactPageHeader from "./admin-panel src/components/DataManager/ContactUsPageDataManager/ContactPageHeader";
+import InquiryHeaderForm from "./admin-panel src/components/DataManager/InquiryPageDataManager/InquiryHeaderForm";
+import InquiryFormDetailsForm from "./admin-panel src/components/DataManager/InquiryPageDataManager/InquiryFormDetailsForm";
 
 const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -84,7 +89,6 @@ const AdminPanel = () => {
     // dispatch(fetchUsers())
   }, [dispatch]);
   const { isAuthenticated, status } = useSelector((state) => state.auth);
-
 
   const navigate = useNavigate();
   const userData = async () => {
@@ -151,24 +155,12 @@ const AdminPanel = () => {
                   </>
                 }
               />
-              <Route
-                path="static-pages"
-                >
-               
-                    
+              <Route path="static-pages">
+                <Route index element={<StaticPages />} />
+                <Route path="new" element={<StaticPagesEditor />} />
 
-                    <Route index element={<StaticPages />} />
-                    <Route path="new" element={<StaticPagesEditor />} />
-                  
-                    <Route
-                      path=":pageId/edit"
-                      
-                      element={<StaticPagesEditor />}
-                    />
-              
-                  </Route>
-                
-                
+                <Route path=":pageId/edit" element={<StaticPagesEditor />} />
+              </Route>
 
               <Route path="pages">
                 <Route
@@ -222,7 +214,7 @@ const AdminPanel = () => {
                     {/* Route for editing slides */}
                   </Route>
                   <Route path="FAQs-header">
-                    <Route index element={< FAQsHeaderDataForm/>} />
+                    <Route index element={<FAQsHeaderDataForm />} />
 
                     {/* Route for editing slides */}
                   </Route>
@@ -318,7 +310,6 @@ const AdminPanel = () => {
                   />
                   <Route
                     path="hero-section"
-                    
                     element={
                       <>
                         <AboutHeroSectionForm />
@@ -327,7 +318,6 @@ const AdminPanel = () => {
                   />
                   <Route
                     path="project"
-                    
                     element={
                       <>
                         <AboutProjectSectionForm />
@@ -336,7 +326,6 @@ const AdminPanel = () => {
                   />
                   <Route
                     path="image-project"
-                    
                     element={
                       <>
                         <AboutImageProjectSectionForm />
@@ -345,7 +334,6 @@ const AdminPanel = () => {
                   />
                   <Route
                     path="history"
-                    
                     element={
                       <>
                         <AboutHistorySectionForm />
@@ -364,7 +352,6 @@ const AdminPanel = () => {
                   </Route>
                   <Route
                     path="quote"
-                    
                     element={
                       <>
                         <AboutQuoteSectionForm />
@@ -373,7 +360,6 @@ const AdminPanel = () => {
                   />
                   <Route
                     path="team-header"
-                    
                     element={
                       <>
                         <AboutTeamSectionForm />
@@ -382,16 +368,12 @@ const AdminPanel = () => {
                   />
                   <Route
                     path="team-detailes"
-                    
                     element={
                       <>
                         <AboutTeamSectionForm />
                       </>
                     }
                   />
-
-                 
-                
                 </Route>
                 <Route path="our-services">
                   <Route
@@ -404,8 +386,27 @@ const AdminPanel = () => {
                     }
                   />
                   <Route
+                    path="project"
+                    element={
+                      <>
+                        <AboutProjectSectionForm
+                          endPoint={"our-services/project"}
+                        />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="quote"
+                    element={
+                      <>
+                        <AboutQuoteSectionForm
+                          endPoint={"our-services/quote"}
+                        />
+                      </>
+                    }
+                  />
+                  <Route
                     path="it-services-header"
-                    
                     element={
                       <>
                         <ItServicesHeaderForm />
@@ -414,7 +415,10 @@ const AdminPanel = () => {
                   />
                   <Route path="services-slides">
                     <Route index element={<ItServicesDetailsSlides />} />
-                    <Route path="new" element={<ItServicesDetailesSlidesForm />} />{" "}
+                    <Route
+                      path="new"
+                      element={<ItServicesDetailesSlidesForm />}
+                    />{" "}
                     {/* Route for adding new slides */}
                     <Route
                       path=":slideId/edit"
@@ -423,137 +427,202 @@ const AdminPanel = () => {
                     {/* Route for editing slides */}
                   </Route>
                   <Route path="our-work">
-                    <Route index element={<OurWork dataUrl="our-services/our-work"  />} />
-                    <Route path="new" element={<OurWorkForm  dataUrl="our-services/our-work"/>} />{" "}
+                    <Route
+                      index
+                      element={<OurWork dataUrl="our-services/our-work" />}
+                    />
+                    <Route
+                      path="new"
+                      element={<OurWorkForm dataUrl="our-services/our-work" />}
+                    />{" "}
                     {/* Route for adding new slides */}
                     <Route
                       path=":slideId/edit"
-                      element={<OurWorkForm dataUrl="our-services/our-work"/>}
+                      element={<OurWorkForm dataUrl="our-services/our-work" />}
                     />{" "}
                     {/* Route for editing slides */}
                   </Route>
                   <Route path="our-work-header">
-                    <Route index element={<OurWorkHeaderDataForm dataUrl="our-services/our-work/header" />} />
+                    <Route
+                      index
+                      element={
+                        <OurWorkHeaderDataForm dataUrl="our-services/our-work/header" />
+                      }
+                    />
 
                     {/* Route for editing slides */}
                   </Route>
-                
-
-                 
-                
                 </Route>
-              </Route>
 
+                <Route path="contact-us">
+                  <Route
+                    index
+                    element={
+                      <>
+                        <OurServicesPageData
+                          title="Contact Us Page"
+                          endPoint={"pages/contact-us"}
+                        />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="contact-us-form"
+                    element={
+                      <ContactUsFormData endPoint="contact-us/contact-us-form" />
+                    }
+                  />
+
+                  <Route
+                    path="contact-us-header"
+                    element={
+                     <ContactPageHeader />} 
+                  />
+                  <Route
+                    path="contact-us-form-header"
+                    element={
+                     <ContactUsFormHeaderForm />} 
+                  />
+                </Route>
+                <Route path="inquiry">
+                  <Route
+                    index
+                    element={
+                      <>
+                        <OurServicesPageData
+                          title="Inquiry Page"
+                          endPoint={"pages/inquiry"}
+                        />
+                      </>
+                    }
+                  />
+                   <Route
+                    path="header"
+                    element={
+                      <>
+                        <InquiryHeaderForm />
+                      </>
+                    }
+                  />
+                   <Route
+                    path="form-details"
+                    element={
+                      <InquiryFormDetailsForm />}
+                  />
+                </Route>
+
+               
+              </Route>
               <Route
-                path="register"
-                element={
-                  <>
-                    <PageTitle title="Login Page" />
-                    {/* <PageTitle title="Login Page" />
+                  path="register"
+                  element={
+                    <>
+                      <PageTitle title="Login Page" />
+                      {/* <PageTitle title="Login Page" />
                     <PageTitle title="Login Page" /> */}
-                    <RegisterPage />
-                  </>
-                }
-              />
-              <Route
-                path="calendar"
-                element={
-                  <>
-                    <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <Calendar />
-                  </>
-                }
-              />
-              <Route
-                path="profile"
-                element={
-                  <>
-                    <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <Profile />
-                  </>
-                }
-              />
-              <Route
-                path="forms/form-elements"
-                element={
-                  <>
-                    <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <FormElements />
-                  </>
-                }
-              />
-              <Route
-                path="forms/form-layout"
-                element={
-                  <>
-                    <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <FormLayout />
-                  </>
-                }
-              />
-              <Route
-                path="tables"
-                element={
-                  <>
-                    <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <Tables />
-                  </>
-                }
-              />
-              <Route
-                path="settings"
-                element={
-                  <>
-                    <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <Settings />
-                  </>
-                }
-              />
-              <Route
-                path="chart"
-                element={
-                  <>
-                    <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <Chart />
-                  </>
-                }
-              />
-              <Route
-                path="ui/alerts"
-                element={
-                  <>
-                    <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <Alerts />
-                  </>
-                }
-              />
-              <Route
-                path="ui/buttons"
-                element={
-                  <>
-                    <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <Buttons />
-                  </>
-                }
-              />
-              <Route
-                path="auth/signin"
-                element={
-                  <>
-                    <PageTitle title="Signin | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <SignIn />
-                  </>
-                }
-              />
-              <Route
-                path="auth/signup"
-                element={
-                  <>
-                    <PageTitle title="Signup | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                    <SignUp />
-                  </>
-                }
-              />
+                      <RegisterPage />
+                    </>
+                  }
+                />
+                <Route
+                  path="calendar"
+                  element={
+                    <>
+                      <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <Calendar />
+                    </>
+                  }
+                />
+                <Route
+                  path="profile"
+                  element={
+                    <>
+                      <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <Profile />
+                    </>
+                  }
+                />
+                <Route
+                  path="forms/form-elements"
+                  element={
+                    <>
+                      <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <FormElements />
+                    </>
+                  }
+                />
+                <Route
+                  path="forms/form-layout"
+                  element={
+                    <>
+                      <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <FormLayout />
+                    </>
+                  }
+                />
+                <Route
+                  path="tables"
+                  element={
+                    <>
+                      <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <Tables />
+                    </>
+                  }
+                />
+                <Route
+                  path="settings"
+                  element={
+                    <>
+                      <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <Settings />
+                    </>
+                  }
+                />
+                <Route
+                  path="chart"
+                  element={
+                    <>
+                      <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <Chart />
+                    </>
+                  }
+                />
+                <Route
+                  path="ui/alerts"
+                  element={
+                    <>
+                      <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <Alerts />
+                    </>
+                  }
+                />
+                <Route
+                  path="ui/buttons"
+                  element={
+                    <>
+                      <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <Buttons />
+                    </>
+                  }
+                />
+                <Route
+                  path="auth/signin"
+                  element={
+                    <>
+                      <PageTitle title="Signin | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <SignIn />
+                    </>
+                  }
+                />
+                <Route
+                  path="auth/signup"
+                  element={
+                    <>
+                      <PageTitle title="Signup | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                      <SignUp />
+                    </>
+                  }
+                />
             </Route>
           </Routes>
         </DefaultLayout>

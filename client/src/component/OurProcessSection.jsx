@@ -21,6 +21,7 @@ export default function OurProcessSection() {
   const newHeader = data?.header?.split(
     new RegExp(`(${data?.highlighted_word})`, "gi")
   );
+  
 
   let opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   let scale = useTransform(scrollYProgress, [0, 1], [1, 0.5]);

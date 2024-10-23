@@ -36,6 +36,15 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
        teamDetails,
        ourServicesItServicesHeader,
       itServicesDetailsSlides,
+      ourServicesOurWork,
+      ourServicesOurWorkHeader,
+      ourServicesProject,
+      ourServicesQuote,
+      contactUsPageHeader,
+      contactUsPageForm,
+      contactUsPageFormHeader,
+      inquiryPageHeader,
+      inquiryPageFormDetails,
     ] = await Promise.all([
       axios.get(`${baseUrl}section/header/hero-section`),
       axios.get(`${baseUrl}section/header/our-service`),
@@ -65,6 +74,17 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       axios.get(`${baseUrl}about-us/team-details`),
       axios.get(`${baseUrl}our-services/it-services-header`),
       axios.get(`${baseUrl}our-services/our-services`),
+      axios.get(`${baseUrl}our-services/our-work`),
+      axios.get(`${baseUrl}our-services/our-work/header`),
+      axios.get(`${baseUrl}our-services/project`),
+      axios.get(`${baseUrl}our-services/quote`),
+      axios.get(`${baseUrl}contact-us/header`),
+      axios.get(`${baseUrl}contact-us/contact-us-form`),
+      axios.get(`${baseUrl}contact-us/contact-us-form/header`),
+      axios.get(`${baseUrl}inquiry/header`),
+      axios.get(`${baseUrl}inquiry/form-details`),
+
+
       
     ]);
 
@@ -98,6 +118,15 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
       teamDetails:teamDetails.data,
       ourServicesItServicesHeader:ourServicesItServicesHeader.data,
       itServicesDetailsSlides:itServicesDetailsSlides.data,
+      ourServicesOurWork:ourServicesOurWork.data,
+      ourServicesOurWorkHeader:ourServicesOurWorkHeader.data[0],
+      ourServicesProject:ourServicesProject.data,
+      ourServicesQuote:ourServicesQuote.data,
+      contactUsPageHeader:contactUsPageHeader.data,
+      contactUsPageForm:contactUsPageForm.data[0],
+      contactUsPageFormHeader:contactUsPageFormHeader.data[0],
+      inquiryPageHeader:inquiryPageHeader.data,     
+      inquiryPageFormDetails:inquiryPageFormDetails.data[0],
 
     };
   } catch (error) {

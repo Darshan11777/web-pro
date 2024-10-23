@@ -21,6 +21,9 @@ import queryRouter from "./routes/query.router.js";
 import staticPagesRouter from "./routes/static-pages.router.js";
 import tableRouter from "./routes/table.router.js";
 import ourServicesPageRouter from "./routes/Pages/OurServicesPage/section.router.js";
+import contactUsRouter from "./routes/Pages/ContactUsPage/contact.section.router.js";
+import inquiryPageRouter from "./routes/Pages/Inquiry Page/section.router.js";
+
 dotenv.config();
 
 const app = express();
@@ -65,6 +68,9 @@ app.use("/section/header", sectionHeaderRouter);
 app.use("/query", queryRouter);
 app.use("/static-pages", staticPagesRouter);
 app.use("/table", tableRouter);
+app.use("/contact-us", contactUsRouter);
+app.use("/inquiry", inquiryPageRouter);
+
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");

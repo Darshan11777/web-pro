@@ -6,7 +6,8 @@
 import { useDispatch } from "react-redux";
 import { checkAuth } from "../../../../../../redux/slices/AuthSlice";
 
-  const OurServicesPageData = () => {
+  const OurServicesPageData = ({endPoint,title="Our Services Page"}) => {
+    const endUrl=endPoint?endPoint:"pages/our-services"
     const [slides, setSlides] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 4;
@@ -19,7 +20,7 @@ const dispatch=useDispatch()
     }, []);
 
     const fetchSlides = async () => {
-    try{  const res = await axios.get(`${baseUrl}pages/our-services`,{ withCredentials: true});
+    try{  const res = await axios.get(`${baseUrl}${endUrl}`,{ withCredentials: true});
       setSlides(res.data);}
       catch(error){
         console.log(error.response.data.message)
@@ -56,7 +57,7 @@ const dispatch=useDispatch()
 
     return (
       <div className="container mx-auto mt-10">
-        <Breadcrumb pageName="Our services Page" />
+        <Breadcrumb pageName={title} />
         <div className="flex justify-between items-center mb-6 p-4 bg-white shadow-md rounded-lg">
           <div className="flex items-center space-x-3">
             <input

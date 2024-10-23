@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 
-export default function RequestQuoteSection() {
+export default function RequestQuoteSection({details}) {
   const textVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
@@ -13,7 +13,8 @@ export default function RequestQuoteSection() {
     visible: { opacity: 1, scale: 1 },
   };
 
-  const data=useSelector(state=>state.data.data.aboutQuoteSection)
+  const aboutUsDetails=useSelector(state=>state.data.data.aboutQuoteSection)
+  const data=details?details:aboutUsDetails;
 
  
   const newHeader = data?.headerLine2?.split(

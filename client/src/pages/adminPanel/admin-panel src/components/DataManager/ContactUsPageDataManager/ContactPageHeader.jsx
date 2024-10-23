@@ -3,16 +3,16 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { checkAuth } from '../../../../../../../redux/slices/AuthSlice';
+import { checkAuth } from '../../../../../../redux/slices/AuthSlice';
 
-const AboutQuoteSectionForm = ({endPoint}) => {
+const ContactPageHeader = ({ endPoint='contact-us/header' }) => {
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-const endUrl=endPoint?endPoint:'about-us/quote';
+  const endUrl = endPoint ? endPoint : 'about-us/quote';
+  
   const initialFormData = {
-    headerLine1: '',  // Add Header Line 1 field to initial state
-    headerLine2: '',  // Add Header Line 2 field to initial state
-    highLight: '',
+    headerLine1: '',  // Header Line 1
+    headerLine2: '',  // Header Line 2
     shortDescription: '',
     image: '',
   };
@@ -93,7 +93,6 @@ const endUrl=endPoint?endPoint:'about-us/quote';
         setFormData({
           headerLine1: slide.headerLine1 || '',
           headerLine2: slide.headerLine2 || '',
-          highLight: slide.highLight || '',
           shortDescription: slide.shortDescription,
           image: slide.image,
         });
@@ -107,11 +106,12 @@ const endUrl=endPoint?endPoint:'about-us/quote';
     };
     fetchSlide();
   }, []);
+ 
 
   return (
     <form className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg" onSubmit={handleSubmit}>
       <h2 className="text-xl pl-4 font-semibold text-gray-800 mb-4">
-        Update About Quote Section
+        Update  Contact Us Header Section
       </h2>
 
       <div className="space-y-6">
@@ -137,19 +137,6 @@ const endUrl=endPoint?endPoint:'about-us/quote';
             value={formData.headerLine2}
             onChange={handleChange}
             placeholder="Type the second line of the header"
-            className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary"
-          />
-        </div>
-
-        {/* HighLight Input */}
-        <div className="mb-6">
-          <label className="mb-2 block text-black">Header HighLight Word</label>
-          <input
-            type="text"
-            name="highLight"
-            value={formData.highLight}
-            onChange={handleChange}
-            placeholder="Type your highLight"
             className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary"
           />
         </div>
@@ -197,4 +184,4 @@ const endUrl=endPoint?endPoint:'about-us/quote';
   );
 };
 
-export default AboutQuoteSectionForm;
+export default ContactPageHeader;

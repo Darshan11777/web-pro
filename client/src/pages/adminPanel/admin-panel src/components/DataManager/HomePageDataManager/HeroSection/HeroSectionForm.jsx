@@ -12,7 +12,8 @@ const HeroSectionForm = ({ existingData }) => {
     subheader: '',
     description: '',
     bg_video_url: '',
-    below_img_url: ''
+    below_img_url: '',
+    brandImages:''
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -83,6 +84,7 @@ console.log( "bgVideoPreview",bgVideoPreview);
       setBelowImgFile(null);
     }
   };
+  console.log( "formData",formData);
 
   // Handle multiple image uploads
   const handleMultipleImagesChange = (e) => {
@@ -97,6 +99,10 @@ console.log( "bgVideoPreview",bgVideoPreview);
   const removeImage = (index) => {
     setImageFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
     setImagePreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
+    setFormData((prevData) => ({
+      ...prevData,
+      brandImages: prevData.brandImages.filter((_, i) => i !== index),
+    }));
   };
 
   const handleSubmit = async (e) => {

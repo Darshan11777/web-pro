@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from '../../../../../../../redux/slices/AuthSlice';
 
-const AboutProjectSectionForm = () => {
+const AboutProjectSectionForm = ({endPoint}) => {
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -14,6 +14,8 @@ const AboutProjectSectionForm = () => {
     complete_projects: 0,
     happy_clients: 0,
   };
+
+  const endUrl=endPoint? endPoint : "about-us/project"
 
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
@@ -32,7 +34,7 @@ const AboutProjectSectionForm = () => {
     setLoading(true);
 
     try {
-      await axios.put(`${baseUrl}about-us/project`, formData, { withCredentials: true });
+      await axios.put(`${baseUrl}${endUrl}`, formData, { withCredentials: true });
       toast.success('Section updated successfully');
       navigate('../');
     } catch (error) {
@@ -49,7 +51,7 @@ const AboutProjectSectionForm = () => {
   useEffect(() => {
     const fetchSectionData = async () => {
       try {
-        const res = await axios.get(`${baseUrl}about-us/project`, { withCredentials: true });
+        const res = await axios.get(`${baseUrl}${endUrl}`, { withCredentials: true });
         const sectionData = res.data;
 
         setFormData({

@@ -2,14 +2,18 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
-export default function CompleteProjectSection() {
+export default function CompleteProjectSection({details}) {
   // Define animation variants
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
-  const data=useSelector(state=>state.data.data.aboutProjectSection)
+  let data;
+  
+ const aboutUsPageData=useSelector(state=>state.data.data.aboutProjectSection)
+
+data=details?details:aboutUsPageData
 
   return (
     <div className="mb-[100px] mt-[100px] w-full">

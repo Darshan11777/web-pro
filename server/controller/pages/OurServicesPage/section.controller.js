@@ -173,6 +173,98 @@ export const getWorks = (req, res) => {
       return res.status(200).json({ message: "Work deleted successfully!" });
     });
   };
+
+
+  // get project Form
+export const getProjectSection = (req, res) => {
+  const query = "SELECT * FROM our_services_project_section WHERE id = 1";
+  db.query(query, (err, results) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(results[0]);
+  });
+};
+
+// Update project Form
+export const UpdateProjectSection = (req, res) => {
+  const { year_of_experience, complete_projects, happy_clients } = req.body;
+
+  // Assuming you're updating the About Us Hero Section with id = 1
+  const id = 1;
+
+  const query = `
+      UPDATE our_services_project_section 
+      SET complete_projects= ?,
+        year_of_experience= ?,
+        happy_clients=? 
+        WHERE id = ?
+    `;
+
+  db.query(
+    query,
+    [complete_projects, year_of_experience, happy_clients, id],
+    (err, results) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ error: "Database query error", details: err });
+      }
+
+      // Check if any rows were affected
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "Hero section not found." });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "Hero section updated successfully!" });
+    }
+  );
+};
   
   
-  
+// get History Form
+export const getQuote = (req, res) => {
+  const query = "SELECT * FROM our_services_quote_section WHERE id = 1";
+  db.query(query, (err, results) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(results[0]);
+  });
+};
+
+// Update history Form
+export const UpdateQuoteSection = (req, res) => {
+  const { headerLine1,headerLine2, image, shortDescription,highLight } = req.body;
+
+  // Assuming you're updating the About Us Hero Section with id = 1
+  const id = 1;
+
+  const query = `
+      UPDATE our_services_quote_section 
+      SET headerLine1 = ?, 
+        headerLine2 = ?,
+          image = ?, 
+          shortDescription = ? ,
+          highLight = ?
+      WHERE id = ?
+    `
+  db.query(
+    query,
+    [ headerLine1,headerLine2, image, shortDescription,highLight, id],
+    (err, results) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ error: "Database query error", details: err });
+      }
+
+      // Check if any rows were affected
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "Hero section not found." });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "Hero section updated successfully!" });
+    }
+  );
+};

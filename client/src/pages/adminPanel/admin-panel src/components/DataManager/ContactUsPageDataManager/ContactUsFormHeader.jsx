@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { checkAuth } from '../../../../../../redux/slices/AuthSlice';
 
-const OurProcessHeaderDataForm = () => {
+const ContactUsFormHeaderForm = ({ endUrl='contact-us/contact-us-form/header' }) => {
   const navigate = useNavigate(); 
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 
   const initialFormData = {
     section_name: '',
@@ -13,6 +16,7 @@ const OurProcessHeaderDataForm = () => {
     highlighted_word: '',
    
   };
+  const dispatch=useDispatch()
 
   const [formData, setFormData] = useState(initialFormData);
 
@@ -39,18 +43,21 @@ const OurProcessHeaderDataForm = () => {
     // };
 
     try {
-      await axios.put(`${baseUrl}section/header/our-process`, formData);
+      await axios.put(`${baseUrl}${endUrl}`, formData,{withCredentials:true});
       navigate('../');
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error(error.response?.data?.extraDetails[0] || 'Error submitting form');
+      if(error.response.data.message==="jwt authentication error"){
+        dispatch(checkAuth())
+      }
     }
   };
 
   useEffect(() => {
     const fetchSlide = async () => {
       try {
-        const res = await axios.get(`${baseUrl}section/header/our-process`);
+        const res = await axios.get(`${baseUrl}${endUrl}`);
         const slide = res.data[0];
 
         setFormData({
@@ -70,7 +77,7 @@ const OurProcessHeaderDataForm = () => {
   return (
     <form className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg" onSubmit={handleSubmit}>
       <h2 className="text-xl pl-4 font-semibold text-gray-800 mb-4">
-         Update Process Header Section
+         Update Contact Us Form Header Section
       </h2>
 
       <div className="space-y-6">
@@ -126,4 +133,4 @@ const OurProcessHeaderDataForm = () => {
   );
 };
 
-export default OurProcessHeaderDataForm ;
+export default ContactUsFormHeaderForm ;

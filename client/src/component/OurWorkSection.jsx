@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { stopLoading } from "../redux/slices/LoadingSlice";
 import OurWorkSlides from "./cardSlider/CardSlider";
 
-export default function OurWorkSection({ slideData }) {
+export default function OurWorkSection({ headerData,slideData }) {
   // const [data, setData] = useState(null);
   // const baseUrl = import.meta.env.VITE_API_BASE_URL;
   // const dispatch = useDispatch();
@@ -27,8 +27,9 @@ export default function OurWorkSection({ slideData }) {
   // useEffect(() => {
   //   fetchData();
   // }, []);
+  console.log( "slideData",slideData);
 const homePageData=useSelector(state=>state.data.data.ourWorkHeader)
-  const data= slideData ? slideData : homePageData
+  const data= headerData ? headerData : homePageData
  
   const newHeader = data?.header?.split(
     new RegExp(`(${data?.highlighted_word})`, "gi")
@@ -63,16 +64,19 @@ const homePageData=useSelector(state=>state.data.data.ourWorkHeader)
                   )
                 )}
             </motion.h1>
-            <OurWorkSlides />
+            <OurWorkSlides data={slideData} />
           </div>
         </div>
       </div>
-      <div
+     {slideData!=="ourServicesWork"&& <div
         className="absolute inset-x-0 bottom-0 h-[6px] w-[70%] mx-auto"
         style={{
           background: "linear-gradient(90deg, #453B57, #ED5959 47.16%, #453B57",
         }}
-      ></div>
+      >
+
+
+      </div>}
     </section>
   );
 }

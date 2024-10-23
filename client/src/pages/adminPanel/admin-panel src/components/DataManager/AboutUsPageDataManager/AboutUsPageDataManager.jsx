@@ -48,7 +48,7 @@ const AboutUsPageDataManager = () => {
 
   return (
     <div className="container mx-auto mt-10">
-      <Breadcrumb pageName="Home Page" />
+      <Breadcrumb pageName="About Us Page" />
       <div className="flex justify-between items-center mb-6 p-4 bg-white shadow-md rounded-lg">
         <div className="flex items-center space-x-3">
           <input
