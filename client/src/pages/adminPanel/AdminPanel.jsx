@@ -74,6 +74,12 @@ import ContactUsFormHeaderForm from "./admin-panel src/components/DataManager/Co
 import ContactPageHeader from "./admin-panel src/components/DataManager/ContactUsPageDataManager/ContactPageHeader";
 import InquiryHeaderForm from "./admin-panel src/components/DataManager/InquiryPageDataManager/InquiryHeaderForm";
 import InquiryFormDetailsForm from "./admin-panel src/components/DataManager/InquiryPageDataManager/InquiryFormDetailsForm";
+import PortfolioHeader from "./admin-panel src/components/DataManager/OurWorkPage/PortfolioHeader";
+import ProjectHighlightsForm from "./admin-panel src/components/DataManager/OurWorkPage/ProjectHighlightsForm";
+import ProjectOverviewForm from "./admin-panel src/components/DataManager/OurWorkPage/ProjectOverview";
+import ProjectInfo from "./admin-panel src/components/DataManager/OurWorkPage/ProjectInfo";
+import PortfolioSnapshotSlides from "./admin-panel src/components/DataManager/OurWorkPage/PortfolioSnapshotSlides/PortfolioSnapshotSlides";
+import PortfolioSnapshotSlidesForm from "./admin-panel src/components/DataManager/OurWorkPage/PortfolioSnapshotSlides/PortfolioSnapshotSlidesForm";
 
 const AdminPanel = () => {
   const [loading, setLoading] = useState(true);
@@ -509,6 +515,88 @@ const AdminPanel = () => {
                     element={
                       <InquiryFormDetailsForm />}
                   />
+                </Route>
+                <Route path="our-work">
+                <Route
+                    index
+                    element={
+                      <>
+                        <OurServicesPageData
+                          title="Our Work Page"
+                          endPoint={"pages/our-work"}
+                        />
+                      </>
+                    }
+                  />
+                  <Route path="portfolio-snapshot">
+                    <Route index element={<PortfolioSnapshotSlides />} />
+                    <Route path="new" element={<PortfolioSnapshotSlidesForm />} />{" "}
+                    {/* Route for adding new slides */}
+                    <Route path=":slideId/edit" element={<PortfolioSnapshotSlidesForm />} />{" "}
+                    {/* Route for editing slides */}
+                  </Route>
+                 
+                <Route
+                    path="portfolio-header"
+                    element={
+                      <>
+                        <PortfolioHeader
+                         
+                        />
+                      </>
+                    }
+                  />
+                <Route
+                    path="project-highlights"
+                    element={
+                      <>
+                        <ProjectHighlightsForm
+                         
+                        />
+                      </>
+                    }
+                  />
+                <Route
+                    path="project-info"
+                    element={
+                      <>
+                        <ProjectInfo
+                         
+                        />
+                      </>
+                    }
+                  />
+                <Route
+                    path="project-overview"
+                    element={
+                      <>
+                        <ProjectOverviewForm
+                         
+                        />
+                      </>
+                    }
+                  />
+                <Route
+                    path="project-highlights-section-2"
+                    element={
+                      <>
+                        <ProjectHighlightsForm endPoint="our-work/project-highlights-section-2"
+                         
+                        />
+                      </>
+                    }
+                  />
+                {/* <Route
+                    path="portfolio-header"
+                    element={
+                      <>
+                        <PortfolioHeader
+                         
+                        />
+                      </>
+                    }
+                  /> */}
+
                 </Route>
 
                

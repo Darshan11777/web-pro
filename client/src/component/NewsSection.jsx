@@ -14,7 +14,7 @@ export default function News() {
   );
 
   return (
-    <section className="our_work_section relative">
+    <section className="our_work_section relative overflow-x-hidden">
       <div className="container right_side">
         <div className="row">
           <motion.div

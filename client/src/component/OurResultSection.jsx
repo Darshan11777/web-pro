@@ -50,7 +50,7 @@ export default function OurResultSection() {
   );
 
   return (
-    <div className="relative w-[102vw]">
+    <div className="relative w-[100vw]">
       {/* <motion.div
         className="absolute top-[35%] z-[2] left-0 h-[600px]"
         initial={{ opacity: 0, scale: 0.9 }}

@@ -33,7 +33,7 @@ export default function OurServiceSection() {
 
   return (
     <motion.section
-      className="our_services"
+      className="our_services w-full "
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1.2, ease: "easeOut" }}

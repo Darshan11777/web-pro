@@ -39,17 +39,17 @@ const newHeader = splitWords.map((word, index) => {
 
 console.log( "newHeader",newHeader);
   return (
-    <div className="w-full  relative">
+    <div className="w-full  relative ">
           {/* <div className="absolute inset-0 bg-black opacity-50"></div> */}
           <div className="relative ">
            
             
 
-<div className="flex  max-md:flex-col ">
+<div className="flex  max-md:flex-col mt-[100px] mb-[100px] ">
            <div className=" w-full max-md:ml-0 max-md:w-full container">
 
        
-             <div className=" font-bold text-center flex items-center   text-[100px] max-md:mt-10 max-md:text-4xl max-md:leading-10  text-[#453B57] uppercase ">
+             <div className=" font-bold text-center flex items-center text-[110px]   max-md:mt-10 max-md:text-4xl max-md:leading-10  text-[#453B57] uppercase ">
             <div>
              {newHeader.map(item=>item)}
 

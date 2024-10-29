@@ -10,6 +10,8 @@ import { fetchData } from "./redux/slices/WebProDataSlice";
 import OurServicesPage from "./pages/Services/ServicesPage";
 import ContactUsPage from "./pages/ContactUs Page/ContactUsPage";
 import InquiryPage from "./pages/Inquiry Page/InquiryPage";
+import OurWorkPage from "./pages/OurWork Page/OurWorkPage";
+import FooterSection from "./component/FooterSection";
 
 export default function WebPro() {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ export default function WebPro() {
   }, []);
 
   const isLoading = useSelector((state) => state.data.loading);
+  // lg
   const hero = useSelector((state) => state.data.data.heroSection);
 
   if(isLoading){
@@ -29,16 +32,20 @@ export default function WebPro() {
     
         <>
           <Navbar />
-          <div className="mt-[110px]">
+          <div className="mt-[72px] ">
 
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/"  >
+
+            <Route index element={<Home />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="our-services" element={<OurServicesPage />} />
             <Route path="contact-us" element={<ContactUsPage />} />
             <Route path="inquiry" element={<InquiryPage />} />
+            <Route path="our-work" element={<OurWorkPage />} /></Route>
           </Routes>
           </div>
+          <FooterSection/>
         </>
  
   );

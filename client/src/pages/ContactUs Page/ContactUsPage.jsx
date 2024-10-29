@@ -60,7 +60,7 @@ export default function ContactUsPage() {
       </div> */}
      <ContactUsForm/>
       <ContactUsDetails/>
-      <FooterSection/>
+     
     </div>
   )
 }

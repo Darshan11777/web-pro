@@ -28,7 +28,7 @@ export default function ContactUsDetails() {
                     newHeader?.map((part, index) =>
                       part.toLowerCase() ===
                       header.highlighted_word.toLowerCase() ? (
-                        <span className="block text-4xl md:text-5xl lg:text-6xl text-rose-500 leading-[79px]">
+                        <span key={index} className="block text-4xl md:text-5xl lg:text-6xl text-rose-500 leading-[79px]">
                           {part}
                         </span>
                       ) : (

@@ -16,6 +16,22 @@ export default function InquiryForm() {
         setFormData({ ...formData, [name]: value });
       };
       console.log( "formData",formData);
+
+        // State to store the file name
+  const [fileName, setFileName] = useState("");
+
+  // Handle file selection
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]; // Get the first file selected
+    if (file) {
+      setFileName(file.name); // Set the file name in state
+      setFormData({ ...formData, attachment: file }); // Update the formData with the file
+    } else {
+      setFileName(""); // Reset the file name if no file is selected
+      setFormData({ ...formData, attachment: "" }); // Update the formData with an empty value
+    }
+    handleInputChange(e); // Call the original input change handler if needed
+  };
   return (
       <div className=" mx-auto py-[100px] container">
          {/* Form Section */}
@@ -32,21 +48,20 @@ export default function InquiryForm() {
 ].map(({ name, label, type }, index) => {
   return name === "attachment" ? (
     <div className="relative z-0" key={index}>
-      <input
-         type={type}
-         name={name}
-        id="attachment" // Add an id to associate the label with the input
-        className={`hidden`}
-        value={formData[name]}
-        onChange={handleInputChange}
-      />
-      <label
-        htmlFor="attachment" // Associate the label with the file input
-        className="cursor-pointer block w-full border-b-[1px] border-[#453B57] bg-transparent p-2 text-gray-500"
-      >
-        Attach File
-      </label>
-    </div>
+    <input
+      type={type}
+      name={name}
+      id="attachment" // Associate the label with the input
+      className={`hidden`}
+      onChange={handleFileChange} // Handle file change event
+    />
+    <label
+      htmlFor="attachment" // Associate the label with the input
+      className="cursor-pointer block w-full border-b-[1px] border-[#453B57] bg-transparent p-2 text-gray-500"
+    >
+      {fileName || "Attach File"} {/* Display file name or fallback to 'Attach File' */}
+    </label>
+  </div>
   ) : (
     <div className={`relative z-0 ${name === "message" ? "col-span-2" : ""}`} key={index}>
       <input
@@ -60,7 +75,7 @@ export default function InquiryForm() {
       />
       <label
         htmlFor={name + index}
-        className={`absolute cursor-text duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-50 px-1 ${
+        className={`absolute capitalize cursor-text duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-50 px-1 ${
           formData[name] ? "scale-75 -translate-y-4" : "translate-y-2"
         } left-2 text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-2 peer-focus:scale-75 peer-focus:-translate-y-4`}
       >

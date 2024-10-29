@@ -11,18 +11,18 @@ export default function InquiryDetails() {
 
 
     {/* Contact Info */}
-    <div className="relative z-20 -mt-16 flex justify-around bg-white shadow-lg rounded-lg py-8 px-6 w-3/4 max-w-4xl mx-auto">
+    <div className="relative z-20  -mt-16 flex justify-around bg-white shadow-lg rounded-lg py-8 px-6 w-3/4 max-w-4xl mx-auto">
       <div className="text-center">
         <h2 className="font-semibold text-lg">Email</h2>
-        <p className="mt-2">{data.email}</p>
+        <p className="mt-2 text-[25px]">{data.email}</p>
       </div>
       <div className="text-center">
         <h2 className="font-semibold text-lg">Phone number</h2>
-        <p className="mt-2">{data.phone_number}</p>
+        <p className="mt-2 text-[25px]">{data.phone_number}</p>
       </div>
       <div className="text-center">
         <h2 className="font-semibold text-lg">Open Time</h2>
-        <p className="mt-2">{data.}</p>
+        <p className="mt-2 text-[25px] max-w-full text-wrap">{data.open_time}</p>
       </div>
     </div>
   </div>

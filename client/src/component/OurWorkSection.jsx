@@ -36,7 +36,7 @@ const homePageData=useSelector(state=>state.data.data.ourWorkHeader)
   );
 
   return (
-    <section className="our_work_section relative">
+    <section className="our_work_section relative overflow-x-hidden">
       <div className="container right_side">
         <div className="row">
           <motion.div

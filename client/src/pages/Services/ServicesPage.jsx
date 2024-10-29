@@ -47,7 +47,7 @@ export default function OurServicesPage() {
       <RequestQuoteSection details={quoteData}/>
 
       </div>
-      <FooterSection/>
+     
     </div>
   );
 }

@@ -23,6 +23,7 @@ import tableRouter from "./routes/table.router.js";
 import ourServicesPageRouter from "./routes/Pages/OurServicesPage/section.router.js";
 import contactUsRouter from "./routes/Pages/ContactUsPage/contact.section.router.js";
 import inquiryPageRouter from "./routes/Pages/Inquiry Page/section.router.js";
+import ourWorkPageRouter from "./routes/Pages/OurWorkPage/section.router.js";
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ const app = express();
 const allowedOrigins = [
   "https://webproreact.netlify.app",
   "http://localhost:5173",
+  "http://localhost:5174",
 ];
 app.use(
   cors({
@@ -70,6 +72,7 @@ app.use("/static-pages", staticPagesRouter);
 app.use("/table", tableRouter);
 app.use("/contact-us", contactUsRouter);
 app.use("/inquiry", inquiryPageRouter);
+app.use('/our-work',ourWorkPageRouter)
 
 
 app.get("/", (req, res) => {

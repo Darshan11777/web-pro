@@ -28,13 +28,17 @@ const ShrinkingHeader = ({ ComponentOne, ComponentTwo }) => {
   }, [scrollYProgress]);
 
   return (
-    <div className="relative">
+    <div className="relative w-full ">
       {/* <div className="absolute top-[0%] left-[10px] h-[500px] w-[130px] animate-scaleUpDown">
       <img src={centerImg} alt="" className="h-full w-full object-cover" />
     </div> */}
-      <div className="absolute top-0 right-[-300px] h-[600px] w-[60%] ">
-        <img src={centerImg} alt="" className="h-full w-full object-cover" />
-      </div>
+ {/* <div className="relative  h-[300px] w-full"> Parent has overflow-hidden */}
+  <div className="absolute top-0 right-0 h-full w-[60%] transform translate-x-[300px]"> {/* Adjust the positioning */}
+    <img src={centerImg} alt="" className="h-full w-full object-cover" />
+  </div>
+{/* </div> */}
+
+
 
       {/* Wrapping both components */}
       <div ref={ref} className="relative ">

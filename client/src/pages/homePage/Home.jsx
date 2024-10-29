@@ -44,7 +44,10 @@ export default function Home() {
       />
       <AboutUsSection />
       <OurProcessSection />
+     
+
       <OurWorkSection />
+     
       <OurResultSection />
       <OurClients />
       <News />
@@ -57,7 +60,7 @@ export default function Home() {
       {/* <CardSlider/> */}
       {/* accorodian */}
 
-      <FooterSection />
+     
       
     </>
   );

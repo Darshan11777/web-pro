@@ -191,7 +191,7 @@ function ContactForm() {
 
 
   return (
-    <div className="">
+    <div className="overflow-x-hidden">
         <InquiryHeader/>
       {/* Background Image Section */}
    <InquiryDetails/>

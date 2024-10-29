@@ -49,3 +49,13 @@ export const getInquiryPage = (req, res) => {
         res.json(results);
     });
 }
+export const getWorkPage = (req, res) => {
+    db.query('SELECT * FROM work_page', (err, results) => {
+        if (err) {
+            console.error('Error fetching sections:', err); // Log the error
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        
+        res.json(results);
+    });
+}

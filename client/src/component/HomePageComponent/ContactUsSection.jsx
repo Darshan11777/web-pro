@@ -34,7 +34,7 @@ export default function ContactUsSection() {
   );
 
   return (
-    <div className="contact_us_section">
+    <div className="contact_us_section overflow-x-hidden">
       <div className="container">
         <motion.div
           className=""
