@@ -39,7 +39,7 @@ const newHeader = splitWords.map((word, index) => {
 
 console.log( "newHeader",newHeader);
   return (
-    <div className="w-full  relative ">
+    <div className="w-full  relative  ">
           {/* <div className="absolute inset-0 bg-black opacity-50"></div> */}
           <div className="relative ">
            

@@ -32,7 +32,7 @@ export default function WebPro() {
     
         <>
           <Navbar />
-          <div className="mt-[72px] ">
+          <div className="mt-[82.6px] ">
 
           <Routes>
             <Route path="/"  >

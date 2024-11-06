@@ -207,6 +207,8 @@ import header_img from "../assets/images/Group 762.png";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function HeroSection() {
+
+  // responsive font matrics
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
   const data = useSelector((state) => state.data.data.heroSection);
 
@@ -219,18 +221,18 @@ export default function HeroSection() {
   const slideUp = { opacity: 0, y: 50 };
 
   return (
-    <section ref={ref} className="bottom__bg__section relative pt-4">
+    <section ref={ref} className=" relative ">
 
       {/* <div className="oval-mask">
   <img src="https://res.cloudinary.com/dbuuc0cdy/image/upload/v1730119162/Group_762_1_ostl1r.png" alt="Oval cropped image" />
 </div> */}
 
-<div
+{/* <div
   className="center-cropped"
   style={{ backgroundImage: `url("https://res.cloudinary.com/dbuuc0cdy/image/upload/v1730119162/Group_762_1_ostl1r.png")` }}
 >
   <img src="https://res.cloudinary.com/dbuuc0cdy/image/upload/v1730119162/Group_762_1_ostl1r.png" className="bg-red-500" alt="Placeholder" />
-</div>
+</div> */}
 
       <div className="absolute inset-0 h-full w-full z-[-1]">
         <video
@@ -241,38 +243,43 @@ export default function HeroSection() {
           className="w-full h-[90%] object-cover"
         />
         
-        <div className="absolute inset-0 h-full bg-[#453B57] w-full opacity-50 block md:hidden"></div>
+        <div className="absolute inset-0 h-full bg-[#453B57] w-full opacity-90 block md:hidden"></div>
 
         <img
-          src="https://res.cloudinary.com/dbuuc0cdy/image/upload/v1730119162/Group_762_1_ostl1r.png"
+          // src="https://res.cloudinary.com/dbuuc0cdy/image/upload/v1730119162/Group_762_1_ostl1r.png"
+          // src='https://res.cloudinary.com/dbuuc0cdy/image/upload/v1730265262/Group_765_blgmib.png'
           alt="header"
           className="inset-0 w-full absolute hidden md:block h-[100%] object-cover"
         />
       </div>
 
-      <div className="mt-20 md:mt-24 lg:mt-28">
-        <div className="container">
-          <div className="w-full flex flex-col-reverse md:flex-row justify-between items-center mb-10 md:mb-16">
+      <div className="">
+        <div className="relative ">
+
+          <div className="absolute inset-0 h-[90%]  w-full ">
+            <img src='https://res.cloudinary.com/dbuuc0cdy/image/upload/v1730266321/Subtract_3_pzcpht.png 'alt=""  className="w-full h-full  hidden md:block object-c"/>
+          </div>
+          <div className="w-full container py-[30px] pt-[50px] md:py-[80px] lg:py-[100px] flex flex-col-reverse md:flex-row justify-between items-center">
             <motion.div
               className="w-full md:w-[40%]"
               initial={fadeInLeft}
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <h1 className="bg-transparent text-[24px] md:text-[48px] lg:text-[70px] font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white">
-                {data?.header}
+              <h1 className="bg-transparent section__header__size mb-3 md:mb-6 font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white">
+                {data?.header}    
               </h1>
               <p className="text-[14px] md:text-[18px] lg:text-[22px] leading-[20px] md:leading-[28px] lg:leading-[32px] font-[Poppins] font-normal text-white">
                 {data?.description}
               </p>
             </motion.div>
             <motion.div
-              className="w-full md:w-[40%] mt-6 md:mt-0"
+              className="w-full md:w-[40%] my-auto lg:mt-auto"
               initial={fadeInRight}
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <h2 className="font-[Timmana] text-[40px] md:text-[70px] lg:text-[90px] font-normal leading-[50px] md:leading-[70px] lg:leading-[90px] text-[#ed5959] italic uppercase">
+              <h2 className="font-[Timmana] section__header__size p-0  m-0  text-left md:text-right   font-normal   text-[#ed5959] italic uppercase">
                 {data?.subheader}
               </h2>
             </motion.div>
@@ -289,15 +296,19 @@ export default function HeroSection() {
               loading="lazy"
             />
           </div>
-
-          <div className="bg-[#ED5959]">
+          </div>
+          <div className=" bg-[#ED5959]  relative">
+            {/* bottom bg red img */}
+          <div className="absolute inset-0 top-[-80%] z-[-1] h-[180%] w-full ">
+            <img src='https://res.cloudinary.com/dbuuc0cdy/image/upload/v1730878479/Rectangle_97_k2uex1.png 'alt=""  className="w-full h-full object-c"/>
+          </div>
             <div className="container">
-              <motion.div className="w-full h-8 mt-6 flex flex-wrap max-w-[1200px] justify-between mx-auto">
+              <motion.div className="w-full   mt-6 flex flex-wrap  justify-between items-center mx-auto">
                 {data?.brandImages?.split(',').map((item, index) => (
                   <motion.img
                     key={index}
                     src={item}
-                    className="first__img mb-4 w-[48%] md:w-[30%] lg:w-[20%] object-contain"
+                    className="first__img my-2 md:mb-4 w-[48%] md:w-[30%] lg:w-[20%] object-contain"
                     alt="brand logo"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -308,7 +319,7 @@ export default function HeroSection() {
               </motion.div>
             </div>
           </div>
-        </div>
+       
       </div>
     </section>
   );

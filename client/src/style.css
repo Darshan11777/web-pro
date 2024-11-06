@@ -1,6 +1,8 @@
  @tailwind base;
 @tailwind components;
  @tailwind utilities;
+ @import url('https://fonts.googleapis.com/css2?family=Timmana&display=swap');
+
 
  /* Ensure you have the line-clamp CSS included */
 /* @import '@tailwindcss/line-clamp'; */
@@ -2228,4 +2230,25 @@ button.message__button {
   filter: alpha(opacity=0);
   /* modern browsers */
   opacity: 0;
+}
+
+
+/* section */
+.section__spacing{
+  margin:80px 0 ;
+}
+
+.section__header__size {
+  @apply text-[60px] md:text-[60px] lg:text-[100px] xl:text-[107px]  leading-[100%] ; 
+}
+
+.timmana__font__select::selection{
+  background-color: #b3d4fc; /* Light blue or any color you prefer */
+  color: #000; /* Text color during selection */
+  line-height: 0.8; /* Adjust the line height */
+}
+::selection {
+  background-color: #b3d4fc; /* Light blue or any color you prefer */
+  color: #000; /* Text color during selection */
+  line-height: 1; /* Adjust the line height */
 }

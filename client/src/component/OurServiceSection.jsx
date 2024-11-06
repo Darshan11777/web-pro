@@ -1,29 +1,8 @@
 import { useScroll, useTransform, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { stopLoading } from "../redux/slices/LoadingSlice";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export default function OurServiceSection() {
-  // const [data, setData] = useState(null);
-  // const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  // const dispatch = useDispatch();
-  // const fetchData = async () => {
-  //   try {
-  //     const res = await axios.get(`${baseUrl}section/header/our-service`);
-  //     const slide = res.data[0];
-  //     setData(slide);
-  //   } catch (error) {
-  //     console.error("Error fetching slide:", error);
-  //   } finally {
-  //     dispatch(stopLoading());
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
   const data = useSelector((state) => state.data.data.overServiceHeader);
 
   // Split the header based on the highlighted_word if data is available
@@ -33,47 +12,50 @@ export default function OurServiceSection() {
 
   return (
     <motion.section
-      className="our_services w-full "
+      className=" w-full   "
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
     >
       <div className="services__before">
-        <div className="container">
-          <div className="title">
-            <h1>{data?.section_name}</h1>
+        <div className="container mx-auto ">
+          <div className="title mb-4 md:mb-6 lg:mb-8 text-center">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold">{data?.section_name}</h1>
           </div>
-          <div className="row">
-            <div className="lg:w-[50%] md:w-[50%] sm:w-full w-full ourservice__relative">
-              <div className="heading__title">
+          <div className="flex flex-col md:flex-row lg:space-x-8">
+            {/* Left Column */}
+            <div className="w-full lg:w-1/2 ourservice__relative mb-6 lg:mb-0">
+              <div className="">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+                  className=" text-5xl md:text-[89px] font-poppins font-semibold text-[#453b57] leading-[110%]"
                 >
                   {/* Render the header with highlighted word */}
                   {newHeader &&
-                    newHeader?.map((part, index) =>
+                    newHeader.map((part, index) =>
                       part.toLowerCase() ===
                       data.highlighted_word.toLowerCase() ? (
-                        <span key={part}>{part}</span>
+                        <span key={index} className="text-red-500 font-semibold">{part}</span>
                       ) : (
-                        `${part}`
+                        part
                       )
                     )}
                 </motion.h1>
               </div>
               <motion.div
-                className="ourservice__border"
+                className="ourservice__border mt-4 h-[2px] bg-gray-300"
                 initial={{ opacity: 0, scaleX: 0 }}
                 whileInView={{ opacity: 1, scaleX: 1 }}
                 transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
               />
             </div>
 
-            <div className="lg:w-[50%] md:w-[50%] sm:w-full w-full">
+            {/* Right Column */}
+            <div className="w-full lg:w-1/2  flex items-center justify-center flex-grow ">
               <motion.div
-                className="sub__heading__title"
+                className="sub__heading__title text-base  leading-[200%] my-auto"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}

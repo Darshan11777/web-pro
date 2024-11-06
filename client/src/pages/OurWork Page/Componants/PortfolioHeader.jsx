@@ -34,7 +34,7 @@ export default function PortfolioHeader() {
               ref={videoRef}
               loading="lazy"
               src={data.project_video}
-              autoPlay
+              // autoPlay
               loop
               muted
               className="rounded-[40px] object-cover w-[300px] h-[100%]"
