@@ -76,7 +76,7 @@ export default function OurProcessSection() {
 
         {/* Details */}
         <motion.div
-          className="process__Section our-progress-detailes"
+          className="process__Section our-progress-detailes overflow-x-hidden overflow-y-hidden"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut", staggerChildren: 0.2 }}

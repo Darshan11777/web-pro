@@ -955,20 +955,26 @@ img.icon_part {
   color: #fff;
 }
 
-.ourservice__border {
-  /* padding: 6px; Adjust as needed */
-  width: 6px;
-  height: 100%;
-  position: absolute;
-  right: -20px;
-  top: 0;
-  bottom: 0;
-  background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.8),
-      #ED5959 47.16%,
-      rgba(255, 255, 255, 0.6));
-  /* Remove the border styles */
-}
+ @media (min-width:768px) {
+  .ourservice__border {
+    /* padding: 6px; Adjust as needed */
+    width: 6px;
+    height: 100%;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.8),
+        #ED5959 47.16%,
+        rgba(255, 255, 255, 0.6));
+    /* Remove the border styles */
+  }
+} 
+  
+  
+
+
 
 .ourservice__relative {
   position: relative;
@@ -1090,15 +1096,6 @@ ul {
   color: #fff;
 }
 
-.ourservice__border {
-  width: 6px;
-  height: 100%;
-  position: absolute;
-  right: -20px;
-  top: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), #ED5959 47.16%, rgba(255, 255, 255, 0.6));
-}
 
 .ourservice__relative {
   position: relative;
@@ -2066,7 +2063,7 @@ button.message__button {
 
 
 .bottom__img.show {
-  height: 450px; /* Now it's correct */
+  height: 350px; /* Now it's correct */
   
 }
 .container.herosection__container {

@@ -16,7 +16,7 @@ const homePageSlide= useSelector(state=>state.data.data.OurServiceSlides)
   const data=slideData ? slideData : homePageSlide
  
   return (
-    <section className="silder_section relative ">
+    <section className=" relative ">
       <div className="absolute top-[50%] left-[0px] h-[500px] w-[130px] animate-scaleUpDown">
         <img src={centerImg} alt="" className="h-full w-full object-cover" />
       </div>

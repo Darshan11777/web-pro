@@ -266,7 +266,7 @@ export default function HeroSection() {
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <h1 className="bg-transparent section__header__size mb-3 md:mb-6 font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white">
+              <h1 className="bg-transparent  mb-3 md:mb-6 font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white lg:text-7xl text-4xl md:text-6xl">
                 {data?.header}    
               </h1>
               <p className="text-[14px] md:text-[18px] lg:text-[22px] leading-[20px] md:leading-[28px] lg:leading-[32px] font-[Poppins] font-normal text-white">
@@ -274,12 +274,12 @@ export default function HeroSection() {
               </p>
             </motion.div>
             <motion.div
-              className="w-full md:w-[40%] my-auto lg:mt-auto"
+              className="w-full md:w-[40%]  my-auto lg:mt-auto"
               initial={fadeInRight}
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <h2 className="font-[Timmana] section__header__size p-0  m-0  text-left md:text-right   font-normal   text-[#ed5959] italic uppercase">
+              <h2 className="font-[Timmana]  p-0  m-0  text-left md:text-right   font-normal   text-[#ed5959] italic uppercase lg:text-7xl text-4xl md:text-6xl">
                 {data?.subheader}
               </h2>
             </motion.div>
