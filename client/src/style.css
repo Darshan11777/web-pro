@@ -2157,8 +2157,7 @@ button.message__button {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px; /* Or calc(var(--bs-gutter-x, 1.5rem) * -1) in Bootstrap 5 */
-  margin-left: -15px;  /* Or calc(var(--bs-gutter-x, 1.5rem) * -1) in Bootstrap 5 */
+ 
 }
 
 /* Hide scrollbar for Chrome, Safari, and Opera */
@@ -2248,4 +2247,8 @@ button.message__button {
   background-color: #b3d4fc; /* Light blue or any color you prefer */
   color: #000; /* Text color during selection */
   line-height: 1; /* Adjust the line height */
+}
+
+.about-us__header__font{
+font-size:clamp(40px, 4vw, 93px);
 }

@@ -148,7 +148,7 @@ const ShrinkingHeader = ({ ComponentOne, ComponentTwo }) => {
         <motion.div ref={ref} className={`relative    `} style={{height:componantOneHeight*2}}>
           <motion.div
             ref={componantOneRef}
-            className={` sticky top-[50.5px] min-w-screen `}
+            className={` sticky top-[50.5px] min-w-screen  `}
             style={{ scale, opacity }}
           >
             <div className="pt-[70px] pb-[70px]">

@@ -41,6 +41,7 @@ const allowedOrigins = [
   "https://webproreact.netlify.app",
   "http://localhost:5173",
   "http://localhost:5174",
+  'https://sturdy-space-potato-jjj995p5pvvxc967-5173.app.github.dev/',
 ];
 app.use(
   cors({

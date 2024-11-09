@@ -11,7 +11,7 @@ import FooterSection from "../../component/FooterSection";
 
 function AboutUs() {
   return (
-    <div className=" container flex  flex-col items-center px-20 pb-20 bg-white max-md:px-5">
+    <div className=" container  overflow-x-hidden flex  flex-col items-center px-20 pb-20 bg-white max-md:px-5">
       {/* <div className="flex flex-wrap gap-5 justify-between items-start self-stretch max-md:max-w-full">
         <img
           loading="lazy"

@@ -22,6 +22,7 @@ import OurServiceSlides from "../../component/OurServiceSlides.jsx";
 import AboutUsSection from "../../component/AboutUsSection.jsx";
 import axios from "axios";
 import GoogleTranslate from "../../component/GoogleTranslate/GoogleTranslate.jsx";
+import ResponsiveText from "../../component/ResponsiveText.jsx";
 
 export default function Home() {
   // const ourSectionRef = useRef(null);
@@ -36,6 +37,12 @@ export default function Home() {
 
   return (
     <>
+
+<div style={{ width: "50%", height: "500px", border: "1px solid black" }}>
+      <ResponsiveText minFontSize={14} maxFontSize={32} multiLine={true} adjustOnResize={true}>
+        This is a responsive text that can wrap across multiple lines while resizing to fit within the container. The font size will adjust based on the container's size.
+      </ResponsiveText>
+    </div>
       <HeroSection />
 
       <StickyComponent
