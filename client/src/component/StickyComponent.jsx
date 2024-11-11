@@ -23,9 +23,9 @@
 //     scrollYProgress.onChange((latest) => {
 //       const newPosition = latest < 0.01 ? "relative" : "sticky";
 //       setPosition(newPosition);
-//       console.log( "newPosition",latest);
-//       console.log( "position",position);
-//       console.log( "scale",scale.current);
+//        
+//        
+//        
 //     });
 //   }, [scrollYProgress]);
 //   return (
@@ -92,8 +92,8 @@ const ShrinkingHeader = ({ ComponentOne, ComponentTwo }) => {
       setComponantOneHeight(componantOneRef.current.offsetHeight);
     }
   }, []);
-  console.log( "screenHeight",screenHeight);
-  console.log( "componantOneHeight",componantOneHeight);
+   
+   
 
   // Scroll and animation configurations
   const { scrollYProgress } = useScroll({
@@ -104,14 +104,14 @@ const ShrinkingHeader = ({ ComponentOne, ComponentTwo }) => {
   let animateTime=componantOneHeight*2-componantOneHeight;
   // animateTime=screenHeight-animateTime
 
-  console.log( "animateTimeaaa", ((componantOneHeight/2 )/ componantOneHeight-81.5) * 100);
+   
   const navbarPercentage=(81.5*100)/componantOneHeight
-  console.log("55555555555", ((componantOneHeight / 2)  / (componantOneHeight-81.5)) * 100-navbarPercentage);
+   
 
   // const animationEndTime=animateTime*100/componantOneHeight*2/100
   const animationEndTime=(((componantOneHeight / 2)  / (componantOneHeight-81.5)) * 100-navbarPercentage)/100
   
-  console.log( "animationEndTime",animationEndTime);
+   
   const scale = useTransform(scrollYProgress, [0, animationEndTime], [1, 0.7]);
   const opacity = useTransform(scrollYProgress, [0, animationEndTime], [1, 0.3]);
 
@@ -120,17 +120,17 @@ const ShrinkingHeader = ({ ComponentOne, ComponentTwo }) => {
   useEffect(() => {
     scrollYProgress.onChange((latest) => {
       setPosition(latest > 0.5 ? "relative" : "sticky");
-      console.log( "position",position);
-      console.log( "scale",scale.current);
-      console.log( "opacity",opacity.current);
-      console.log( "scrollYProgress",scrollYProgress.current);
+       
+       
+       
+       
     });
   }, [scrollYProgress]);
-  console.log( "position",position);
-  console.log( "scale",scale.current);
-  console.log( "opacity",opacity.current);
-  console.log( "scrollYProgress",scrollYProgress.current);
-  console.log( "componantOneHeight",componantOneHeight);
+   
+   
+   
+   
+   
   return (
     <div className="w-full relative">
       {/* Optional background decoration */}
@@ -174,3 +174,7 @@ const ShrinkingHeader = ({ ComponentOne, ComponentTwo }) => {
 export default ShrinkingHeader;
 
 
+//   remove console.log
+// 1.select regex on slidebar serch
+// 2. console\.log\(.*\); 
+// 3. select file t o include

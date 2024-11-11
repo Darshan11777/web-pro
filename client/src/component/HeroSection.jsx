@@ -205,6 +205,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import header_img from "../assets/images/Group 762.png";
 import { useDispatch, useSelector } from "react-redux";
+import ResponsiveText from "./ResponsiveText";
 
 export default function HeroSection() {
 
@@ -266,8 +267,11 @@ export default function HeroSection() {
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <h1 className="bg-transparent  mb-3 md:mb-6 font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white lg:text-7xl text-4xl md:text-6xl">
+              <h1 className="bg-transparent  mb-2 md:mb-6 font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white   h-[110px]">
+                <ResponsiveText>
+                  
                 {data?.header}    
+                </ResponsiveText>
               </h1>
               <p className="text-[14px] md:text-[18px] lg:text-[22px] leading-[20px] md:leading-[28px] lg:leading-[32px] font-[Poppins] font-normal text-white">
                 {data?.description}
@@ -279,8 +283,11 @@ export default function HeroSection() {
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <h2 className="font-[Timmana]  p-0  m-0  text-left md:text-right   font-normal   text-[#ed5959] italic uppercase lg:text-7xl text-4xl md:text-6xl">
+              <h2 className="font-[Timmana]  p-0  m-0  text-left md:text-right   font-normal   text-[#ed5959] italic uppercase  h-[220px]">
+                <ResponsiveText>
+                  
                 {data?.subheader}
+                </ResponsiveText>
               </h2>
             </motion.div>
           </div>

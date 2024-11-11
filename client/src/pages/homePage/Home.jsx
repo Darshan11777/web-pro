@@ -38,11 +38,7 @@ export default function Home() {
   return (
     <>
 
-<div style={{ width: "50%", height: "500px", border: "1px solid black" }}>
-      <ResponsiveText minFontSize={14} maxFontSize={32} multiLine={true} adjustOnResize={true}>
-        This is a responsive text that can wrap across multiple lines while resizing to fit within the container. The font size will adjust based on the container's size.
-      </ResponsiveText>
-    </div>
+
       <HeroSection />
 
       <StickyComponent
@@ -66,9 +62,20 @@ export default function Home() {
 
       {/* <CardSlider/> */}
       {/* accorodian */}
+<div className="flex justify-around container">
+      <div style={{ width: "40%", height: "500px", border: "1px solid black" }}>
+      <ResponsiveText minFontSize={1} maxFontSize={500} multiLine={true} adjustOnResize={true}>
+        This is a responsive text that can wrap across multiple lines while resizing to fit within the container. The font size will adjust based on the container's size.
+        This is a responsive text that can wrap across multiple lines while resizing to fit within the container. The font size will adjust based on the container's size.
+      </ResponsiveText>
+    </div>
 
-     
+      <div className="text-[50px]" style={{ width: "30%", height: "400px", border: "1px solid black" }}>
       
+        This is a responsive text that can wrap across multiple lines while resizing to fit within the container. The font size will adjust based on the container's size.
+      
+    </div>
+    </div>
     </>
   );
 }
