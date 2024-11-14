@@ -267,14 +267,16 @@ export default function HeroSection() {
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <h1 className="bg-transparent  mb-2 md:mb-6 font-[Lato] font-extrabold italic text-transparent text-stroke-1 text-stroke-white   h-[110px]">
-                <ResponsiveText>
+              <h1 className="bg-transparent  mb-2 md:mb-6  font-[Lato]  font-extrabold italic text-transparent text-stroke-1 text-stroke-white w-full   h-[110px]">
+                <ResponsiveText >
                   
-                {data?.header}    
+                {data?.header + ''}    
                 </ResponsiveText>
               </h1>
-              <p className="text-[14px] md:text-[18px] lg:text-[22px] leading-[20px] md:leading-[28px] lg:leading-[32px] font-[Poppins] font-normal text-white">
-                {data?.description}
+              <p className="text-[14px] md:text-[18px] h-[150px] w-full lg:text-[22px] leading-[20px] md:leading-[28px] lg:leading-[32px] font-[Poppins] font-normal text-white">
+              <ResponsiveText >
+                {data?.description+ ''}
+                </ResponsiveText>
               </p>
             </motion.div>
             <motion.div
@@ -283,8 +285,8 @@ export default function HeroSection() {
               whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
               transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <h2 className="font-[Timmana]  p-0  m-0  text-left md:text-right   font-normal   text-[#ed5959] italic uppercase  h-[220px]">
-                <ResponsiveText>
+              <h2 className="font-[Timmana]  p-0  m-0  text-left md:text-right   font-normal   text-[#ed5959]  italic uppercase  h-[220px]">
+                <ResponsiveText breakWord={'advanced'}>
                   
                 {data?.subheader}
                 </ResponsiveText>

@@ -93,6 +93,7 @@ const ResponsiveText = ({
   maxFontSize = 500,
   multiLine = true, // Allow multi-line text resizing
   adjustOnResize = true, // Allow resizing when the container is resized
+  breakWord,
 }) => {
   const containerRef = useRef(null);
   const [fontSize, setFontSize] = useState(minFontSize); // Default to minFontSize
@@ -126,6 +127,18 @@ const [firstRender, setFirstRender] = useState(true);
     }
   };
 
+  const breakAtWord = (text, word) => {
+    const parts = text.toLowerCase().split(word.toLowerCase());
+    return (
+      <>
+        {parts[0]}
+        {word}
+        <br />
+        {parts[1]}
+      </>
+    );
+  };
+
   // Effect to handle resizing logic
   useEffect(() => {
     if (adjustOnResize  ) {
@@ -151,18 +164,21 @@ const [firstRender, setFirstRender] = useState(true);
   
   }, [minFontSize, maxFontSize, adjustOnResize]);
 
+  console.log( "children",children,breakWord);
+
   return (
     <div
       ref={containerRef}
-    className="h-full w-full "
+    className="h-full w-full     "
       style={{
         fontSize: `${fontSize}px`,
+        
         // overflow: "hidden",
         whiteSpace: multiLine ? "normal" : "nowrap", // Allow wrapping for multi-line text
         lineHeight: multiLine ? "1.2em" : "normal", // Adjust line height if multi-line
       }}
     >
-      {children}
+      {breakWord ? breakAtWord(children,breakWord) : children}
     </div>
   );
 };
