@@ -51,8 +51,8 @@ if (data === "news") {
     <div className="container float-right">
       <div className="card-slider card-container" ref={sliderRef}>
         {slides?.map((slide, index) => (
-          <div
-            className="brand_card"
+        <div
+            className="brand_card "
             key={index}
             style={{
               transform: `translateX(-${currentSlide * 100}%)`,

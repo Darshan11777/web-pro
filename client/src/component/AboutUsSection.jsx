@@ -20,7 +20,7 @@ export default function AboutUsSection() {
   );
 
   return (
-    <section className="about__section relative">
+    <section className="about__section relative my-[50px]">
       {/* Container for content */}
       <div className="container">
         <div className="row">
@@ -31,11 +31,11 @@ export default function AboutUsSection() {
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <div className="about__img">
+            <div className="about__img h-full">
               <img
                 src={data?.img_url}
-                className="Exclude"
-                alt="Exclude"
+                className="Exclude h-full"
+                alt="Exclude "
               />
               <div className="img_text">
                 <h2>{data?.years_of_experience}</h2>
